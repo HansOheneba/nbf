@@ -1,5 +1,5 @@
 import { EditorialImage } from "@/components/editorial/editorial-image";
-import { InquiryForm } from "@/components/forms/inquiry-form";
+import { ContactInquiry } from "@/components/forms/inquiry-form";
 import { Container } from "@/components/ui/container";
 import { PageIntro } from "@/components/ui/section-heading";
 import { images } from "@/content/images";
@@ -40,7 +40,7 @@ export default function ContactPage() {
         <div className="lg:col-span-6 lg:col-start-7">
           <h2 className="text-h3">Write to us</h2>
           <div className="mt-6">
-            <InquiryForm source="contact" submitLabel="Send message" />
+            <ContactInquiry submitLabel="Send message" />
           </div>
         </div>
       </Container>

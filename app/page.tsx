@@ -10,9 +10,13 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { articles } from "@/content/articles";
 import { images } from "@/content/images";
+import { contributionHref } from "@/content/donate";
+import { featuredEvent, isUpcoming } from "@/content/events";
 import { featuredInitiative } from "@/content/initiatives";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
+import { connection } from "next/server";
+import { Suspense } from "react";
 
 export const metadata = pageMetadata({
   title: site.name,
@@ -28,7 +32,7 @@ export default function Home() {
       <section className="border-b border-border">
         <Container className="grid items-end gap-12 py-12 lg:grid-cols-12 lg:py-20">
           <div className="lg:col-span-7">
-            <p className="eyebrow text-deep">Nana Boatemah Foundation</p>
+            
             <h1 className="mt-5 max-w-4xl text-display">
               Awareness is where <span className="text-foundation">change begins.</span>
             </h1>
@@ -91,6 +95,10 @@ export default function Home() {
         ctaLabel="Learn About Sickle Cell"
       />
 
+      <Suspense fallback={null}>
+        <UpcomingEventBand />
+      </Suspense>
+
       <section className="border-b border-border">
         <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
           <Reveal className="lg:col-span-6">
@@ -136,5 +144,34 @@ export default function Home() {
         label="Explore Our Resources"
       />
     </>
+  );
+}
+
+async function UpcomingEventBand() {
+  await connection();
+  const today = new Date().toISOString().slice(0, 10);
+  if (!isUpcoming(featuredEvent, today)) return null;
+
+  return (
+    <section className="border-b border-border bg-white">
+      <Container className="grid gap-8 py-16 lg:grid-cols-12 lg:items-end lg:py-24">
+        <Reveal className="lg:col-span-4">
+          <p className="eyebrow text-deep">Upcoming event</p>
+          <time dateTime={featuredEvent.dateTime} className="mt-4 block font-display text-h2">
+            {featuredEvent.dateLabel}
+          </time>
+        </Reveal>
+        <Reveal delay={80} className="lg:col-span-8">
+          <h2 className="text-h2">{featuredEvent.title}</h2>
+          <p className="mt-5 max-w-2xl text-body-lg text-ink/80">{featuredEvent.summary}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href={`/events/${featuredEvent.slug}`}>Discover the Fundraiser</ButtonLink>
+            <ButtonLink href={contributionHref()} variant="secondary">
+              Donate to the Cause
+            </ButtonLink>
+          </div>
+        </Reveal>
+      </Container>
+    </section>
   );
 }

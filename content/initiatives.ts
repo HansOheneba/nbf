@@ -25,6 +25,7 @@ export type Initiative = {
   slug: string;
   title: string;
   summary: string;
+  menuDescription: string;
   introduction: string[];
   image: GalleryImage;
   sections: InitiativeSection[];
@@ -40,6 +41,8 @@ export const initiatives: Initiative[] = [
     title: "Sickle cell awareness",
     summary:
       "Understanding sickle cell disease starts with knowing the facts. Through awareness and education, we can encourage informed conversations, challenge stigma and help more people understand the importance of knowing their sickle cell status.",
+    menuDescription:
+      "Facts about the condition, the difference between trait and disease, and why a blood test matters.",
     introduction: [
       "Sickle cell disease is an inherited blood disorder that can have a significant impact on health and everyday life. Yet misconceptions about the condition and the difference between sickle cell disease and sickle cell trait can make informed conversations difficult.",
       "Understanding starts with accurate information. Knowing your sickle cell status, asking questions and speaking with qualified health professionals can help people make informed decisions.",

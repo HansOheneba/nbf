@@ -174,3 +174,11 @@ export function GetInvolvedInquiry(props: Omit<InquiryFormProps, "defaultEnquiry
     </Suspense>
   );
 }
+
+export function ContactInquiry(props: Omit<InquiryFormProps, "defaultEnquiry" | "source">) {
+  return (
+    <Suspense fallback={<InquiryForm {...props} source="contact" />}>
+      <TopicInquiryForm {...props} source="contact" />
+    </Suspense>
+  );
+}

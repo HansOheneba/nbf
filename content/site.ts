@@ -1,3 +1,6 @@
+import { events } from "@/content/events";
+import { initiatives } from "@/content/initiatives";
+
 export const site = {
   name: "Nana Boatemah Foundation",
   shortName: "NBF",
@@ -16,13 +19,43 @@ export const supportCta = {
   href: "/get-involved",
 } as const;
 
-export const mainNav = [
+export type NavChild = {
+  label: string;
+  href: string;
+  description: string;
+  meta?: string;
+};
+
+export type NavItem = {
+  label: string;
+  href: string;
+  children?: NavChild[];
+};
+
+export const mainNav: NavItem[] = [
   { label: "About", href: "/about" },
-  { label: "Initiatives", href: "/initiatives" },
-  { label: "Sickle Cell Awareness", href: "/initiatives/sickle-cell-awareness" },
+  {
+    label: "Initiatives",
+    href: "/initiatives",
+    children: initiatives.map((item) => ({
+      label: item.title,
+      href: `/initiatives/${item.slug}`,
+      description: item.menuDescription,
+    })),
+  },
+  {
+    label: "Events",
+    href: "/events",
+    children: events.map((item) => ({
+      label: item.title,
+      href: `/events/${item.slug}`,
+      description: item.menuDescription,
+      meta: item.dateLabel,
+    })),
+  },
   { label: "Stories & Resources", href: "/stories" },
   { label: "Contact", href: "/contact" },
-] as const;
+];
 
 export const legalNav = [{ label: "Privacy", href: "/privacy" }] as const;
 
@@ -30,9 +63,12 @@ export const sitemapPaths = [
   "/",
   "/about",
   "/initiatives",
-  "/initiatives/sickle-cell-awareness",
+  ...initiatives.map((item) => `/initiatives/${item.slug}`),
+  "/events",
+  ...events.map((item) => `/events/${item.slug}`),
   "/stories",
   "/get-involved",
   "/contact",
+  "/donate",
   "/privacy",
-] as const;
+];

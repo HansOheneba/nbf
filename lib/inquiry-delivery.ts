@@ -5,7 +5,8 @@ export type InquiryPayload = {
   email: string;
   enquiryType: string;
   message: string;
-  source: "contact" | "get-involved";
+  source: "contact" | "get-involved" | "donate";
+  amount?: string;
 };
 
 export type DeliveryResult =
@@ -57,9 +58,13 @@ export async function deliverInquiry(input: InquiryPayload): Promise<DeliveryRes
             `Email: ${input.email}`,
             `Enquiry: ${enquiryLabel(input.enquiryType)}`,
             `Page: ${input.source}`,
+            ...(input.amount ? [`Intended amount: ${input.amount}`] : []),
             `Sent: ${submittedAt}`,
             "",
             input.message,
+            ...(input.source === "donate"
+              ? ["", "This note records an intention. It is not a payment."]
+              : []),
           ].join("\n"),
         }),
       });

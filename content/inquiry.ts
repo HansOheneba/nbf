@@ -5,6 +5,7 @@ export const enquiryTypes = [
   { value: "partnership", label: "A partnership" },
   { value: "collaboration", label: "A collaboration" },
   { value: "support", label: "Supporting the work" },
+  { value: "fundraiser", label: "The 19 December fundraiser" },
   { value: "other", label: "Something else" },
 ] as const;
 

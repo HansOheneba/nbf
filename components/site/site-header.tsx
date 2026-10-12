@@ -2,15 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState } from "react";
+import { Fragment, useEffect, useId, useRef, useState } from "react";
 import { Logo } from "@/components/site/logo";
 import { ButtonLink } from "@/components/ui/button";
-import { mainNav, site, supportCta } from "@/content/site";
+import { mainNav, site, supportCta, type NavChild, type NavItem } from "@/content/site";
 import { cn } from "@/lib/cn";
 
 function isActive(pathname: string, href: string) {
-  if (href === "/initiatives") return pathname === "/initiatives";
+  if (href === "/initiatives" || href === "/events") {
+    return pathname === href || pathname.startsWith(`${href}/`);
+  }
   return pathname === href;
+}
+
+function hasMenu(item: NavItem) {
+  return Boolean(item.children?.length);
+}
+
+function menuDomId(href: string) {
+  return `site-menu-${href.replaceAll("/", "")}`;
 }
 
 export function SiteHeader() {
@@ -20,6 +30,60 @@ export function SiteHeader() {
   const panelId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeTimer = useRef<number | null>(null);
+  const lastTriggerRef = useRef<HTMLAnchorElement | null>(null);
+  const [menuState, setMenuState] = useState<{ href: string; path: string } | null>(null);
+  const openMenuHref = menuState?.path === pathname ? menuState.href : null;
+
+  function clearCloseTimer() {
+    if (closeTimer.current === null) return;
+    window.clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  }
+
+  function openMenu(href: string, trigger?: HTMLAnchorElement | null) {
+    clearCloseTimer();
+    if (trigger) lastTriggerRef.current = trigger;
+    setMenuState({ href, path: pathname });
+  }
+
+  function closeMenu() {
+    clearCloseTimer();
+    setMenuState(null);
+  }
+
+  function scheduleClose() {
+    clearCloseTimer();
+    closeTimer.current = window.setTimeout(() => setMenuState(null), 180);
+  }
+
+  useEffect(() => {
+    return () => clearCloseTimer();
+  }, []);
+
+  useEffect(() => {
+    if (!openMenuHref) return;
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setMenuState(null);
+      lastTriggerRef.current?.focus();
+    };
+
+    const onPointer = (event: PointerEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest(`[data-mega-menu="${openMenuHref}"]`)) return;
+      setMenuState(null);
+    };
+
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
+    };
+  }, [openMenuHref]);
 
   useEffect(() => {
     if (!open) return;
@@ -84,24 +148,52 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
-          {mainNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={isActive(pathname, item.href) ? "page" : undefined}
-              className={cn(
-                "text-nav text-ink/80 hover:text-ink",
-                isActive(pathname, item.href) &&
-                  "text-link underline decoration-foundation underline-offset-4",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <ButtonLink href={supportCta.href} className="min-h-11 px-4">
-            {supportCta.label}
-          </ButtonLink>
+        <nav
+          aria-label="Primary"
+          className="hidden items-center gap-6 self-stretch xl:flex"
+          onMouseLeave={scheduleClose}
+        >
+          {mainNav.map((item) => {
+            const menuOpen = openMenuHref === item.href;
+            return (
+              <Fragment key={item.href}>
+                <Link
+                  href={item.href}
+                  data-mega-menu={hasMenu(item) ? item.href : undefined}
+                  aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                  aria-expanded={hasMenu(item) ? menuOpen : undefined}
+                  aria-controls={hasMenu(item) ? menuDomId(item.href) : undefined}
+                  onMouseEnter={(event) =>
+                    hasMenu(item) ? openMenu(item.href, event.currentTarget) : scheduleClose()
+                  }
+                  onFocus={(event) =>
+                    hasMenu(item) ? openMenu(item.href, event.currentTarget) : closeMenu()
+                  }
+                  className={cn(
+                    "inline-flex items-center text-nav text-ink/80 hover:text-ink",
+                    isActive(pathname, item.href) &&
+                      "text-link underline decoration-foundation underline-offset-4",
+                  )}
+                >
+                  {item.label}
+                </Link>
+                {hasMenu(item) ? (
+                  <MegaMenu
+                    item={item}
+                    open={menuOpen}
+                    pathname={pathname}
+                    onNavigate={closeMenu}
+                    onPointerEnter={() => openMenu(item.href)}
+                  />
+                ) : null}
+              </Fragment>
+            );
+          })}
+          <span className="self-center" onMouseEnter={scheduleClose} onFocus={closeMenu}>
+            <ButtonLink href={supportCta.href} className="min-h-11 px-4">
+              {supportCta.label}
+            </ButtonLink>
+          </span>
         </nav>
 
         <button
@@ -128,15 +220,27 @@ export function SiteHeader() {
       >
         <nav aria-label="Mobile" className="flex flex-col gap-2 px-6 py-8">
           {mainNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={isActive(pathname, item.href) ? "page" : undefined}
-              className="border-b border-border py-4 font-display text-h3"
-              onClick={() => setOpenPath(null)}
-            >
-              {item.label}
-            </Link>
+            <div key={item.href} className="border-b border-border">
+              <Link
+                href={item.href}
+                aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                className="block py-4 font-display text-h3"
+                onClick={() => setOpenPath(null)}
+              >
+                {item.label}
+              </Link>
+              {item.children?.map((child) => (
+                <Link
+                  key={child.href}
+                  href={child.href}
+                  aria-current={pathname === child.href ? "page" : undefined}
+                  className="block py-3 text-body text-ink/80"
+                  onClick={() => setOpenPath(null)}
+                >
+                  {child.label}
+                </Link>
+              ))}
+            </div>
           ))}
           <ButtonLink
             href={supportCta.href}
@@ -149,5 +253,91 @@ export function SiteHeader() {
         </nav>
       </div>
     </header>
+  );
+}
+
+function MegaMenu({
+  item,
+  open,
+  pathname,
+  onNavigate,
+  onPointerEnter,
+}: {
+  item: NavItem;
+  open: boolean;
+  pathname: string;
+  onNavigate: () => void;
+  onPointerEnter: () => void;
+}) {
+  const children = item.children ?? [];
+  return (
+    <div
+      id={menuDomId(item.href)}
+      data-mega-menu={item.href}
+      aria-label={item.label}
+      inert={open ? undefined : true}
+      onMouseEnter={onPointerEnter}
+      className={cn(
+        "absolute inset-x-0 top-full z-40 border-b border-border bg-paper",
+        open ? "block" : "hidden",
+      )}
+    >
+      <div className="mx-auto grid w-full max-w-page items-end gap-10 px-8 py-10 xl:grid-cols-12">
+        <div className="xl:col-span-7">
+          <p className="eyebrow text-deep">{item.label}</p>
+          <ul className="mt-4">
+            {children.map((child) => (
+              <li key={child.href} className="border-b border-border">
+                <ChildLink child={child} pathname={pathname} onNavigate={onNavigate} />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="xl:col-span-4 xl:col-start-9">
+          <Link
+            href={item.href}
+            onClick={onNavigate}
+            className="inline-flex min-h-11 items-center font-display text-h4 text-link underline decoration-link/40 underline-offset-4 hover:text-link-hover"
+          >
+            All {item.label.toLowerCase()}
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChildLink({
+  child,
+  pathname,
+  onNavigate,
+}: {
+  child: NavChild;
+  pathname: string;
+  onNavigate: () => void;
+}) {
+  const current = pathname === child.href;
+  return (
+    <Link
+      href={child.href}
+      aria-current={current ? "page" : undefined}
+      onClick={onNavigate}
+      className="block py-4 hover:text-ink"
+    >
+      {child.meta ? (
+        <span className="block text-caption font-medium text-deep">{child.meta}</span>
+      ) : null}
+      <span
+        className={cn(
+          "mt-1 block font-display text-h4",
+          current && "underline decoration-foundation underline-offset-4",
+        )}
+      >
+        {child.label}
+      </span>
+      <span className="mt-2 block max-w-md text-small text-muted-foreground">
+        {child.description}
+      </span>
+    </Link>
   );
 }

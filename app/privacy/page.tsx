@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       <PageIntro
         eyebrow="Privacy"
         title="How this website handles information."
-        lede="This note describes the site as it works today: an enquiry form, educational pages about sickle cell, and photographs used as illustration."
+        lede="This note describes the site as it works today: enquiry forms, a contribution note for the fundraiser, educational pages about sickle cell, and photographs used as illustration."
       />
       <Container className="max-w-3xl space-y-12 py-16 lg:py-24">
         <section>
@@ -36,6 +36,13 @@ export default function PrivacyPage() {
               Do not include symptoms, test results, or other medical details. The form
               is not a health service, and those details are not needed to ask about the
               foundation.
+            </p>
+            <p>
+              The contribution page asks for a name and email, and may include an
+              intended amount and a message if you choose to add them. That note is an
+              intention to support the fundraiser. It is not a payment, and the site does
+              not collect card numbers. If the note cannot be sent, the form says so, and
+              nothing is stored.
             </p>
           </div>
         </section>
