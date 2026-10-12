@@ -28,7 +28,7 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
               {event.dateLabel}
             </time>
             <p className="mt-2 text-small text-muted-foreground">{campaign.supportLabel}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <DonationLink>{campaign.donateLabel}</DonationLink>
               <ButtonLink href="#evening" variant="secondary">
                 {campaign.exploreLabel}
@@ -126,7 +126,7 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
 
       <section id="support" className="scroll-mt-20 border-b border-border">
         <Container className="grid gap-6 py-16 lg:grid-cols-12 lg:py-28">
-          <div className="surface-deep flex flex-col justify-between bg-deep p-8 text-white lg:col-span-5 lg:p-10">
+          <div className="surface-deep flex flex-col justify-between bg-deep p-5 text-white sm:p-8 lg:col-span-5 lg:p-10">
             <div>
               <p className="eyebrow text-paper/80">01</p>
               <h2 className="mt-4 text-h2">Donate to the Cause</h2>
@@ -139,7 +139,7 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
               <DonationLink variant="inverse">{campaign.donateLabel}</DonationLink>
             </div>
           </div>
-          <div className="grid gap-6 bg-white p-8 lg:col-span-7 lg:grid-cols-2 lg:p-10">
+          <div className="grid gap-6 bg-white p-5 sm:p-8 lg:col-span-7 lg:grid-cols-2 lg:p-10">
             <EditorialImage
               image={campaign.attend.image}
               aspect="aspect-[4/5]"
@@ -156,7 +156,7 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-between gap-8 border border-border p-8 sm:flex-row sm:items-end lg:col-span-12 lg:p-10">
+          <div className="flex flex-col justify-between gap-8 border border-border p-5 sm:flex-row sm:flex-wrap sm:items-end sm:p-8 lg:col-span-12 lg:p-10">
             <div className="max-w-xl">
               <p className="eyebrow text-deep">03</p>
               <h2 className="mt-4 text-h2">{campaign.share.title}</h2>
@@ -178,7 +178,7 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
             <Logo variant="icon" className="mb-8 h-16 w-16" />
             <h2 className="max-w-3xl text-display">{campaign.close.title}</h2>
             <p className="mt-6 max-w-xl text-body-lg">{campaign.close.text}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <DonationLink variant="inverse">{campaign.close.contribute}</DonationLink>
               <ShareCampaign
                 path={campaign.path}
@@ -194,7 +194,6 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
               image={campaign.close.image}
               aspect="aspect-[4/5]"
               sizes="(min-width: 1024px) 36vw, 100vw"
-              captionClassName="text-white/80"
             />
           </div>
         </Container>

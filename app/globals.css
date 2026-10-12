@@ -110,13 +110,39 @@ body {
   line-height: var(--text-body--line-height);
 }
 
+/* Narrow phones: keep the longest display word inside the page padding. */
+@media (max-width: 22rem) {
+  .text-display {
+    font-size: clamp(2.45rem, 12vw, 3.1rem);
+  }
+}
+
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-display), sans-serif;
   font-weight: 500;
+  overflow-wrap: break-word;
   text-wrap: balance;
+}
+
+p,
+li,
+figcaption,
+dd {
+  overflow-wrap: break-word;
+}
+
+:where(.grid > *) {
+  min-width: 0;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
 }
 
 p {

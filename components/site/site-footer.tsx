@@ -55,9 +55,14 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/15">
-        <div className="mx-auto flex w-full max-w-page flex-col gap-2 px-4 py-6 text-caption text-paper/70 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-page flex-col gap-2 px-4 py-6 text-caption text-paper/70 sm:flex-row sm:items-baseline sm:justify-between sm:px-6 lg:px-8">
           <p>
             © {site.copyrightYear} {site.name}.
+          </p>
+          <p>
+            <Link href="/privacy#photographs" className="underline underline-offset-4 hover:text-paper">
+              Photo credits
+            </Link>
           </p>
         </div>
       </div>

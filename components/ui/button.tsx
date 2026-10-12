@@ -15,7 +15,7 @@ const variants: Record<Variant, string> = {
 
 export function buttonClass(variant: Variant = "primary", className?: string) {
   return cn(
-    "inline-flex min-h-12 items-center justify-center gap-2 px-5 font-sans text-button font-medium transition-colors duration-200 motion-reduce:transition-none",
+    "inline-flex max-w-full min-h-12 items-center justify-center gap-2 px-5 text-center font-sans text-button font-medium whitespace-normal transition-colors duration-200 motion-reduce:transition-none",
     variants[variant],
     className,
   );
@@ -54,13 +54,13 @@ export function TextLink({
     <Link
       href={href}
       className={cn(
-        "inline-flex min-h-11 items-center gap-2 font-sans text-button font-medium underline decoration-1 underline-offset-4",
+        "inline-flex max-w-full items-center gap-2 font-sans text-button font-medium underline decoration-1 underline-offset-4",
         light
           ? "text-white decoration-white/50 hover:decoration-white"
           : "text-link decoration-link/40 hover:text-link-hover hover:decoration-link-hover",
       )}
     >
-      {children}
+      <span className="min-w-0">{children}</span>
       <Arrow />
     </Link>
   );
@@ -68,7 +68,7 @@ export function TextLink({
 
 function Arrow() {
   return (
-    <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4">
+    <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4 shrink-0">
       <path
         d="M2.5 8h11M9 3.5 13.5 8 9 12.5"
         fill="none"

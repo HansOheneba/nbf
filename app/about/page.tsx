@@ -135,7 +135,7 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:col-start-9 lg:flex-col">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:col-span-4 lg:col-start-9 lg:flex-col">
             <ButtonLink href="/get-involved" variant="inverse">
               Get Involved
             </ButtonLink>

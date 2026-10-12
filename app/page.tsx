@@ -29,7 +29,7 @@ export const metadata = pageMetadata({
 export default function Home() {
   return (
     <>
-      <section className="border-b border-border">
+      <section className="overflow-x-clip border-b border-border">
         <Container className="grid items-end gap-12 py-12 lg:grid-cols-12 lg:py-20">
           <div className="lg:col-span-7">
             
@@ -41,7 +41,7 @@ export default function Home() {
               can challenge misconceptions, open conversations and bring people closer to
               meaningful change.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ButtonLink href="/initiatives">Explore Our Work</ButtonLink>
               <ButtonLink href="/get-involved" variant="secondary">
                 Get Involved
@@ -75,7 +75,7 @@ export default function Home() {
         reverse
       />
 
-      <section className="surface-ink bg-ink text-paper">
+      <section className="surface-ink overflow-x-clip bg-ink text-paper">
         <Container className="relative py-20 lg:py-32">
           <Motif tone="foundation" className="-top-6 right-0 opacity-30" />
           <Reveal>
@@ -164,7 +164,7 @@ async function UpcomingEventBand() {
         <Reveal delay={80} className="lg:col-span-8">
           <h2 className="text-h2">{featuredEvent.title}</h2>
           <p className="mt-5 max-w-2xl text-body-lg text-ink/80">{featuredEvent.summary}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <ButtonLink href={`/events/${featuredEvent.slug}`}>Discover the Fundraiser</ButtonLink>
             <ButtonLink href={contributionHref()} variant="secondary">
               Donate to the Cause

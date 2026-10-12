@@ -88,7 +88,7 @@ export function ContributionForm() {
           />
         </Field>
       </div>
-      <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+      <div className="h-0 overflow-hidden" aria-hidden="true">
         <label htmlFor={`${formId}-company`}>Company</label>
         <input id={`${formId}-company`} name="company" type="text" tabIndex={-1} autoComplete="off" />
       </div>

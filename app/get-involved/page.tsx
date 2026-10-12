@@ -113,7 +113,6 @@ export default function GetInvolvedPage() {
               image={bandImages[2]}
               aspect="aspect-[3/4]"
               sizes="(min-width: 1024px) 38vw, 100vw"
-              captionClassName="text-paper/60"
             />
           </Reveal>
         </Container>

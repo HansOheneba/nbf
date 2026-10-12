@@ -141,8 +141,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border bg-paper">
       <div className="mx-auto flex h-20 w-full max-w-page items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex min-w-0 items-center gap-3">
-          <Logo priority className="h-14 w-14 shrink-0" />
-          <span className="font-display text-sm leading-none tracking-tight text-ink">
+          <Logo priority className="h-12 w-12 shrink-0 sm:h-14 sm:w-14" />
+          <span className="min-w-0 font-display text-sm leading-none tracking-tight text-ink">
             Nana Boatemah
             <span className="mt-1 block">Foundation</span>
           </span>
@@ -199,7 +199,7 @@ export function SiteHeader() {
         <button
           ref={menuButtonRef}
           type="button"
-          className="inline-flex min-h-12 items-center px-3 font-sans text-nav font-medium xl:hidden"
+          className="inline-flex min-h-12 shrink-0 items-center px-3 font-sans text-nav font-medium xl:hidden"
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => setOpenPath(open ? null : pathname)}
@@ -214,7 +214,7 @@ export function SiteHeader() {
         inert={open ? undefined : true}
         aria-hidden={open ? undefined : true}
         className={cn(
-          "fixed inset-x-0 top-20 bottom-0 z-40 overflow-y-auto bg-paper motion-safe:transition-opacity motion-safe:duration-300 xl:hidden",
+          "fixed inset-x-0 top-20 bottom-0 z-40 w-full overflow-x-clip overflow-y-auto bg-paper motion-safe:transition-opacity motion-safe:duration-300 xl:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >

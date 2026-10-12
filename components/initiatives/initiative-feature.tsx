@@ -27,7 +27,6 @@ export function InitiativeFeature({
             image={initiative.image}
             aspect="aspect-[3/2]"
             sizes="(min-width: 1024px) 38vw, 100vw"
-            captionClassName="text-paper/60"
           />
         </div>
         <div className="lg:col-span-6 lg:col-start-7">

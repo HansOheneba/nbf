@@ -65,7 +65,7 @@ async function EventCatalogue() {
               </time>
               <h2 className="mt-3 text-h1">{featured.title}</h2>
               <p className="mt-5 text-body-lg text-ink/80">{featured.summary}</p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <ButtonLink href={`/events/${featured.slug}`}>Discover the Fundraiser</ButtonLink>
                 <DonationLink variant="secondary">Donate to the Cause</DonationLink>
               </div>

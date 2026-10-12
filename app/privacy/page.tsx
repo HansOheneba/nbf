@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/container";
 import { PageIntro } from "@/components/ui/section-heading";
+import { images } from "@/content/images";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
@@ -63,14 +64,29 @@ export default function PrivacyPage() {
             about your health.
           </p>
         </section>
-        <section>
+        <section id="photographs">
           <h2 className="text-h3">Photographs</h2>
           <p className="mt-4 text-body text-ink/85">
-            Photographs are used under the Unsplash and Pexels licences. A caption on
-            each image names the source. The people in the photographs are not staff,
+            Photographs are used under the Unsplash and Pexels licences. Credits for
+            each picture are listed here. The people in the photographs are not staff,
             partners, or participants of Nana Boatemah Foundation, and the pictures are
             not records of the foundation&apos;s work.
           </p>
+          <ul className="mt-6 space-y-5">
+            {Object.values(images).map((image) => (
+              <li key={image.src}>
+                <a
+                  href={image.creditHref}
+                  className="text-small font-medium text-deep underline decoration-deep/30 underline-offset-4"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  {image.caption}
+                </a>
+                <p className="mt-1 text-caption text-ink/75">{image.alt}</p>
+              </li>
+            ))}
+          </ul>
         </section>
       </Container>
     </>
