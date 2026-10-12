@@ -1,26 +1,197 @@
 @import "tailwindcss";
 
+/*
+  Brand reds are sampled from public/logos/NBF_logo.png.
+  Foundation #EF0026 is for large type, rules, and motifs.
+  It is about 4.0:1 on paper, so it is not used for body copy,
+  captions, or button labels. Deep #9C0019 is the action colour:
+  white on deep is about 8.7:1, and deep on paper is about 7.8:1.
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foundation: #ef0026;
+  --deep: #9c0019;
+  --ink: #171717;
+  --white: #ffffff;
+  --paper: #f7f3ed;
+  --muted: #efeae3;
+  --muted-foreground: #5c564e;
+  --border: #d9d2c8;
+  --focus: #9c0019;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --primary: var(--deep);
+  --primary-foreground: var(--white);
+  --primary-hover: var(--ink);
+  --secondary: var(--ink);
+  --secondary-foreground: var(--white);
+  --secondary-hover: var(--ink);
+  --link: var(--deep);
+  --link-hover: var(--ink);
 }
 
 @theme inline {
+  --color-foundation: var(--foundation);
+  --color-deep: var(--deep);
+  --color-ink: var(--ink);
+  --color-white: var(--white);
+  --color-paper: var(--paper);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-focus: var(--focus);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-space-grotesk);
+  --text-display: clamp(3.4rem, 8.2vw, 7.6rem);
+  --text-display--line-height: 0.86;
+  --text-display--letter-spacing: -0.045em;
+  --text-h1: clamp(2.6rem, 5vw, 4.5rem);
+  --text-h1--line-height: 0.92;
+  --text-h1--letter-spacing: -0.04em;
+  --text-h2: clamp(2rem, 3.2vw, 3.15rem);
+  --text-h2--line-height: 0.98;
+  --text-h2--letter-spacing: -0.035em;
+  --text-h3: clamp(1.35rem, 2vw, 1.75rem);
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.03em;
+  --text-h4: 1.125rem;
+  --text-h4--line-height: 1.35;
+  --text-h4--letter-spacing: -0.02em;
+  --text-body-lg: clamp(1.125rem, 1.25vw, 1.3125rem);
+  --text-body-lg--line-height: 1.55;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.7;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.55;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.35;
+  --text-eyebrow--letter-spacing: 0.14em;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.45;
+  --text-button: 0.9375rem;
+  --text-button--line-height: 1.2;
+  --text-nav: 0.9375rem;
+  --text-nav--line-height: 1.4;
+  --max-width-page: 80rem;
+  --animate-motif: motif-drift 18s ease-in-out infinite;
+  --animate-motif-slow: motif-drift 24s ease-in-out infinite reverse;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes motif-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
+  50% {
+    transform: translate3d(0, -0.75rem, 0) rotate(7deg);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.surface-foundation :focus-visible,
+.surface-deep :focus-visible,
+.surface-ink :focus-visible {
+  outline-color: var(--white);
+}
+
+::selection {
+  background: var(--deep);
+  color: var(--white);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: 60;
+  transform: translateY(-160%);
+  background: var(--ink);
+  color: var(--white);
+  padding: 0.5rem 0.75rem;
+  font-size: var(--text-small);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.eyebrow {
+  font-family: var(--font-sans), sans-serif;
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: var(--text-eyebrow--line-height);
+  text-transform: uppercase;
+}
+
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-pending {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 700ms ease,
+      transform 700ms ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-pending,
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
