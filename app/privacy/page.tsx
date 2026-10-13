@@ -69,23 +69,26 @@ export default function PrivacyPage() {
             participants. Credits are listed where the photographer is known.
           </p>
           <ul className="mt-6 space-y-5">
-            {Object.values(images).map((image) => (
-              <li key={image.src}>
-                {image.creditHref ? (
-                  <a
-                    href={image.creditHref}
-                    className="text-small font-medium text-deep underline decoration-deep/30 underline-offset-4"
-                    rel="noreferrer noopener"
-                    target="_blank"
-                  >
-                    {image.caption}
-                  </a>
-                ) : (
-                  <p className="text-small font-medium">{image.caption}</p>
-                )}
-                <p className="mt-1 text-caption text-ink/75">{image.alt}</p>
-              </li>
-            ))}
+            {Object.values(images).map((image) => {
+              const creditHref = "creditHref" in image ? image.creditHref : undefined;
+              return (
+                <li key={image.src}>
+                  {creditHref ? (
+                    <a
+                      href={creditHref}
+                      className="text-small font-medium text-deep underline decoration-deep/30 underline-offset-4"
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
+                      {image.caption}
+                    </a>
+                  ) : (
+                    <p className="text-small font-medium">{image.caption}</p>
+                  )}
+                  <p className="mt-1 text-caption text-ink/75">{image.alt}</p>
+                </li>
+              );
+            })}
           </ul>
         </section>
       </Container>
