@@ -21,8 +21,8 @@ export default function StoriesPage() {
         eyebrow="Stories and resources"
         title="Knowledge is worth sharing."
         lede={[
-          "A conversation can change what someone understands. The right resource can help a family ask better questions. A shared story can remind someone that they are not alone.",
-          "Explore educational resources and perspectives that encourage greater understanding of the issues that matter to our communities.",
+          "These articles explain sickle cell disease, the difference between trait and disease, and why a blood test is how a person knows their status.",
+          "They are educational pages with sources and a review date. They are not personal stories, and they are not a record of Samaa Charity Projects' activities.",
         ]}
       />
 

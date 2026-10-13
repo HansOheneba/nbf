@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { EditorialImage } from "@/components/editorial/editorial-image";
 import { HealthNote, SourceList } from "@/components/editorial/source-list";
@@ -27,7 +28,15 @@ export async function generateMetadata({ params }: ArticleParams): Promise<Metad
   });
 }
 
-export default async function ArticlePage({ params }: ArticleParams) {
+export default function ArticlePage({ params }: ArticleParams) {
+  return (
+    <Suspense fallback={<div className="min-h-[70vh] border-b border-border" />}>
+      <ArticleContent params={params} />
+    </Suspense>
+  );
+}
+
+async function ArticleContent({ params }: ArticleParams) {
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) notFound();
@@ -85,7 +94,7 @@ export default async function ArticlePage({ params }: ArticleParams) {
               </ul>
               <p className="mt-8">
                 <Link
-                  href="/initiatives/sickle-cell-awareness"
+                  href="/health/sickle-cell"
                   className="text-small font-medium text-deep underline decoration-deep/30 underline-offset-4"
                 >
                   Back to sickle cell awareness

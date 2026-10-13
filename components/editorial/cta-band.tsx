@@ -14,9 +14,9 @@ export function CtaBand({
   label: string;
 }) {
   return (
-    <section className="surface-foundation bg-foundation text-white">
+    <section className="surface-deep bg-deep text-white">
       <Container className="py-20 lg:py-28">
-        <Logo variant="icon" className="mb-8 h-16 w-16" />
+        <Logo variant="light" className="mb-8 h-16 w-16" />
         <h2 className="max-w-5xl text-display">{title}</h2>
         <div className="mt-8 max-w-xl bg-paper p-6 text-ink sm:p-8">
           {text ? <p className="text-body-lg">{text}</p> : null}

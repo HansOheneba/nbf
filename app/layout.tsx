@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EventNotice } from "@/components/campaign/event-notice";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { site } from "@/content/site";
@@ -24,10 +25,6 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description: site.description,
-  icons: {
-    icon: [{ url: "/logos/icon_logo.png", type: "image/png" }],
-    apple: "/logos/icon_logo.png",
-  },
   openGraph: {
     title: site.name,
     description: site.description,
@@ -40,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${spaceGrotesk.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
@@ -51,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <EventNotice />
       </body>
     </html>
   );

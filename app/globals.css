@@ -1,28 +1,33 @@
 @import "tailwindcss";
 
 /*
-  Brand reds are sampled from public/logos/NBF_logo.png.
-  Foundation #EF0026 is for large type, rules, and motifs.
-  It is about 4.0:1 on paper, so it is not used for body copy,
-  captions, or button labels. Deep #9C0019 is the action colour:
-  white on deep is about 8.7:1, and deep on paper is about 7.8:1.
+  Greens are sampled from the Samaa lockup.
+  Forest #0C5323 is the wordmark. Deep #053E16 is the darker
+  overlap in the mark. White on either is above 9:1.
+  Campaign reds stay inside [data-theme="campaign"] only.
+  #EF0026 is for large campaign type. #9C0019 is the campaign
+  action colour, because white on #EF0026 is only about 4:1.
 */
 
 :root {
-  --foundation: #ef0026;
-  --deep: #9c0019;
-  --ink: #171717;
+  --forest: #0c5323;
+  --deep: #053e16;
+  --ink: #20231f;
   --white: #ffffff;
-  --paper: #f7f3ed;
-  --muted: #efeae3;
-  --muted-foreground: #5c564e;
-  --border: #d9d2c8;
-  --focus: #9c0019;
+  --paper: #f6f5f0;
+  --sage: #dce8dd;
+  --muted: #e6eee7;
+  --muted-foreground: #4a564e;
+  --border: #d0dcd2;
+  --focus: #053e16;
+  --campaign: #ef0026;
+  --campaign-deep: #9c0019;
+  --accent: var(--forest);
   --background: var(--paper);
   --foreground: var(--ink);
-  --primary: var(--deep);
+  --primary: var(--forest);
   --primary-foreground: var(--white);
-  --primary-hover: var(--ink);
+  --primary-hover: var(--deep);
   --secondary: var(--ink);
   --secondary-foreground: var(--white);
   --secondary-hover: var(--ink);
@@ -30,9 +35,24 @@
   --link-hover: var(--ink);
 }
 
+[data-theme="campaign"] {
+  --forest: var(--campaign);
+  --deep: var(--campaign-deep);
+  --accent: var(--campaign);
+  --primary: var(--campaign-deep);
+  --primary-hover: #6e0012;
+  --link: var(--campaign-deep);
+  --link-hover: #6e0012;
+  --focus: var(--campaign-deep);
+}
+
 @theme inline {
-  --color-foundation: var(--foundation);
+  --color-forest: var(--forest);
+  --color-foundation: var(--accent);
   --color-deep: var(--deep);
+  --color-sage: var(--sage);
+  --color-campaign: var(--campaign);
+  --color-campaign-deep: var(--campaign-deep);
   --color-ink: var(--ink);
   --color-white: var(--white);
   --color-paper: var(--paper);
@@ -191,7 +211,7 @@ p {
 }
 
 [id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 7rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -209,15 +229,58 @@ p {
   }
 }
 
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-rise-2 {
+  animation-delay: 160ms;
+}
+
+.hero-rise-3 {
+  animation-delay: 320ms;
+}
+
+@keyframes notice-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.notice-in {
+  animation: notice-in 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   .reveal-pending,
-  .reveal-in {
+  .reveal-in,
+  .hero-rise,
+  .hero-rise-2,
+  .hero-rise-3,
+  .notice-in {
     opacity: 1;
     transform: none;
     transition: none;
+    animation: none;
   }
 }

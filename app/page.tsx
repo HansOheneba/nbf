@@ -1,177 +1,250 @@
+import Image from "next/image";
 import { EditorialImage } from "@/components/editorial/editorial-image";
-import { ResourceIndex } from "@/components/editorial/resource-index";
 import { SplitFeature } from "@/components/editorial/split-feature";
 import { CtaBand } from "@/components/editorial/cta-band";
-import { InitiativeFeature } from "@/components/initiatives/initiative-feature";
-import { Motif } from "@/components/motion/motif";
 import { Reveal } from "@/components/motion/reveal";
+import { DonationLink } from "@/components/campaign/donation-link";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { articles } from "@/content/articles";
+import { fundraiserCampaign } from "@/content/events";
+import { homePage } from "@/content/home";
 import { images } from "@/content/images";
-import { contributionHref } from "@/content/donate";
-import { featuredEvent, isUpcoming } from "@/content/events";
-import { featuredInitiative } from "@/content/initiatives";
+import { programmes } from "@/content/programmes";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
-import { connection } from "next/server";
-import { Suspense } from "react";
 
 export const metadata = pageMetadata({
   title: site.name,
   description:
-    "Awareness is where change begins. Nana Boatemah Foundation focuses on education and understanding, beginning with sickle cell.",
+    "Every person deserves the opportunity to learn, live with dignity, access essential care and build a better future.",
   path: "/",
   absolute: true,
 });
 
 export default function Home() {
+  const [education, health, housing, women] = programmes;
+
   return (
     <>
-      <section className="overflow-x-clip border-b border-border">
-        <Container className="grid items-end gap-12 py-12 lg:grid-cols-12 lg:py-20">
-          <div className="lg:col-span-7">
-            
-            <h1 className="mt-5 max-w-4xl text-display">
-              Awareness is where <span className="text-foundation">change begins.</span>
-            </h1>
-            <p className="mt-8 max-w-xl text-body-lg text-ink/80">
-              A more informed world is a more compassionate one. We believe that knowledge
-              can challenge misconceptions, open conversations and bring people closer to
-              meaningful change.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href="/initiatives">Explore Our Work</ButtonLink>
-              <ButtonLink href="/get-involved" variant="secondary">
-                Get Involved
-              </ButtonLink>
+      <section className="relative min-h-[100svh] overflow-hidden border-b border-border">
+        <Image
+          src={images.horizon.src}
+          alt={images.horizon.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/20 to-transparent" />
+        <div className="relative z-10 flex min-h-[100svh] items-end">
+          <Container className="pb-16 pt-32 lg:pb-24">
+            <div className="max-w-4xl">
+              <h1 className="hero-rise max-w-4xl text-display text-white">
+                {homePage.hero.title}
+              </h1>
+              <div className="hero-rise hero-rise-2 mt-8 max-w-xl space-y-4">
+                {homePage.hero.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="text-body-lg text-white/90">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+              <div className="hero-rise hero-rise-3 mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <ButtonLink href={homePage.hero.primary.href}>{homePage.hero.primary.label}</ButtonLink>
+                <ButtonLink href={homePage.hero.secondary.href} variant="on-dark">
+                  {homePage.hero.secondary.label}
+                </ButtonLink>
+              </div>
             </div>
-          </div>
-          <div className="relative lg:col-span-5">
-            <Motif className="-top-8 -left-8 z-0" />
-            <div className="relative z-10">
-              <EditorialImage
-                image={images.portrait}
-                priority
-                aspect="aspect-[3/4]"
-                sizes="(min-width: 1024px) 38vw, 100vw"
-              />
-            </div>
-          </div>
-        </Container>
+          </Container>
+        </div>
       </section>
 
       <SplitFeature
-        eyebrow="Why we exist"
-        title="Beyond awareness. Towards understanding."
-        text={[
-          "Some of the most important changes begin with a conversation. A question asked. A misconception challenged. A person choosing to learn instead of judge.",
-          "At Nana Boatemah Foundation, we want to help create space for those moments — bringing attention to important issues, making knowledge easier to access and encouraging people to become part of positive change.",
-        ]}
-        href="/about"
-        hrefLabel="About the foundation"
-        image={images.conversation}
+        eyebrow={homePage.intro.eyebrow}
+        title={homePage.intro.title}
+        text={homePage.intro.paragraphs}
+        href={homePage.intro.cta.href}
+        hrefLabel={homePage.intro.cta.label}
+        image={images.profile}
         reverse
       />
 
-      <section className="surface-ink overflow-x-clip bg-ink text-paper">
-        <Container className="relative py-20 lg:py-32">
-          <Motif tone="foundation" className="-top-6 right-0 opacity-30" />
+      <section className="border-b border-border bg-sage/40">
+        <Container className="py-16 lg:py-24">
           <Reveal>
-            <p className="relative max-w-4xl font-display text-h1 text-paper">
-              A question asked. A misconception challenged. A person choosing to learn
-              instead of judge.
-            </p>
+            <p className="eyebrow text-deep">{homePage.focus.eyebrow}</p>
+            <h2 className="mt-3 max-w-3xl text-h1">{homePage.focus.title}</h2>
+            <p className="mt-5 max-w-2xl text-body-lg text-ink/80">{homePage.focus.introduction}</p>
           </Reveal>
         </Container>
       </section>
 
-      <InitiativeFeature
-        initiative={featuredInitiative}
-        eyebrow="Featured initiative"
-        title="Sickle cell awareness matters."
-        text="Understanding sickle cell disease starts with knowing the facts. Through awareness and education, we can encourage informed conversations, challenge stigma and help more people understand the importance of knowing their sickle cell status."
-        ctaLabel="Learn About Sickle Cell"
-      />
-
-      <Suspense fallback={null}>
-        <UpcomingEventBand />
-      </Suspense>
-
       <section className="border-b border-border">
         <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
-          <Reveal className="lg:col-span-6">
-            <p className="eyebrow text-deep">Take part</p>
-            <h2 className="mt-3 text-h1">Change doesn&apos;t happen in isolation.</h2>
-            <p className="mt-5 max-w-xl text-body-lg text-ink/80">
-              Every informed conversation, shared resource and meaningful connection can
-              help an important issue reach someone new.
-            </p>
-            <div className="mt-8">
-              <ButtonLink href="/get-involved">Find Out How to Get Involved</ButtonLink>
+          <Reveal className="lg:col-span-7">
+            <EditorialImage
+              image={education.image}
+              aspect="aspect-[16/10]"
+              sizes="(min-width: 1024px) 54vw, 100vw"
+            />
+          </Reveal>
+          <Reveal delay={80} className="lg:col-span-5">
+            <p className="font-display text-h2 text-forest">01</p>
+            <p className="eyebrow mt-4 text-deep">{education.eyebrow}</p>
+            <h2 className="mt-3 text-h1">{education.headline}</h2>
+            <p className="mt-5 text-body-lg text-ink/80">{education.summary}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <DonationLink initiative={education.initiative}>{education.donateLabel}</DonationLink>
+              <ButtonLink href={education.href} variant="secondary">
+                {education.cta}
+              </ButtonLink>
             </div>
           </Reveal>
-          <Reveal delay={120} className="lg:col-span-5 lg:col-start-8">
+        </Container>
+      </section>
+
+      <section className="overflow-x-clip border-b border-border bg-deep text-white">
+        <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
+          <Reveal className="lg:col-span-5 lg:col-start-8">
+            <p className="font-display text-h2 text-sage">02</p>
+            <p className="eyebrow mt-4 text-sage">{health.eyebrow}</p>
+            <h2 className="mt-3 text-h1">{health.headline}</h2>
+            <p className="mt-5 text-body-lg text-paper/90">{health.summary}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <DonationLink initiative={health.initiative} variant="inverse">
+                {health.donateLabel}
+              </DonationLink>
+              <ButtonLink href={health.href} variant="on-dark">
+                {health.cta}
+              </ButtonLink>
+            </div>
+          </Reveal>
+          <Reveal delay={100} className="lg:col-span-6 lg:col-start-1 lg:row-start-1">
             <EditorialImage
-              image={images.gathering}
+              image={health.image}
+              aspect="aspect-[4/5]"
+              sizes="(min-width: 1024px) 46vw, 100vw"
+            />
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="border-b border-border">
+        <Container className="grid gap-8 py-16 lg:grid-cols-12 lg:py-28">
+          <Reveal className="lg:col-span-4">
+            <p className="font-display text-h2 text-forest">03</p>
+            <p className="eyebrow mt-4 text-deep">{housing.eyebrow}</p>
+            <h2 className="mt-3 text-h2">{housing.headline}</h2>
+          </Reveal>
+          <Reveal delay={60} className="lg:col-span-7 lg:col-start-6">
+            <EditorialImage
+              image={housing.image}
+              aspect="aspect-[16/9]"
+              sizes="(min-width: 1024px) 54vw, 100vw"
+            />
+            <p className="mt-6 max-w-2xl text-body-lg text-ink/80">{housing.summary}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <DonationLink initiative={housing.initiative}>{housing.donateLabel}</DonationLink>
+              <ButtonLink href={housing.href} variant="secondary">
+                {housing.cta}
+              </ButtonLink>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="border-b border-border bg-white">
+        <Container className="grid items-end gap-10 py-16 lg:grid-cols-12 lg:py-28">
+          <Reveal className="lg:col-span-5">
+            <p className="font-display text-display text-forest/25">04</p>
+            <p className="eyebrow text-deep">{women.eyebrow}</p>
+            <h2 className="mt-3 text-h1">{women.headline}</h2>
+            <p className="mt-5 text-body-lg text-ink/80">{women.summary}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <DonationLink initiative={women.initiative}>{women.donateLabel}</DonationLink>
+              <ButtonLink href={women.href} variant="secondary">
+                {women.cta}
+              </ButtonLink>
+            </div>
+          </Reveal>
+          <Reveal delay={80} className="lg:col-span-6 lg:col-start-7">
+            <EditorialImage
+              image={women.image}
               aspect="aspect-[3/4]"
+              sizes="(min-width: 1024px) 42vw, 100vw"
+            />
+          </Reveal>
+        </Container>
+      </section>
+
+      <section data-theme="campaign" className="border-b border-border bg-paper">
+        <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
+          <Reveal className="lg:col-span-6">
+            <p className="eyebrow text-deep">{fundraiserCampaign.eyebrow}</p>
+            <h2 className="mt-3 text-h1">{fundraiserCampaign.heroTitle}</h2>
+            <p className="mt-5 max-w-xl text-body-lg text-ink/85">{fundraiserCampaign.homeCopy}</p>
+            <p className="mt-4 text-small text-muted-foreground">
+              A raffle will form part of the evening.
+            </p>
+            <time dateTime="2026-12-19" className="mt-6 block font-display text-h3 text-deep">
+              19 December 2026
+            </time>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <DonationLink initiative="fundraiser">{fundraiserCampaign.donateLabel}</DonationLink>
+              <ButtonLink href={fundraiserCampaign.path} variant="secondary">
+                {fundraiserCampaign.exploreLabel}
+              </ButtonLink>
+            </div>
+          </Reveal>
+          <Reveal delay={80} className="lg:col-span-5 lg:col-start-8">
+            <EditorialImage
+              image={images.conversation}
+              aspect="aspect-[4/5]"
               sizes="(min-width: 1024px) 36vw, 100vw"
             />
           </Reveal>
         </Container>
       </section>
 
-      <section className="border-b border-border bg-white">
-        <Container className="grid gap-12 py-16 lg:grid-cols-12 lg:py-28">
-          <Reveal className="lg:col-span-5">
-            <SectionHeading
-              eyebrow="Resources"
-              title="Knowledge is worth sharing."
-              lede="Three educational articles introduce sickle cell disease, the difference between trait and disease, and why a blood test is how a person knows their status."
-            />
+      <section className="border-b border-border">
+        <Container className="py-16 lg:py-28">
+          <Reveal className="max-w-3xl">
+            <p className="eyebrow text-deep">{homePage.participate.eyebrow}</p>
+            <h2 className="mt-3 text-h1">{homePage.participate.title}</h2>
+            <div className="mt-5 space-y-4">
+              {homePage.participate.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="text-body-lg text-ink/80">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </Reveal>
-          <Reveal delay={80} className="lg:col-span-7">
-            <ResourceIndex items={articles} />
-          </Reveal>
+          <ul className="mt-12 border-t border-border">
+            {homePage.participate.routes.map((route, index) => (
+              <li key={route.href} className="border-b border-border">
+                <a
+                  href={route.href}
+                  className="grid gap-2 py-6 sm:grid-cols-12 sm:items-baseline sm:gap-6"
+                >
+                  <span className="font-display text-h3 text-forest sm:col-span-1">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-display text-h3 sm:col-span-4">{route.label}</span>
+                  <span className="text-body text-ink/75 sm:col-span-7">{route.text}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
       <CtaBand
-        title="The next conversation could make a difference."
-        text="Start by learning. Share what matters. Help create room for greater understanding."
-        href="/stories"
-        label="Explore Our Resources"
+        title={homePage.close.title}
+        text={homePage.close.text}
+        href={homePage.close.cta.href}
+        label={homePage.close.cta.label}
       />
     </>
-  );
-}
-
-async function UpcomingEventBand() {
-  await connection();
-  const today = new Date().toISOString().slice(0, 10);
-  if (!isUpcoming(featuredEvent, today)) return null;
-
-  return (
-    <section className="border-b border-border bg-white">
-      <Container className="grid gap-8 py-16 lg:grid-cols-12 lg:items-end lg:py-24">
-        <Reveal className="lg:col-span-4">
-          <p className="eyebrow text-deep">Upcoming event</p>
-          <time dateTime={featuredEvent.dateTime} className="mt-4 block font-display text-h2">
-            {featuredEvent.dateLabel}
-          </time>
-        </Reveal>
-        <Reveal delay={80} className="lg:col-span-8">
-          <h2 className="text-h2">{featuredEvent.title}</h2>
-          <p className="mt-5 max-w-2xl text-body-lg text-ink/80">{featuredEvent.summary}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <ButtonLink href={`/events/${featuredEvent.slug}`}>Discover the Fundraiser</ButtonLink>
-            <ButtonLink href={contributionHref()} variant="secondary">
-              Donate to the Cause
-            </ButtonLink>
-          </div>
-        </Reveal>
-      </Container>
-    </section>
   );
 }

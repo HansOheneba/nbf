@@ -9,12 +9,14 @@ export function DonationLink({
   children,
   variant = "primary",
   className,
+  initiative,
 }: {
   children: ReactNode;
   variant?: Variant;
   className?: string;
+  initiative?: string;
 }) {
-  const href = contributionHref();
+  const href = contributionHref(initiative);
   const external = href.startsWith("http");
 
   return (

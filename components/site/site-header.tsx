@@ -8,8 +8,19 @@ import { ButtonLink } from "@/components/ui/button";
 import { mainNav, site, supportCta, type NavChild, type NavItem } from "@/content/site";
 import { cn } from "@/lib/cn";
 
+const causePaths = [
+  "/causes",
+  "/education",
+  "/health",
+  "/housing",
+  "/women-empowerment",
+];
+
 function isActive(pathname: string, href: string) {
-  if (href === "/initiatives" || href === "/events") {
+  if (href === "/causes") {
+    return causePaths.some((path) => pathname === path || pathname.startsWith(`${path}/`));
+  }
+  if (href === "/events") {
     return pathname === href || pathname.startsWith(`${href}/`);
   }
   return pathname === href;
@@ -139,13 +150,13 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-paper">
-      <div className="mx-auto flex h-20 w-full max-w-page items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
-          <Logo priority className="h-12 w-12 shrink-0 sm:h-14 sm:w-14" />
-          <span className="min-w-0 font-display text-sm leading-none tracking-tight text-ink">
-            Nana Boatemah
-            <span className="mt-1 block">Foundation</span>
-          </span>
+      <div className="mx-auto flex h-24 w-full max-w-page items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex min-w-0 items-center">
+          <Logo
+            priority
+            variant={pathname.startsWith("/events/sickle-cell-fundraiser") ? "lockup-campaign" : "lockup"}
+            className="h-12 w-auto sm:h-14"
+          />
         </Link>
 
         <nav
@@ -172,7 +183,7 @@ export function SiteHeader() {
                   className={cn(
                     "inline-flex items-center text-nav text-ink/80 hover:text-ink",
                     isActive(pathname, item.href) &&
-                      "text-link underline decoration-foundation underline-offset-4",
+                      "text-link underline decoration-forest underline-offset-4",
                   )}
                 >
                   {item.label}
@@ -214,7 +225,7 @@ export function SiteHeader() {
         inert={open ? undefined : true}
         aria-hidden={open ? undefined : true}
         className={cn(
-          "fixed inset-x-0 top-20 bottom-0 z-40 w-full overflow-x-clip overflow-y-auto bg-paper motion-safe:transition-opacity motion-safe:duration-300 xl:hidden",
+          "fixed inset-x-0 top-24 bottom-0 z-40 w-full overflow-x-clip overflow-y-auto bg-paper motion-safe:transition-opacity motion-safe:duration-300 xl:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
@@ -330,7 +341,7 @@ function ChildLink({
       <span
         className={cn(
           "mt-1 block font-display text-h4",
-          current && "underline decoration-foundation underline-offset-4",
+          current && "underline decoration-forest underline-offset-4",
         )}
       >
         {child.label}

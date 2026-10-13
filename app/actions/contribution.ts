@@ -1,5 +1,6 @@
 "use server";
 
+import { isSupportArea, supportLabel } from "@/content/donate";
 import type { InquiryState } from "@/content/inquiry";
 import { deliverInquiry } from "@/lib/inquiry-delivery";
 
@@ -7,7 +8,7 @@ const failedMessage =
   "Your note could not be sent. Please try again in a little while. No payment has been taken.";
 
 const unconfiguredMessage =
-  "This note could not be sent, because the foundation's enquiry route is not connected. Nothing was stored, and no payment has been taken.";
+  "This note could not be sent, because the enquiry route is not connected. Nothing was stored, and no payment has been taken.";
 
 function clean(value: FormDataEntryValue | null) {
   return String(value ?? "").trim();
@@ -29,6 +30,7 @@ export async function submitContribution(
   const email = clean(formData.get("email"));
   const amount = clean(formData.get("amount"));
   const message = clean(formData.get("message"));
+  const initiative = clean(formData.get("initiative"));
   const fieldErrors: Record<string, string> = {};
 
   if (name.length < 1 || name.length > 120) {
@@ -47,6 +49,9 @@ export async function submitContribution(
   if (message.length > 5000) {
     fieldErrors.message = "Shorten the message to 5,000 characters or fewer.";
   }
+  if (!isSupportArea(initiative)) {
+    fieldErrors.initiative = "Choose the area you want to support.";
+  }
 
   if (Object.keys(fieldErrors).length > 0) {
     return {
@@ -56,11 +61,16 @@ export async function submitContribution(
     };
   }
 
+  const area = isSupportArea(initiative) ? initiative : "general";
+  const enquiryType =
+    area === "general" ? "support" : area === "sickle-cell" ? "sickle-cell" : area;
   const result = await deliverInquiry({
     name,
     email,
-    enquiryType: "fundraiser",
-    message: message || "No message was included.",
+    enquiryType,
+    message: [`Intended area: ${supportLabel(area)}`, "", message || "No message was included."].join(
+      "\n",
+    ),
     source: "donate",
     ...(amount ? { amount } : {}),
   });

@@ -1,0 +1,83 @@
+import type { CopySection } from "@/content/programmes";
+import {
+  healthDisclaimer,
+  healthReviewDate,
+  sickleCellSourceList,
+} from "@/content/health";
+
+export const sickleCellPage = {
+  eyebrow: "Sickle cell",
+  title: "Know the facts. Challenge the stigma.",
+  introduction: [
+    "Sickle cell disease is an inherited blood disorder that can have a significant impact on health and everyday life. Accurate information helps people better understand the condition, distinguish sickle cell disease from sickle cell trait and make informed decisions with qualified health professionals.",
+    "Samaa Charity Projects' sickle cell focus centres on awareness, education and support for initiatives intended to help children in Africa living with sickle cell access medical facilities and treatment.",
+  ],
+  summary:
+    "Sickle cell disease affects individuals and families in different ways. Accurate information can help people better understand the condition, recognise misconceptions and have more informed conversations about screening and care.",
+  reviewDate: healthReviewDate,
+  disclaimer: healthDisclaimer,
+  sources: sickleCellSourceList,
+  cta: {
+    label: "Support the Fundraiser",
+    href: "/events/sickle-cell-fundraiser",
+  },
+};
+
+export const sickleCellSections: CopySection[] = [
+  {
+    id: "what-it-is",
+    heading: "What sickle cell disease is",
+    paragraphs: [
+      "Sickle cell disease is a group of inherited blood disorders. The World Health Organization describes it as a condition caused by a change in the gene that instructs the body how to make haemoglobin, the protein in red blood cells that carries oxygen. Red blood cells can become rigid and sickle-shaped. Those cells can block blood flow, which can cause severe pain and damage to organs.",
+      "The U.S. Centers for Disease Control and Prevention explains the same idea in everyday language: healthy red blood cells are round and move through small blood vessels, while in sickle cell disease they can become hard and sticky, die early, and clog the flow of blood. That shortage of red blood cells is a form of anaemia. Pain, infection, and other complications can follow. How the condition shows up differs from person to person, and from one type of sickle cell disease to another.",
+      "WHO notes that the condition is most common in people whose ancestry is African, Mediterranean, Middle Eastern, or Indian. Citing 2021 estimates, WHO reports that about 7.74 million people were living with sickle cell disease worldwide, with nearly 80 percent of cases in sub-Saharan Africa. Those figures describe a global public-health picture. They are not results from Samaa Charity Projects.",
+      "The condition is inherited. It is not caught by touch, by sharing food, or by being near someone who has it. WHO explains that a person develops sickle cell disease when they inherit an altered haemoglobin gene from each parent. A blood test is how the condition is identified. This page cannot tell you whether you or anyone else has it.",
+    ],
+  },
+  {
+    id: "trait-and-disease",
+    heading: "Sickle cell disease and sickle cell trait",
+    paragraphs: [
+      "Sickle cell trait is not the same thing as sickle cell disease. CDC describes trait as what a person has when they inherit one sickle cell gene and one usual haemoglobin gene. People with trait usually do not have the symptoms of sickle cell disease. They can still pass the gene to their children.",
+      "WHO draws the same line: one altered copy and one usual copy means trait, and people with trait usually do not show the symptoms of the disease. Two altered copies, one from each parent, is how sickle cell disease occurs.",
+      "CDC sets out the chances when both parents have sickle cell trait. For any child, there is a 1 in 2 chance of inheriting trait, a 1 in 4 chance of inheriting sickle cell disease, and a 1 in 4 chance of inheriting neither. Those chances apply to each pregnancy. They are not a prediction about a particular family, and other gene combinations can also matter. A qualified healthcare professional or genetic counsellor is the right person to explain a specific result.",
+      "Confusing the two is one reason stigma and misunderstanding take hold. Someone can carry trait, live without the illness, and still have a reason to know their status before having children. Someone living with the disease needs understanding, not suspicion.",
+    ],
+  },
+  {
+    id: "why-awareness",
+    heading: "Why awareness and education matter",
+    paragraphs: [
+      "Misconceptions make ordinary conversations harder. People may not know that the condition is inherited, may treat trait and disease as the same thing, or may never have heard why a blood test matters. Silence leaves those ideas unchallenged.",
+      "Awareness, in the sense used here, means making room for a better conversation. It means a fact can be checked, a question can be asked without shame, and a person can find a public source rather than a rumour. WHO treats sickle cell disease as an important public-health concern and includes public understanding among the ways the burden of the condition can be addressed. Education does not replace medical care. It can help more people know when care, testing, or a conversation with a clinician is the right next step.",
+      "Samaa Charity Projects is contributing educational pages and links to health authorities. That is the work described here. It is not a record of clinics run, people treated, or funds raised.",
+    ],
+  },
+  {
+    id: "screening",
+    heading: "Screening, and speaking with a healthcare professional",
+    paragraphs: [
+      "CDC uses the phrase “knowing your sickle cell status” for the result of a blood test that shows whether a person has sickle cell disease, sickle cell trait, or neither. Status is not something a person can reliably judge by how they feel, or by family stories alone. The fact sheet says a blood test is required.",
+      "CDC says screening is especially important for people who may have children, because sickle cell disease and trait are passed through genes. The same fact sheet notes that a person with trait could have a child with sickle cell disease if their partner has sickle cell disease, trait, or another haemoglobin change such as haemoglobin C or beta-thalassemia. Only a clinician can explain what a particular pair of results means.",
+      "For babies, CDC says screening should happen even when a newborn looks healthy, because sickle cell disease can cause severe health problems early in life if it is not found and treated. In the United States, CDC says babies are screened in all 50 states and the District of Columbia, as early as 24 to 48 hours after birth, as part of newborn screening. A positive newborn screen still needs follow-up testing. It is not, by itself, the final word.",
+      "Screening programmes are not the same in every country. Samaa Charity Projects does not carry out tests and cannot tell you where to go. Ask a qualified healthcare professional, a local clinic, or the health service where you live what test is used and how to read the result. Do not send test results or medical details through the form on this website.",
+    ],
+  },
+  {
+    id: "further-information",
+    heading: "Where to find trustworthy information",
+    paragraphs: [
+      "The sources linked on this page are public pages from the World Health Organization and the U.S. Centers for Disease Control and Prevention. They are the references used for the facts above. Health guidance is updated, so the dated pages themselves are a better authority than a summary of them.",
+      "On this website, three shorter articles go further into the basics of the disease, the difference between trait and disease, and knowing your status. They are educational resources, written for sharing. They are not personal stories, and they are not a substitute for the source pages or for a clinician.",
+    ],
+  },
+  {
+    id: "fundraiser",
+    heading: "The December 2026 fundraiser",
+    paragraphs: [
+      "On 19 December 2026, Samaa Charity Projects is holding a fundraiser to help children in Africa living with sickle cell access medical facilities and treatment. A raffle will form part of the evening.",
+      "The evening is a way to gather people around that purpose. This page does not set a venue, a start time, a ticket price, a list of raffle prizes, or a fundraising target. Those details are not confirmed here.",
+      "A contribution through this website, when no separate payment page is connected, is a note of what you intend to give. It does not take payment.",
+    ],
+  },
+];

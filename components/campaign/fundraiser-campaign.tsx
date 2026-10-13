@@ -17,7 +17,7 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
   ];
 
   return (
-    <>
+    <div data-theme="campaign">
       <section className="overflow-hidden border-b border-border">
         <Container className="grid items-end gap-12 py-12 lg:grid-cols-12 lg:py-20">
           <div className="lg:col-span-7">
@@ -29,7 +29,7 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
             </time>
             <p className="mt-2 text-small text-muted-foreground">{campaign.supportLabel}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <DonationLink>{campaign.donateLabel}</DonationLink>
+              <DonationLink initiative="fundraiser">{campaign.donateLabel}</DonationLink>
               <ButtonLink href="#evening" variant="secondary">
                 {campaign.exploreLabel}
               </ButtonLink>
@@ -60,7 +60,7 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
           </Reveal>
           <Reveal delay={80} className="lg:col-span-5 lg:col-start-8">
             <h2 className="text-h1">{campaign.why.title}</h2>
-            <div className="mt-6 space-y-4 border-l-2 border-foundation pl-5">
+            <div className="mt-6 space-y-4 border-l-2 border-forest pl-5">
               {campaign.why.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="text-body-lg text-ink/85">
                   {paragraph}
@@ -72,10 +72,10 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
       </section>
 
       <section className="surface-deep relative overflow-hidden bg-deep text-white">
-        <Motif tone="foundation" className="-top-8 right-0 opacity-40" />
+        <Motif tone="forest" className="-top-8 right-0 opacity-40" />
         <Container className="relative grid gap-10 py-20 lg:grid-cols-12 lg:py-28">
           <div className="lg:col-span-5">
-            <Logo variant="icon" className="h-16 w-16" />
+            <Logo variant="light" className="h-16 w-16" />
             <h2 className="mt-8 text-h1">{campaign.purpose.title}</h2>
           </div>
           <div className="space-y-5 lg:col-span-6 lg:col-start-7">
@@ -136,7 +136,7 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
               </p>
             </div>
             <div className="mt-8">
-              <DonationLink variant="inverse">{campaign.donateLabel}</DonationLink>
+              <DonationLink initiative="fundraiser" variant="inverse">{campaign.donateLabel}</DonationLink>
             </div>
           </div>
           <div className="grid gap-6 bg-white p-5 sm:p-8 lg:col-span-7 lg:grid-cols-2 lg:p-10">
@@ -172,14 +172,14 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
         </Container>
       </section>
 
-      <section className="surface-foundation bg-foundation text-white">
+      <section className="surface-deep bg-deep text-white">
         <Container className="grid items-end gap-12 py-20 lg:grid-cols-12 lg:py-28">
           <div className="lg:col-span-7">
-            <Logo variant="icon" className="mb-8 h-16 w-16" />
+            <Logo variant="light" className="mb-8 h-16 w-16" />
             <h2 className="max-w-3xl text-display">{campaign.close.title}</h2>
             <p className="mt-6 max-w-xl text-body-lg">{campaign.close.text}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <DonationLink variant="inverse">{campaign.close.contribute}</DonationLink>
+              <DonationLink initiative="fundraiser" variant="inverse">{campaign.close.contribute}</DonationLink>
               <ShareCampaign
                 path={campaign.path}
                 title={campaign.heroTitle}
@@ -198,6 +198,6 @@ export function FundraiserCampaign({ event }: { event: FoundationEvent }) {
           </div>
         </Container>
       </section>
-    </>
+    </div>
   );
 }

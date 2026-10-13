@@ -7,12 +7,8 @@ export function SiteFooter() {
     <footer id="site-footer" className="surface-ink bg-ink text-paper">
       <div className="mx-auto grid w-full max-w-page gap-12 px-4 py-16 sm:px-6 lg:grid-cols-12 lg:px-8 lg:py-20">
         <div className="lg:col-span-5">
-          <Link href="/" className="inline-flex items-center gap-3">
-            <Logo variant="icon" className="h-14 w-14" />
-            <span className="font-display text-sm leading-none">
-              Nana Boatemah
-              <span className="mt-1 block">Foundation</span>
-            </span>
+          <Link href="/" className="inline-flex items-center">
+            <Logo variant="lockup-light" className="h-14 w-auto" />
           </Link>
           <p className="mt-6 max-w-sm text-small text-paper/80">{site.description}</p>
         </div>
@@ -41,7 +37,7 @@ export function SiteFooter() {
             Questions, ideas, and offers of support start with the contact form.
           </p>
           <Link href="/contact" className="mt-4 inline-block text-small underline underline-offset-4">
-            Contact the foundation
+            Contact us
           </Link>
           <ul className="mt-6 flex gap-4">
             {legalNav.map((item) => (

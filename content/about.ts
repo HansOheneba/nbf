@@ -1,50 +1,46 @@
+import { programmes } from "@/content/programmes";
+
 export const aboutIntro = {
-  eyebrow: "About us",
-  title: "A better-informed world begins with us.",
+  eyebrow: "About Samaa",
+  title: "Built around the things that matter.",
   paragraphs: [
-    "Nana Boatemah Foundation is being built around a simple belief: awareness matters. When people have access to reliable information, they are better equipped to ask questions, challenge misconceptions and make informed decisions.",
-    "Our focus is on bringing important issues into the conversation, encouraging understanding and creating opportunities for people to participate in positive change.",
-    "We are beginning with a focus on sickle cell awareness, helping make conversations about the condition more visible, accessible and informed.",
+    "Samaa Charity Projects is focused on areas of need that have a direct bearing on people's lives and future opportunities.",
+    "From access to education and health to the need for safe shelter and greater economic opportunity for women, our causes are centred on reducing barriers and supporting dignity.",
+    "We believe charitable work should be grounded in real needs, communicated honestly and developed with respect for the people and communities it seeks to serve.",
   ],
 };
 
-export type AboutSection = {
-  id: string;
-  title: string;
-  paragraphs: string[];
+export const aboutPurpose = {
+  id: "purpose",
+  title: "Our purpose",
+  paragraphs: [
+    "Every person deserves the opportunity to learn, live with dignity, access essential care and build a better future.",
+    "At Samaa Charity Projects, we focus on practical areas of need — from education and health to housing and women's empowerment. Through initiatives centred on access, opportunity and dignity, we aim to support people and communities facing barriers to the essentials of a fulfilling life.",
+    "That is the direction of this website. It is not presented here as a formally adopted mission statement, and it is not a record of completed projects.",
+  ],
 };
 
-export const aboutSections: AboutSection[] = [
-  {
-    id: "awareness",
-    title: "Awareness",
-    paragraphs: [
-      "Awareness is the moment an issue becomes speakable. A subject moves out of silence, and a person has room to ask what it means rather than relying on rumour.",
-      "For this foundation, awareness is a starting point rather than a finished claim. We want important issues, beginning with sickle cell, to be named clearly and without shame, so that a conversation can actually begin.",
-    ],
-  },
-  {
-    id: "education",
-    title: "Education",
-    paragraphs: [
-      "Education is how attention becomes useful. It is a clear explanation, a source a person can check, and language that someone else can pass on without distorting it.",
-      "The articles on this site are written for that purpose. They stay close to public guidance from health authorities, and they say where each fact comes from, so a reader can go further than a single page.",
-    ],
-  },
-  {
-    id: "understanding",
-    title: "Understanding",
-    paragraphs: [
-      "Understanding is slower than a headline. It asks people to learn the difference between similar ideas, to notice a misconception, and to stay with a subject long enough to treat it fairly.",
-      "Sickle cell disease and sickle cell trait are one example. They are related, and they are not the same thing. Holding that distinction carefully is part of a more informed conversation.",
-    ],
-  },
-  {
-    id: "participation",
-    title: "Participation",
-    paragraphs: [
-      "A more informed public is made by many people. Sharing a reliable page, offering a skill, or asking how a conversation might travel further are all ways to take part.",
-      "If you want to support awareness, offer your time, or explore a partnership, the next step is a message. Tell us what you have in mind. We will read it and reply.",
-    ],
-  },
-];
+export const aboutApproach = {
+  id: "approach",
+  title: "Our approach",
+  paragraphs: [
+    "The causes are organised around needs that connect. A person kept from school, from care, from a safe place to sleep, or from the means to earn can feel those limits at once.",
+    "Samaa Charity Projects treats those needs as areas to develop with care: named clearly, explained without spectacle, and offered as ways for people to take part rather than as claims of what has already been achieved.",
+    "Initiatives are centred on Africa. Where a page cites a health authority, the citation is there so a reader can check the source. Where a page describes a focus, it describes a direction, not a finished programme.",
+  ],
+};
+
+export const aboutAreas = programmes.map((item) => ({
+  title: item.navLabel,
+  href: item.href,
+  text: item.summary,
+}));
+
+export const aboutSupport = {
+  id: "support",
+  title: "How you can support",
+  paragraphs: [
+    "There is more than one way to take part. A contribution note, an offer of time, a partnership conversation, or a message about sharing an initiative are all open routes on this site.",
+    "None of those forms confirms a payment, a placement, or a partnership. They tell Samaa Charity Projects what you would like to discuss. We will read the message and reply.",
+  ],
+};

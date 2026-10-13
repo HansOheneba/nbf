@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Write to Nana Boatemah Foundation about a question, a collaboration, or an interest in supporting the work.",
+    "Write to Samaa Charity Projects about a question, a collaboration, or an interest in supporting a cause.",
   path: "/contact",
 });
 
@@ -19,7 +19,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Let's start a conversation."
         lede={[
-          "Have a question about the foundation, an idea for a collaboration or an interest in supporting our work? We'd love to hear from you.",
+          "Have a question, an idea for a collaboration, or an interest in supporting a cause? We'd love to hear from you.",
           "Use the form below to get in touch, and tell us a little about what you'd like to discuss.",
         ]}
       />
@@ -32,9 +32,9 @@ export default function ContactPage() {
             sizes="(min-width: 1024px) 38vw, 100vw"
           />
           <div className="mt-8 max-w-md space-y-4 text-body text-ink/80">
-            <p>A question about the foundation.</p>
+            <p>A question about a cause.</p>
             <p>An idea for working together.</p>
-            <p>An interest in supporting the work.</p>
+            <p>An interest in supporting a cause.</p>
           </div>
         </div>
         <div className="lg:col-span-6 lg:col-start-7">

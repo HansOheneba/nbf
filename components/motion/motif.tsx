@@ -2,13 +2,19 @@ import { cn } from "@/lib/cn";
 
 export function Motif({
   className,
-  tone = "foundation",
+  tone = "forest",
 }: {
   className?: string;
-  tone?: "foundation" | "deep" | "paper";
+  tone?: "forest" | "deep" | "sage" | "paper";
 }) {
   const fill =
-    tone === "paper" ? "bg-paper" : tone === "deep" ? "bg-deep" : "bg-foundation";
+    tone === "paper"
+      ? "bg-paper"
+      : tone === "sage"
+        ? "bg-sage"
+        : tone === "deep"
+          ? "bg-deep"
+          : "bg-forest";
 
   return (
     <div aria-hidden="true" className={cn("pointer-events-none absolute", className)}>

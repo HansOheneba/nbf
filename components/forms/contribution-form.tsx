@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect, useId, useRef, type ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useActionState, useEffect, useId, useRef, type ReactNode } from "react";
 import { submitContribution } from "@/app/actions/contribution";
 import { buttonClass } from "@/components/ui/button";
+import { isSupportArea, supportAreas, supportLabel, type SupportArea } from "@/content/donate";
 import { initialInquiryState } from "@/content/inquiry";
 
 const inputClass = "mt-2 w-full border border-border bg-white px-3 py-3 text-body text-ink";
 
-export function ContributionForm() {
+export function ContributionForm({ initiative = "general" }: { initiative?: string }) {
+  const selected: SupportArea = isSupportArea(initiative) ? initiative : "general";
   const formId = useId();
   const formRef = useRef<HTMLFormElement>(null);
   const [state, formAction, pending] = useActionState(submitContribution, initialInquiryState);
@@ -25,8 +28,32 @@ export function ContributionForm() {
       <p id={`${formId}-note`} className="text-small text-ink/80">
         Name and email are required. The amount and message are optional. Please do not
         include symptoms, test results, or other medical details.
+        {selected !== "general" ? ` This note is for ${supportLabel(selected)}.` : ""}
       </p>
       <div className="mt-6 space-y-5">
+        <Field
+          id={`${formId}-initiative`}
+          label="Area of support"
+          error={state.fieldErrors.initiative}
+        >
+          <select
+            id={`${formId}-initiative`}
+            name="initiative"
+            required
+            defaultValue={selected}
+            aria-invalid={state.fieldErrors.initiative ? true : undefined}
+            aria-describedby={
+              state.fieldErrors.initiative ? `${formId}-initiative-error` : undefined
+            }
+            className={inputClass}
+          >
+            {supportAreas.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </Field>
         <Field id={`${formId}-name`} label="Name" error={state.fieldErrors.name}>
           <input
             id={`${formId}-name`}
@@ -145,5 +172,18 @@ function Field({
         </p>
       ) : null}
     </div>
+  );
+}
+
+function ContributionFormFromQuery() {
+  const initiative = useSearchParams().get("initiative") ?? undefined;
+  return <ContributionForm key={initiative ?? "general"} initiative={initiative} />;
+}
+
+export function DonateForm() {
+  return (
+    <Suspense fallback={<ContributionForm />}>
+      <ContributionFormFromQuery />
+    </Suspense>
   );
 }

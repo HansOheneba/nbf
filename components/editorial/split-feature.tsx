@@ -31,7 +31,7 @@ export function SplitFeature({
         >
           <p className="eyebrow text-deep">{eyebrow}</p>
           <h2 className="mt-3 text-h2">{title}</h2>
-          <div className="mt-5 space-y-4 border-l-2 border-foundation pl-5">
+          <div className="mt-5 space-y-4 border-l-2 border-forest pl-5">
             {(Array.isArray(text) ? text : [text]).map((paragraph) => (
               <p key={paragraph} className="text-body-lg">
                 {paragraph}

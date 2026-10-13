@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { FundraiserCampaign } from "@/components/campaign/fundraiser-campaign";
 import { EditorialImage } from "@/components/editorial/editorial-image";
 import { ButtonLink } from "@/components/ui/button";
@@ -27,7 +28,15 @@ export async function generateMetadata({ params }: EventParams): Promise<Metadat
   });
 }
 
-export default async function EventPage({ params }: EventParams) {
+export default function EventPage({ params }: EventParams) {
+  return (
+    <Suspense fallback={<div className="min-h-[70vh] border-b border-border" />}>
+      <EventContent params={params} />
+    </Suspense>
+  );
+}
+
+async function EventContent({ params }: EventParams) {
   const { slug } = await params;
   const event = getEvent(slug);
   if (!event) notFound();

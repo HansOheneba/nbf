@@ -1,11 +1,10 @@
 import { events } from "@/content/events";
-import { initiatives } from "@/content/initiatives";
 
 export const site = {
-  name: "Nana Boatemah Foundation",
-  shortName: "NBF",
+  name: "Samaa Charity Projects",
+  shortName: "Samaa",
   description:
-    "Nana Boatemah Foundation focuses on awareness, education, and understanding, beginning with sickle cell.",
+    "Samaa Charity Projects works towards access to education, health, housing, and women's empowerment, with initiatives centred on Africa.",
   /**
    * Set NEXT_PUBLIC_SITE_URL when the production domain is known.
    * Canonical URLs and the sitemap use it when it is present.
@@ -32,17 +31,42 @@ export type NavItem = {
   children?: NavChild[];
 };
 
+export const causeNav: NavChild[] = [
+  {
+    label: "Education",
+    href: "/education",
+    description: "Access to learning for people who face the cost of schooling and resources.",
+  },
+  {
+    label: "Health",
+    href: "/health",
+    description: "Sickle cell awareness and support, alongside mental health education.",
+  },
+  {
+    label: "Sickle cell",
+    href: "/health/sickle-cell",
+    description: "Facts, screening conversations, and the December 2026 fundraiser.",
+  },
+  {
+    label: "Mental health",
+    href: "/health/mental-health",
+    description: "Education and more understanding conversations about wellbeing.",
+  },
+  {
+    label: "Housing",
+    href: "/housing",
+    description: "Developing support for people facing homelessness, including shelter.",
+  },
+  {
+    label: "Women empowerment",
+    href: "/women-empowerment",
+    description: "Economic opportunity and menstrual health education and access.",
+  },
+];
+
 export const mainNav: NavItem[] = [
   { label: "About", href: "/about" },
-  {
-    label: "Initiatives",
-    href: "/initiatives",
-    children: initiatives.map((item) => ({
-      label: item.title,
-      href: `/initiatives/${item.slug}`,
-      description: item.menuDescription,
-    })),
-  },
+  { label: "Causes", href: "/causes", children: causeNav },
   {
     label: "Events",
     href: "/events",
@@ -53,17 +77,25 @@ export const mainNav: NavItem[] = [
       meta: item.dateLabel,
     })),
   },
-  { label: "Stories & Resources", href: "/stories" },
   { label: "Contact", href: "/contact" },
 ];
 
 export const legalNav = [{ label: "Privacy", href: "/privacy" }] as const;
 
+export const programmePaths = [
+  "/education",
+  "/health",
+  "/health/sickle-cell",
+  "/health/mental-health",
+  "/housing",
+  "/women-empowerment",
+] as const;
+
 export const sitemapPaths = [
   "/",
   "/about",
-  "/initiatives",
-  ...initiatives.map((item) => `/initiatives/${item.slug}`),
+  "/causes",
+  ...programmePaths,
   "/events",
   ...events.map((item) => `/events/${item.slug}`),
   "/stories",

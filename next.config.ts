@@ -5,8 +5,23 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/initiatives/further-initiatives",
-        destination: "/initiatives",
+        destination: "/causes",
         permanent: false,
+      },
+      {
+        source: "/initiatives/sickle-cell-awareness",
+        destination: "/health/sickle-cell",
+        permanent: false,
+      },
+      {
+        source: "/initiatives",
+        destination: "/causes",
+        permanent: false,
+      },
+      {
+        source: "/our-work",
+        destination: "/causes",
+        permanent: true,
       },
     ];
   },

@@ -48,7 +48,7 @@ async function EventCatalogue() {
   return (
     <>
       {featured ? (
-        <section className="border-b border-border">
+        <section data-theme="campaign" className="border-b border-border">
           <Container className="grid items-center gap-12 py-16 lg:grid-cols-12 lg:py-24">
             <Reveal className="lg:col-span-7">
               <EditorialImage
@@ -67,7 +67,7 @@ async function EventCatalogue() {
               <p className="mt-5 text-body-lg text-ink/80">{featured.summary}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <ButtonLink href={`/events/${featured.slug}`}>Discover the Fundraiser</ButtonLink>
-                <DonationLink variant="secondary">Donate to the Cause</DonationLink>
+                <DonationLink initiative="fundraiser" variant="secondary">Donate to the Cause</DonationLink>
               </div>
               <div className="mt-6">
                 <TextLink href={contributionHref()}>Support the fundraiser without attending</TextLink>

@@ -1,21 +1,15 @@
 import { EditorialImage } from "@/components/editorial/editorial-image";
-import { Motif } from "@/components/motion/motif";
+import { Logo } from "@/components/site/logo";
 import { Reveal } from "@/components/motion/reveal";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { aboutIntro, aboutSections } from "@/content/about";
+import { aboutApproach, aboutAreas, aboutIntro, aboutPurpose, aboutSupport } from "@/content/about";
 import { images } from "@/content/images";
 import { pageMetadata } from "@/lib/metadata";
 
-const sectionImages = {
-  awareness: images.conversation,
-  education: images.library,
-} as const;
-
 export const metadata = pageMetadata({
   title: "About",
-  description:
-    "Nana Boatemah Foundation is being built around awareness, education, understanding, and participation, beginning with sickle cell.",
+  description: aboutIntro.paragraphs[0],
   path: "/about",
 });
 
@@ -34,68 +28,50 @@ export default function AboutPage() {
                 </p>
               ))}
             </div>
-            <nav aria-label="On this page" className="mt-10">
-              <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                {aboutSections.map((section) => (
-                  <li key={section.id}>
-                    <a
-                      href={`#${section.id}`}
-                      className="text-small font-medium text-deep underline decoration-deep/30 underline-offset-4"
-                    >
-                      {section.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
           </div>
           <div className="lg:col-span-4 lg:col-start-9">
-            <EditorialImage
-              image={images.gathering}
-              aspect="aspect-[3/4]"
-              sizes="(min-width: 1024px) 30vw, 100vw"
-            />
+            <Logo variant="lockup" className="h-auto w-full" />
+            <div className="mt-8">
+              <EditorialImage
+                image={images.gathering}
+                aspect="aspect-[3/4]"
+                sizes="(min-width: 1024px) 30vw, 100vw"
+              />
+            </div>
           </div>
         </Container>
       </header>
 
-      <section id="awareness" className="border-b border-border">
-        <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
-          <Reveal className="lg:col-span-5">
-            <p className="font-display text-display text-foundation">01</p>
-            <h2 className="mt-4 text-h1">{aboutSections[0].title}</h2>
-            <div className="mt-6 max-w-xl space-y-4">
-              {aboutSections[0].paragraphs.map((paragraph) => (
-                <p key={paragraph} className="text-body-lg text-ink/85">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+      <section id={aboutPurpose.id} className="border-b border-border">
+        <Container className="grid items-start gap-10 py-16 lg:grid-cols-12 lg:py-28">
+          <Reveal className="lg:col-span-4">
+            <p className="font-display text-h2 text-forest">01</p>
+            <h2 className="mt-3 text-h1">{aboutPurpose.title}</h2>
           </Reveal>
-          <Reveal delay={100} className="lg:col-span-6 lg:col-start-7">
-            <EditorialImage
-              image={sectionImages.awareness}
-              aspect="aspect-[4/5]"
-              sizes="(min-width: 1024px) 46vw, 100vw"
-            />
-          </Reveal>
+          <div className="max-w-xl space-y-4 lg:col-span-7 lg:col-start-6">
+            {aboutPurpose.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="text-body-lg text-ink/85">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </Container>
       </section>
 
-      <section id="education" className="border-b border-border bg-white">
+      <section id={aboutApproach.id} className="border-b border-border bg-white">
         <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
-          <Reveal className="lg:col-span-7">
+          <Reveal className="lg:col-span-6">
             <EditorialImage
-              image={sectionImages.education}
+              image={images.learning}
               aspect="aspect-[3/2]"
-              sizes="(min-width: 1024px) 54vw, 100vw"
+              sizes="(min-width: 1024px) 46vw, 100vw"
             />
           </Reveal>
-          <Reveal delay={80} className="lg:col-span-4 lg:col-start-9">
+          <Reveal delay={80} className="lg:col-span-5 lg:col-start-8">
             <p className="font-display text-h2 text-deep">02</p>
-            <h2 className="mt-3 text-h2">{aboutSections[1].title}</h2>
-            <div className="mt-5 space-y-4 border-l-2 border-foundation pl-5">
-              {aboutSections[1].paragraphs.map((paragraph) => (
+            <h2 className="mt-3 text-h2">{aboutApproach.title}</h2>
+            <div className="mt-5 space-y-4 border-l-2 border-forest pl-5">
+              {aboutApproach.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="text-body text-ink/85">
                   {paragraph}
                 </p>
@@ -105,31 +81,31 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section id="understanding" className="surface-ink relative overflow-hidden bg-ink text-paper">
-        <Motif tone="foundation" className="top-8 -left-10 opacity-25" />
-        <Container className="relative grid gap-8 py-20 lg:grid-cols-12 lg:py-32">
-          <Reveal className="lg:col-span-4">
-            <p className="font-display text-h2 text-foundation">03</p>
-            <h2 className="mt-3 text-h1">{aboutSections[2].title}</h2>
-          </Reveal>
-          <div className="max-w-xl space-y-5 lg:col-span-7 lg:col-start-6">
-            {aboutSections[2].paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-body-lg text-paper/90">
-                {paragraph}
-              </p>
+      <section id="areas" className="border-b border-border bg-sage/40">
+        <Container className="py-16 lg:py-28">
+          <p className="font-display text-h2 text-forest">03</p>
+          <h2 className="mt-3 max-w-3xl text-h1">Four causes</h2>
+          <ol className="mt-12 border-t border-border">
+            {aboutAreas.map((area) => (
+              <li key={area.href} className="border-b border-border">
+                <a href={area.href} className="grid gap-3 py-8 lg:grid-cols-12 lg:gap-8">
+                  <span className="font-display text-h3 lg:col-span-4">{area.title}</span>
+                  <span className="text-body text-ink/80 lg:col-span-8">{area.text}</span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ol>
         </Container>
       </section>
 
-      <section id="participation" className="surface-deep bg-deep text-white">
+      <section id={aboutSupport.id} className="bg-deep text-white">
         <Container className="grid gap-10 py-16 lg:grid-cols-12 lg:items-end lg:py-28">
           <div className="lg:col-span-7">
-            <p className="font-display text-h2 text-white/80">04</p>
-            <h2 className="mt-3 text-h1">{aboutSections[3].title}</h2>
+            <p className="font-display text-h2 text-sage">04</p>
+            <h2 className="mt-3 text-h1">{aboutSupport.title}</h2>
             <div className="mt-6 max-w-xl space-y-4">
-              {aboutSections[3].paragraphs.map((paragraph) => (
-                <p key={paragraph} className="text-body-lg text-white/95">
+              {aboutSupport.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="text-body-lg text-paper">
                   {paragraph}
                 </p>
               ))}
@@ -139,8 +115,8 @@ export default function AboutPage() {
             <ButtonLink href="/get-involved" variant="inverse">
               Get Involved
             </ButtonLink>
-            <ButtonLink href="/initiatives/sickle-cell-awareness" variant="on-dark">
-              Learn About Sickle Cell
+            <ButtonLink href="/causes" variant="on-dark">
+              Explore Causes
             </ButtonLink>
           </div>
         </Container>

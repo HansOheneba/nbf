@@ -60,7 +60,7 @@ export const articles: Article[] = [
         heading: "Who is affected, and what that does not mean",
         paragraphs: [
           "WHO says sickle cell disease is most common in people of African, Mediterranean, Middle Eastern, and Indian descent. The same fact sheet, citing estimates for 2021, reports about 7.74 million people living with the disease worldwide and about 515,000 babies born with it that year, with nearly 80 percent of cases in sub-Saharan Africa. The concentration is a reason for public awareness. It is not a reason to assume that anyone from those parts of the world has the condition, or that people with other ancestry cannot have it.",
-          "CDC notes that in the United States the condition is often found at birth through newborn screening. What a health system offers depends on the country. A global number is context. It is not a description of Nana Boatemah Foundation’s work, and this foundation has not published impact figures of its own.",
+          "CDC notes that in the United States the condition is often found at birth through newborn screening. What a health system offers depends on the country. A global number is context. It is not a description of Samaa Charity Projects’s work, and this organisation has not published impact figures of its own.",
         ],
       },
       {
@@ -152,15 +152,15 @@ export const articles: Article[] = [
         heading: "Newborn screening, and why local advice still matters",
         paragraphs: [
           "CDC’s fact sheet describes newborn screening in the United States. Babies should be screened as early as 24 to 48 hours after birth. All 50 states and the District of Columbia include sickle cell status in newborn screening. CDC also says a positive screen means a condition is likely and that the baby’s doctor needs to arrange more testing to be sure. Infants born in the United States after 2006 should have newborn screening information in the medical record, and a parent can ask the child’s physician about it.",
-          "That is a description of one health system. It is not a map of every country. WHO stresses early diagnosis because it helps prevent complications, without setting out a single worldwide programme on the fact sheet used here. If you are outside the United States, or you are unsure what was done when you or your child was born, ask a local clinic or a qualified healthcare professional. Nana Boatemah Foundation does not run screening, store results, or book appointments.",
+          "That is a description of one health system. It is not a map of every country. WHO stresses early diagnosis because it helps prevent complications, without setting out a single worldwide programme on the fact sheet used here. If you are outside the United States, or you are unsure what was done when you or your child was born, ask a local clinic or a qualified healthcare professional. Samaa Charity Projects does not run screening, store results, or book appointments.",
         ],
       },
       {
         id: "after-a-result",
         heading: "After a result",
         paragraphs: [
-          "A result is information, not a set of instructions from this website. People with trait are usually well and can pass the gene on. People with sickle cell disease need medical care that this foundation does not provide. CDC suggests talking with a doctor or health clinic about testing if you may be at risk, and asking a physician, a local clinic, or a community sickle cell organisation where testing is available near you. Which of those exists depends on where you live.",
-          "Please do not send symptoms, test results, or another person’s medical details through the contact form. Use it for questions about the foundation. Use a health service for questions about a body. The pages linked below are the ones this article was checked against on the review date.",
+          "A result is information, not a set of instructions from this website. People with trait are usually well and can pass the gene on. People with sickle cell disease need medical care that this organisation does not provide. CDC suggests talking with a doctor or health clinic about testing if you may be at risk, and asking a physician, a local clinic, or a community sickle cell organisation where testing is available near you. Which of those exists depends on where you live.",
+          "Please do not send symptoms, test results, or another person’s medical details through the contact form. Use it for questions about the organisation. Use a health service for questions about a body. The pages linked below are the ones this article was checked against on the review date.",
         ],
       },
     ],

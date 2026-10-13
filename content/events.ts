@@ -1,10 +1,10 @@
 import { images, type GalleryImage } from "@/content/images";
 
 export const eventsPage = {
-  eyebrow: "Events & gatherings",
+  eyebrow: "Events",
   title: "A gathering with a purpose.",
   description:
-    "We bring people together around causes that deserve attention, understanding and support. Each gathering is an opportunity to connect with a purpose beyond the evening itself.",
+    "Samaa Charity Projects brings people together around work that deserves attention and support. The evening of 19 December 2026 is a fundraiser for children in Africa living with sickle cell.",
 };
 
 export type FoundationEvent = {
@@ -53,19 +53,22 @@ export const featuredEvent = events[0];
 
 export const fundraiserCampaign = {
   path: "/events/sickle-cell-fundraiser",
-  eyebrow: "Nana Boatemah Foundation · Fundraising event",
+  eyebrow: "A cause worth supporting",
   heroTitle: "An evening that makes a difference.",
   heroCopy:
     "One evening. A shared purpose. An opportunity to help children living with sickle cell access the medical care and treatment they need.",
-  supportLabel: "A fundraising evening with a raffle.",
+  homeCopy:
+    "One evening. A shared purpose. An opportunity to help children in Africa living with sickle cell access medical facilities and treatment.",
+  supportLabel: "19 December 2026. A fundraising evening with a raffle.",
   donateLabel: "Donate to the Cause",
-  exploreLabel: "Explore the Event",
+  exploreLabel: "Discover the Fundraiser",
+  shareLabel: "Share the Campaign",
   why: {
-    title: "Behind every cause, there are people.",
+    title: "Behind the evening, there is a purpose.",
     paragraphs: [
       "For children living with sickle cell, access to appropriate medical care and treatment matters. Yet the challenges families face can make that access difficult.",
-      "This December, Nana Boatemah Foundation is bringing people together around a shared purpose: raising funds to help children in Africa living with sickle cell access medical facilities and treatment.",
-      "Whether you attend, contribute or take part in the evening's raffle, you can help bring attention and support to a cause that deserves it.",
+      "On 19 December 2026, Samaa Charity Projects is bringing people together around a shared purpose: raising funds to help children in Africa living with sickle cell access medical facilities and treatment.",
+      "Whether you contribute, ask about attending, or take part in the evening's raffle, you can help bring attention and support to this cause.",
     ],
     image: images.conversation,
   },
@@ -73,34 +76,35 @@ export const fundraiserCampaign = {
     title: "More than an evening together.",
     paragraphs: [
       "This fundraiser is an opportunity to bring people together around a cause that deserves attention and support.",
-      "The funds raised are intended to help children in Africa living with sickle cell access medical facilities and treatment. By supporting the fundraiser, participants can contribute to this purpose and help bring greater awareness to the challenges surrounding sickle cell disease.",
+      "The funds raised are intended to help children in Africa living with sickle cell access medical facilities and treatment. Supporting the fundraiser is a way to contribute to that purpose and to the wider conversation about sickle cell disease.",
     ],
   },
   evening: {
     title: "Come together for a cause.",
     paragraphs: [
-      "The evening will include a raffle as part of the fundraising event, giving guests another way to participate in the occasion.",
+      "A raffle will form part of the evening, giving guests another way to participate.",
+      "Venue, start time, ticket price, and raffle prizes are not confirmed on this page. Writing to us is an enquiry. It does not reserve a place or buy a ticket.",
     ],
     image: images.portrait,
-    cta: "Ask about the raffle",
+    cta: "Ask about the evening",
     href: "/contact?topic=fundraiser",
   },
   attend: {
-    title: "Attend the Event",
-    text: "Write to the foundation if you would like to be there. A message is an enquiry. It does not reserve a place.",
+    title: "Ask about attending",
+    text: "Write if you would like to be there. A message is an enquiry. It does not reserve a place.",
     cta: "Enquire about attending",
     href: "/contact?topic=fundraiser",
     image: images.learning,
   },
   share: {
-    title: "Share the Cause",
+    title: "Share the Campaign",
     text: "Pass the campaign on. Your device can share it, or the link can be copied.",
     cta: "Share the Campaign",
   },
   close: {
     title: "Be part of the difference.",
-    text: "Support the fundraiser, help spread the word, and join us in making this evening count.",
-    contribute: "Make a Contribution",
+    text: "Support the fundraiser and help the purpose of the evening travel further.",
+    contribute: "Donate to the Cause",
     share: "Share the Campaign",
     image: images.profile,
   },
