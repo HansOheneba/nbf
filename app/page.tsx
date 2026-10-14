@@ -27,32 +27,50 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative h-[calc(100svh-6rem)] overflow-hidden border-b border-border">
-        <Image
-          src={images.hero.src}
-          alt={images.hero.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/20 to-transparent" />
-        <div className="relative z-10 flex h-full items-end">
-          <Container className="pb-8 pt-6 sm:pb-10 lg:pb-12">
+      <section className="home-hero relative flex min-h-[calc(100svh-var(--header-h))] flex-col overflow-x-clip border-b border-border">
+        <div className="absolute inset-0">
+          <Image
+            src={images.hero.src}
+            alt={images.hero.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[center_42%] lg:object-center"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,23,23,0.84)_0%,rgba(23,23,23,0.62)_28%,rgba(23,23,23,0.22)_58%,rgba(23,23,23,0.34)_100%)] lg:bg-[linear-gradient(180deg,rgba(23,23,23,0.2)_0%,rgba(23,23,23,0.08)_38%,rgba(23,23,23,0.78)_100%)]"
+          />
+        </div>
+        <div className="home-hero-space relative z-10 flex min-h-0 flex-1 flex-col justify-center xl:justify-end">
+          <Container className="home-hero-copy w-full py-6 sm:py-8 lg:py-12">
             <div className="max-w-4xl">
-              <h1 className="hero-rise max-w-4xl text-display text-white">
+              <h1 className="hero-rise max-w-[11em] text-[clamp(2.75rem,12.5vw,3.25rem)] leading-[0.96] tracking-[-0.04em] text-balance text-white lg:max-w-4xl lg:text-display lg:leading-[0.86] lg:tracking-[-0.045em]">
                 {homePage.hero.title}
               </h1>
-              <div className="hero-rise hero-rise-2 mt-8 max-w-xl space-y-4">
-                {homePage.hero.paragraphs.map((paragraph) => (
-                  <p key={paragraph} className="text-body-lg text-white/90">
+              <div className="hero-rise hero-rise-2 mt-4 max-w-xl space-y-3 sm:mt-6 lg:mt-8 lg:space-y-4">
+                {homePage.hero.paragraphs.map((paragraph, index) => (
+                  <p
+                    key={paragraph}
+                    className={
+                      index === 0
+                        ? "home-hero-lead text-[1.0625rem] leading-[1.45] text-white/92 sm:text-body-lg"
+                        : "hidden text-body-lg text-white/88 lg:block"
+                    }
+                  >
                     {paragraph}
                   </p>
                 ))}
               </div>
-              <div className="hero-rise hero-rise-3 mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <ButtonLink href={homePage.hero.primary.href}>{homePage.hero.primary.label}</ButtonLink>
-                <ButtonLink href={homePage.hero.secondary.href} variant="on-dark">
+              <div className="hero-rise hero-rise-3 mt-4 flex flex-row flex-wrap items-center gap-2 sm:mt-8 sm:gap-3">
+                <ButtonLink href={homePage.hero.primary.href} className="min-h-11 px-4 sm:min-h-12 sm:px-5">
+                  {homePage.hero.primary.label}
+                </ButtonLink>
+                <ButtonLink
+                  href={homePage.hero.secondary.href}
+                  variant="on-dark"
+                  className="min-h-11 px-4 sm:min-h-12 sm:px-5"
+                >
                   {homePage.hero.secondary.label}
                 </ButtonLink>
               </div>

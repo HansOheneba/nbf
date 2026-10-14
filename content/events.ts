@@ -62,6 +62,11 @@ export const fundraiserCampaign = {
   supportLabel: "19 December 2026. A fundraising evening with a raffle.",
   donateLabel: "Donate to the Cause",
   exploreLabel: "Discover the Fundraiser",
+  notice: {
+    eyebrow: "Upcoming fundraiser",
+    description:
+      "Help support access to medical facilities and treatment for children in Africa living with sickle cell. A raffle will form part of the evening.",
+  },
   shareLabel: "Share the Campaign",
   why: {
     title: "Behind the evening, there is a purpose.",

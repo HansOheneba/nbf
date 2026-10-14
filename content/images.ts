@@ -37,12 +37,11 @@ export const images = {
     caption: "Holding hands",
   },
   gathering: {
-    src: "/images/ghana-desk.jpg",
-    alt: "A woman at a desk in Ghana, looking at her phone beside an open laptop and a notebook.",
-    width: 2000,
-    height: 1335,
-    caption: "Photo by Wundef Media on Pexels",
-    creditHref: "https://www.pexels.com/photo/occupied-woman-using-phone-4212951/",
+    src: "/images/black-no-smile.jpg",
+    alt: "A young person resting their cheek on one hand, with another person seated behind them.",
+    width: 500,
+    height: 667,
+    caption: "A quiet portrait",
   },
   learning: {
     src: "/images/learning.jpg",

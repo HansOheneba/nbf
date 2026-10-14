@@ -152,13 +152,9 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-paper">
-      <div className="mx-auto flex h-24 w-full max-w-page items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[var(--header-h)] w-full max-w-page items-center justify-between gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex min-w-0 items-center">
-          <Logo
-            priority
-            variant="lockup"
-            className="h-12 w-auto sm:h-14"
-          />
+          <Logo priority variant="lockup" className="h-12 w-auto xl:h-14" />
         </Link>
 
         <nav
@@ -223,7 +219,7 @@ export function SiteHeader() {
         <button
           ref={menuButtonRef}
           type="button"
-          className="inline-flex min-h-12 shrink-0 items-center px-3 font-sans text-nav font-medium xl:hidden"
+          className="inline-flex min-h-11 shrink-0 items-center px-3 font-sans text-nav font-medium xl:hidden"
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => setOpenPath(open ? null : pathname)}
@@ -238,7 +234,7 @@ export function SiteHeader() {
         inert={open ? undefined : true}
         aria-hidden={open ? undefined : true}
         className={cn(
-          "fixed inset-x-0 top-24 bottom-0 z-40 w-full overflow-x-clip overflow-y-auto bg-paper motion-safe:transition-opacity motion-safe:duration-300 xl:hidden",
+          "fixed inset-x-0 top-[var(--header-h)] bottom-0 z-40 w-full overflow-x-clip overflow-y-auto bg-paper motion-safe:transition-opacity motion-safe:duration-300 xl:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
