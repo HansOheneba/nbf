@@ -26,9 +26,9 @@ export function ContributionForm({ initiative = "general" }: { initiative?: stri
   return (
     <form ref={formRef} action={formAction} noValidate aria-describedby={`${formId}-note`}>
       <p id={`${formId}-note`} className="text-small text-ink/80">
-        Name and email are required. The amount and message are optional. Please do not
+        Name and email are required. Amount and message are optional. Please do not
         include symptoms, test results, or other medical details.
-        {selected !== "general" ? ` This note is for ${supportLabel(selected)}.` : ""}
+        {selected !== "general" ? ` This donation is for ${supportLabel(selected)}.` : ""}
       </p>
       <div className="mt-6 space-y-5">
         <Field
@@ -80,8 +80,8 @@ export function ContributionForm({ initiative = "general" }: { initiative?: stri
         </Field>
         <Field
           id={`${formId}-amount`}
-          label="Intended amount"
-          hint="Optional. A number only, with no currency symbol. Leaving it blank is fine."
+          label="Amount"
+          hint="Optional. A number only, with no currency symbol."
           error={state.fieldErrors.amount}
         >
           <input
@@ -124,11 +124,11 @@ export function ContributionForm({ initiative = "general" }: { initiative?: stri
         className={buttonClass("primary", "mt-6 disabled:cursor-wait disabled:opacity-70")}
         disabled={pending}
       >
-        {pending ? "Sending…" : "Send contribution note"}
+        {pending ? "Sending…" : "Donate"}
       </button>
       <p className="mt-4 text-caption text-muted-foreground">
         <Link href="/privacy" className="underline underline-offset-2">
-          How this form handles your note
+          How we handle your details
         </Link>
       </p>
       <p

@@ -27,15 +27,22 @@ export function ButtonLink({
   variant = "primary",
   className,
   onClick,
+  "aria-current": ariaCurrent,
 }: {
   href: string;
   children: ReactNode;
   variant?: Variant;
   className?: string;
   onClick?: () => void;
+  "aria-current"?: "page";
 }) {
   return (
-    <Link href={href} onClick={onClick} className={buttonClass(variant, className)}>
+    <Link
+      href={href}
+      onClick={onClick}
+      aria-current={ariaCurrent}
+      className={buttonClass(variant, className)}
+    >
       {children}
     </Link>
   );

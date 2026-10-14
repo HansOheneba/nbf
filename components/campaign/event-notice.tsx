@@ -28,7 +28,7 @@ export function EventNotice() {
 
   return (
     <aside
-      className="notice-in fixed right-4 bottom-4 z-50 w-[min(22rem,calc(100vw-2rem))] border border-border bg-paper shadow-[0_16px_40px_rgba(32,35,31,0.16)]"
+      className="notice-in fixed right-4 bottom-4 z-50 w-[min(22rem,calc(100vw-2rem))] border border-border bg-paper shadow-[0_16px_40px_rgba(23,23,23,0.16)]"
       aria-label="Upcoming fundraiser"
     >
       <div className="flex items-start gap-4 border-l-4 border-campaign-deep p-4">

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { DonationLink } from "@/components/campaign/donation-link";
 import { EditorialImage } from "@/components/editorial/editorial-image";
 import { Reveal } from "@/components/motion/reveal";
@@ -8,7 +9,7 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
   title: "Causes",
-  description: causesPage.introduction,
+  description: causesPage.paragraphs[1],
   path: "/causes",
 });
 
@@ -19,16 +20,29 @@ export default function CausesPage() {
         <Container className="py-16 lg:py-24">
           <p className="eyebrow text-deep">{causesPage.eyebrow}</p>
           <h1 className="mt-4 max-w-4xl text-h1">{causesPage.title}</h1>
-          <p className="mt-6 max-w-2xl text-body-lg text-ink/80">{causesPage.introduction}</p>
+          <div className="mt-6 max-w-2xl space-y-4">
+            {causesPage.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="text-body-lg text-ink/80">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </Container>
       </header>
       {programmes.map((programme, index) => {
         const reverse = index % 2 === 1;
-        const onDark = index === 1;
+        const tone = index === 1 ? "deep" : index === 3 ? "sage" : "paper";
+        const onDark = tone === "deep";
         return (
           <section
             key={programme.slug}
-            className={onDark ? "border-b border-border bg-deep text-white" : "border-b border-border"}
+            className={
+              onDark
+                ? "border-b border-border bg-deep text-white"
+                : tone === "sage"
+                  ? "border-b border-border bg-sage/40"
+                  : "border-b border-border"
+            }
           >
             <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-24">
               <Reveal className={reverse ? "lg:col-span-5 lg:col-start-8" : "lg:col-span-6"}>
@@ -39,6 +53,27 @@ export default function CausesPage() {
                 <p className={onDark ? "mt-5 text-body-lg text-paper/90" : "mt-5 text-body-lg text-ink/80"}>
                   {programme.summary}
                 </p>
+                <ul className={onDark ? "mt-8 border-t border-white/20" : "mt-8 border-t border-border"}>
+                  {programme.areas.map((area) => (
+                    <li
+                      key={area.href}
+                      className={onDark ? "border-b border-white/20" : "border-b border-border"}
+                    >
+                      <Link href={area.href} className="block py-4">
+                        <span className="font-display text-h4">{area.label}</span>
+                        <span
+                          className={
+                            onDark
+                              ? "mt-1 block text-small text-paper/80"
+                              : "mt-1 block text-small text-ink/70"
+                          }
+                        >
+                          {area.summary}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <DonationLink initiative={programme.initiative} variant={onDark ? "inverse" : "primary"}>
                     {programme.donateLabel}
@@ -59,6 +94,7 @@ export default function CausesPage() {
                 <EditorialImage
                   image={programme.image}
                   priority={index === 0}
+                  position={programme.slug === "housing" ? "object-bottom" : undefined}
                   aspect={index === 2 ? "aspect-[16/10]" : index === 3 ? "aspect-[3/2]" : "aspect-[4/5]"}
                   sizes="(min-width: 1024px) 42vw, 100vw"
                 />
@@ -67,6 +103,23 @@ export default function CausesPage() {
           </section>
         );
       })}
+      <section className="bg-deep text-white">
+        <Container className="py-16 lg:py-24">
+          <h2 className="max-w-3xl text-h1">{causesPage.close.title}</h2>
+          <div className="mt-6 max-w-2xl space-y-4">
+            {causesPage.close.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="text-body-lg text-paper/90">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <div className="mt-8">
+            <ButtonLink href={causesPage.close.href} variant="inverse">
+              {causesPage.close.cta}
+            </ButtonLink>
+          </div>
+        </Container>
+      </section>
     </>
   );
 }

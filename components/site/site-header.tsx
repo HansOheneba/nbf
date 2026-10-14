@@ -5,16 +5,18 @@ import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useId, useRef, useState } from "react";
 import { Logo } from "@/components/site/logo";
 import { ButtonLink } from "@/components/ui/button";
-import { mainNav, site, supportCta, type NavChild, type NavItem } from "@/content/site";
+import {
+  donateCta,
+  mainNav,
+  programmePaths,
+  site,
+  supportCta,
+  type NavChild,
+  type NavItem,
+} from "@/content/site";
 import { cn } from "@/lib/cn";
 
-const causePaths = [
-  "/causes",
-  "/education",
-  "/health",
-  "/housing",
-  "/women-empowerment",
-];
+const causePaths = ["/causes", ...programmePaths];
 
 function isActive(pathname: string, href: string) {
   if (href === "/causes") {
@@ -27,7 +29,7 @@ function isActive(pathname: string, href: string) {
 }
 
 function hasMenu(item: NavItem) {
-  return Boolean(item.children?.length);
+  return Boolean(item.groups?.length || item.children?.length);
 }
 
 function menuDomId(href: string) {
@@ -154,7 +156,7 @@ export function SiteHeader() {
         <Link href="/" className="flex min-w-0 items-center">
           <Logo
             priority
-            variant={pathname.startsWith("/events/sickle-cell-fundraiser") ? "lockup-campaign" : "lockup"}
+            variant="lockup"
             className="h-12 w-auto sm:h-14"
           />
         </Link>
@@ -200,9 +202,20 @@ export function SiteHeader() {
               </Fragment>
             );
           })}
-          <span className="self-center" onMouseEnter={scheduleClose} onFocus={closeMenu}>
-            <ButtonLink href={supportCta.href} className="min-h-11 px-4">
+          <span
+            className="flex items-center gap-2 self-center"
+            onMouseEnter={scheduleClose}
+            onFocus={closeMenu}
+          >
+            <ButtonLink href={supportCta.href} variant="secondary" className="min-h-11 px-4">
               {supportCta.label}
+            </ButtonLink>
+            <ButtonLink
+              href={donateCta.href}
+              aria-current={pathname === donateCta.href ? "page" : undefined}
+              className="min-h-11 px-4"
+            >
+              {donateCta.label}
             </ButtonLink>
           </span>
         </nav>
@@ -240,6 +253,33 @@ export function SiteHeader() {
               >
                 {item.label}
               </Link>
+              {item.groups?.map((group) => (
+                <div key={group.href} className="pb-3">
+                  <Link
+                    href={group.href}
+                    aria-current={
+                      pathname === group.href || pathname.startsWith(`${group.href}/`)
+                        ? "page"
+                        : undefined
+                    }
+                    className="block py-2 font-display text-h4"
+                    onClick={() => setOpenPath(null)}
+                  >
+                    {group.label}
+                  </Link>
+                  {group.children.map((child) => (
+                    <Link
+                      key={child.href}
+                      href={child.href}
+                      aria-current={pathname === child.href ? "page" : undefined}
+                      className="block py-2 pl-4 text-body text-ink/80"
+                      onClick={() => setOpenPath(null)}
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              ))}
               {item.children?.map((child) => (
                 <Link
                   key={child.href}
@@ -254,8 +294,16 @@ export function SiteHeader() {
             </div>
           ))}
           <ButtonLink
-            href={supportCta.href}
+            href={donateCta.href}
             className="mt-6 w-full"
+            onClick={() => setOpenPath(null)}
+          >
+            {donateCta.label}
+          </ButtonLink>
+          <ButtonLink
+            href={supportCta.href}
+            variant="secondary"
+            className="w-full"
             onClick={() => setOpenPath(null)}
           >
             {supportCta.label}
@@ -280,7 +328,50 @@ function MegaMenu({
   onNavigate: () => void;
   onPointerEnter: () => void;
 }) {
+  const groups = item.groups ?? [];
   const children = item.children ?? [];
+  if (groups.length > 0) {
+    return (
+      <div
+        id={menuDomId(item.href)}
+        data-mega-menu={item.href}
+        aria-label={item.label}
+        inert={open ? undefined : true}
+        onMouseEnter={onPointerEnter}
+        className={cn(
+          "absolute inset-x-0 top-full z-40 border-b border-border bg-paper",
+          open ? "block" : "hidden",
+        )}
+      >
+        <div className="mx-auto w-full max-w-page px-8 py-10">
+          <div className="grid items-start gap-8 xl:grid-cols-3">
+            {groups.map((group) => {
+              const current = pathname === group.href || pathname.startsWith(`${group.href}/`);
+              return (
+                <Link
+                  key={group.href}
+                  href={group.href}
+                  aria-current={current ? "page" : undefined}
+                  onClick={onNavigate}
+                  className="block max-w-sm py-2 hover:text-ink"
+                >
+                  <span
+                    className={cn(
+                      "block font-display text-h3",
+                      current && "underline decoration-forest underline-offset-4",
+                    )}
+                  >
+                    {group.label}
+                  </span>
+                  <span className="mt-2 block text-small text-muted-foreground">{group.description}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div
       id={menuDomId(item.href)}

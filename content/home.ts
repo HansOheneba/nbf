@@ -14,14 +14,14 @@ export const homePage = {
     title: "Opportunity should not depend on circumstance.",
     paragraphs: [
       "For many people, barriers to education, healthcare, safe housing and economic opportunity can make everyday life harder and limit what the future holds.",
-      "Samaa Charity Projects focuses on these interconnected needs through four causes: Education, Health, Housing and Women Empowerment.",
+      "Samaa Charity Projects focuses on these interconnected needs through education, health, and empowerment. Health covers sickle cell, mental health, and menstrual health. Empowerment covers women's economic opportunity and housing.",
       "Our approach is centred on dignity, access and the belief that meaningful change begins by addressing the barriers people face.",
     ],
     cta: { label: "Discover Our Approach", href: "/about" },
   },
   focus: {
     eyebrow: "Our focus",
-    title: "Four causes. One shared purpose.",
+    title: "One shared purpose.",
     introduction:
       "Different challenges call for different forms of support. These causes touch lives, strengthen opportunities and help communities move forward.",
   },
@@ -33,7 +33,7 @@ export const homePage = {
       "Explore how you can support our initiatives, volunteer your time, discuss a partnership or contribute to a campaign.",
     ],
     routes: [
-      { label: "Donate", href: "/donate", text: "Send a note of the support you intend to give." },
+      { label: "Donate", href: "/donate", text: "Give to education, health, empowerment, housing, or a specific campaign." },
       { label: "Volunteer", href: "/get-involved#volunteering", text: "Offer time or a skill. There is no list of open roles." },
       { label: "Partnerships", href: "/get-involved#partnerships", text: "Start a conversation about working together." },
       { label: "Share an initiative", href: "/contact?topic=awareness", text: "Tell us about a conversation or activity you have in mind." },

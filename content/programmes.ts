@@ -6,6 +6,12 @@ export type CopySection = {
   paragraphs: string[];
 };
 
+export type ProgrammeArea = {
+  label: string;
+  href: string;
+  summary: string;
+};
+
 export type Programme = {
   slug: string;
   href: string;
@@ -18,6 +24,7 @@ export type Programme = {
   cta: string;
   donateLabel: string;
   initiative: string;
+  areas: ProgrammeArea[];
 };
 
 export const programmes: Programme[] = [
@@ -26,64 +33,125 @@ export const programmes: Programme[] = [
     href: "/education",
     navLabel: "Education",
     eyebrow: "Education",
-    title: "Every learner deserves the chance to move forward.",
-    headline: "A chance to learn can change what comes next.",
+    title: "Every learner deserves the opportunity to learn.",
+    headline: "Every learner deserves the opportunity to learn.",
     summary:
-      "Education opens doors to knowledge, confidence and opportunity. Yet the cost of schooling and essential learning resources can prevent less-privileged children and learners from accessing the education they deserve. Our education focus is on helping reduce these barriers and supporting better access to learning opportunities.",
+      "We focus on two foundations of educational access: literacy and scholarships. From helping people develop reading and writing skills to supporting learners who face financial barriers to schooling, our aim is to help make learning more accessible.",
     image: images.readers,
     cta: "Explore Education",
     donateLabel: "Donate to Education",
     initiative: "education",
+    areas: [
+      {
+        label: "Literacy",
+        href: "/education/literacy",
+        summary:
+          "Reading and writing open doors to knowledge, communication and greater independence. We support opportunities to develop these essential skills and access materials for continued learning.",
+      },
+      {
+        label: "Scholarships",
+        href: "/education/scholarship",
+        summary:
+          "The cost of schooling can stand between a learner and their education. Our scholarship focus is on helping learners who cannot meet these costs access educational opportunities.",
+      },
+    ],
   },
   {
     slug: "health",
     href: "/health",
     navLabel: "Health",
     eyebrow: "Health",
-    title: "Every person deserves access to care and understanding.",
-    headline: "Health is about more than getting through the day.",
+    title: "Better health begins with access to care and understanding.",
+    headline: "Better health begins with access to care and understanding.",
     summary:
-      "Access to health information, appropriate care and emotional support matters at every stage of life. Our health focus includes sickle cell awareness and support, alongside mental health education and initiatives that encourage greater understanding of wellbeing.",
+      "Our health work focuses on sickle cell awareness and support, mental health education, and menstrual health. We aim to encourage informed conversations, improve access to reliable information and support efforts that help people navigate health challenges with greater understanding.",
     image: images.conversation,
     cta: "Explore Health",
     donateLabel: "Donate to Health",
     initiative: "health",
+    areas: [
+      {
+        label: "Sickle Cell",
+        href: "/health/sickle-cell",
+        summary:
+          "Accurate information and greater understanding can help challenge misconceptions about sickle cell disease. Our work includes awareness and support for efforts to help children in Africa living with sickle cell access medical facilities and treatment.",
+      },
+      {
+        label: "Mental Health",
+        href: "/health/mental-health",
+        summary:
+          "Mental wellbeing deserves understanding, not judgement. We focus on education and awareness that encourage more open conversations about wellbeing and the importance of appropriate support.",
+      },
+      {
+        label: "Menstrual Health",
+        href: "/health/menstrual-health",
+        summary:
+          "Menstrual health is a matter of dignity, knowledge and access. We focus on menstrual health education and supporting efforts to improve access to essential products, including sanitary pads, for those facing financial barriers.",
+      },
+    ],
   },
   {
     slug: "housing",
-    href: "/housing",
+    href: "/empowerment/housing",
     navLabel: "Housing",
     eyebrow: "Housing",
-    title: "A safe place to call home matters.",
-    headline: "Everyone deserves a place to feel safe.",
+    title: "Everyone deserves a safe place to call home.",
+    headline: "Everyone deserves a safe place to call home.",
     summary:
-      "A safe place to sleep and live is fundamental to dignity and wellbeing. People experiencing homelessness can face difficult barriers to finding shelter and stability. Our housing focus is on developing support for people facing homelessness and exploring shelter initiatives that respond to this need.",
+      "A safe place to stay provides a foundation for security and stability. Our housing focus, within empowerment, is on developing initiatives that respond to homelessness and help make safe shelter more accessible to people who need it.",
     image: images.home,
     cta: "Explore Housing",
     donateLabel: "Donate to Housing",
     initiative: "housing",
+    areas: [
+      {
+        label: "Shelter and Support",
+        href: "/empowerment/housing#shelter",
+        summary:
+          "People experiencing homelessness can face significant barriers to finding safe accommodation. We want to support efforts that respond to this need with dignity and practical care.",
+      },
+    ],
   },
   {
     slug: "women-empowerment",
     href: "/women-empowerment",
-    navLabel: "Women empowerment",
-    eyebrow: "Women empowerment",
-    title: "Opportunity, dignity and independence for women.",
-    headline: "When women have more opportunities, possibilities expand.",
+    navLabel: "Women's Empowerment",
+    eyebrow: "Women's Empowerment",
+    title: "More opportunity. Greater independence. Better access.",
+    headline: "More opportunity. Greater independence. Better access.",
     summary:
-      "Economic independence and access to essential health resources can make a meaningful difference in women's lives. Our women empowerment focus brings together economic opportunity, menstrual health education and improved access to essential menstrual products for those who face financial barriers.",
+      "We focus on women's economic empowerment. Our aim is to support greater economic opportunity and help women pursue financial independence and participate in economic life.",
     image: images.portrait,
-    cta: "Explore Women Empowerment",
-    donateLabel: "Donate to Women Empowerment",
+    cta: "Explore Women's Empowerment",
+    donateLabel: "Donate to Women's Empowerment",
     initiative: "women-empowerment",
+    areas: [
+      {
+        label: "Economic Empowerment",
+        href: "/women-empowerment/economic",
+        summary:
+          "Economic opportunity can expand choices and strengthen livelihoods. We focus on initiatives that help women pursue greater financial independence and participate in economic life.",
+      },
+    ],
   },
 ];
 
 export const causesPage = {
-  eyebrow: "Causes",
-  title: "Four causes. One shared purpose.",
-  introduction:
-    "Different challenges call for different forms of support. These causes touch lives, strengthen opportunities and help communities move forward.",
+  eyebrow: "Our Causes",
+  title: "A better future begins with access.",
+  paragraphs: [
+    "Access to education. Access to healthcare. A safe place to call home. The opportunity to build an independent future.",
+    "Samaa Charity Projects focuses on initiatives that help address barriers to these essentials, supporting people and communities across Africa.",
+  ],
+  close: {
+    title: "One shared purpose",
+    paragraphs: [
+      "The challenges people face may differ, but the need for opportunity, dignity and access connects them.",
+      "Explore our causes, learn about the work and discover how you can contribute to a better future.",
+    ],
+    cta: "Support Our Work",
+    href: "/donate",
+  },
 };
 
 export function getProgramme(slug: string) {

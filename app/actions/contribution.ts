@@ -4,11 +4,9 @@ import { isSupportArea, supportLabel } from "@/content/donate";
 import type { InquiryState } from "@/content/inquiry";
 import { deliverInquiry } from "@/lib/inquiry-delivery";
 
-const failedMessage =
-  "Your note could not be sent. Please try again in a little while. No payment has been taken.";
+const failedMessage = "Your donation could not be sent. Please try again in a little while.";
 
-const unconfiguredMessage =
-  "This note could not be sent, because the enquiry route is not connected. Nothing was stored, and no payment has been taken.";
+const unconfiguredMessage = "Your donation could not be sent just now. Please try again later.";
 
 function clean(value: FormDataEntryValue | null) {
   return String(value ?? "").trim();
@@ -21,7 +19,7 @@ export async function submitContribution(
   if (clean(formData.get("company"))) {
     return {
       status: "success",
-      message: "Thank you. Your note has been sent. No payment has been taken.",
+      message: "Thank you. Your donation has been received.",
       fieldErrors: {},
     };
   }
@@ -56,7 +54,7 @@ export async function submitContribution(
   if (Object.keys(fieldErrors).length > 0) {
     return {
       status: "error",
-      message: "Please check the form and try again. No payment has been taken.",
+      message: "Please check the form and try again.",
       fieldErrors,
     };
   }
@@ -68,7 +66,7 @@ export async function submitContribution(
     name,
     email,
     enquiryType,
-    message: [`Intended area: ${supportLabel(area)}`, "", message || "No message was included."].join(
+    message: [`Area: ${supportLabel(area)}`, "", message || "No message was included."].join(
       "\n",
     ),
     source: "donate",
@@ -76,7 +74,7 @@ export async function submitContribution(
   });
 
   if (!result.delivered) {
-    console.error(`Contribution note was not delivered (${result.reason}).`);
+    console.error(`Donation was not delivered (${result.reason}).`);
     return {
       status: "error",
       message: result.reason === "unconfigured" ? unconfiguredMessage : failedMessage,
@@ -87,7 +85,7 @@ export async function submitContribution(
   return {
     status: "success",
     message:
-      "Thank you. Your note of intent has been sent. No money has been taken, and this is not a receipt.",
+      "Thank you. Your donation has been received.",
     fieldErrors: {},
   };
 }

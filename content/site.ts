@@ -4,7 +4,7 @@ export const site = {
   name: "Samaa Charity Projects",
   shortName: "Samaa",
   description:
-    "Samaa Charity Projects works towards access to education, health, housing, and women's empowerment, with initiatives centred on Africa.",
+    "Samaa Charity Projects works towards education, health, and empowerment. Health includes sickle cell, mental health, and menstrual health. Empowerment includes women's economic opportunity and housing.",
   /**
    * Set NEXT_PUBLIC_SITE_URL when the production domain is known.
    * Canonical URLs and the sitemap use it when it is present.
@@ -18,6 +18,11 @@ export const supportCta = {
   href: "/get-involved",
 } as const;
 
+export const donateCta = {
+  label: "Donate",
+  href: "/donate",
+} as const;
+
 export type NavChild = {
   label: string;
   href: string;
@@ -29,44 +34,78 @@ export type NavItem = {
   label: string;
   href: string;
   children?: NavChild[];
+  groups?: NavGroup[];
 };
 
-export const causeNav: NavChild[] = [
+export type NavGroup = {
+  label: string;
+  href: string;
+  description: string;
+  children: NavChild[];
+};
+
+export const causeWings: NavGroup[] = [
   {
     label: "Education",
     href: "/education",
-    description: "Access to learning for people who face the cost of schooling and resources.",
+    description: "Literacy and scholarships.",
+    children: [
+      {
+        label: "Literacy",
+        href: "/education/literacy",
+        description: "Learning to read and write, and the materials to practise.",
+      },
+      {
+        label: "Scholarships",
+        href: "/education/scholarship",
+        description: "Support toward the cost of schooling for learners who cannot meet it.",
+      },
+    ],
   },
   {
     label: "Health",
     href: "/health",
-    description: "Sickle cell awareness and support, alongside mental health education.",
+    description: "Sickle cell, mental health, and menstrual health.",
+    children: [
+      {
+        label: "Sickle Cell",
+        href: "/health/sickle-cell",
+        description: "Facts, screening conversations, and the December 2026 fundraiser.",
+      },
+      {
+        label: "Mental Health",
+        href: "/health/mental-health",
+        description: "Education and more understanding conversations about wellbeing.",
+      },
+      {
+        label: "Menstrual Health",
+        href: "/health/menstrual-health",
+        description: "Education and access to essential products where cost is a barrier.",
+      },
+    ],
   },
   {
-    label: "Sickle cell",
-    href: "/health/sickle-cell",
-    description: "Facts, screening conversations, and the December 2026 fundraiser.",
-  },
-  {
-    label: "Mental health",
-    href: "/health/mental-health",
-    description: "Education and more understanding conversations about wellbeing.",
-  },
-  {
-    label: "Housing",
-    href: "/housing",
-    description: "Developing support for people facing homelessness, including shelter.",
-  },
-  {
-    label: "Women empowerment",
-    href: "/women-empowerment",
-    description: "Economic opportunity and menstrual health education and access.",
+    label: "Empowerment",
+    href: "/empowerment",
+    description: "Women's economic opportunity and housing.",
+    children: [
+      {
+        label: "Women's Empowerment",
+        href: "/women-empowerment",
+        description: "Economic opportunity and greater financial independence.",
+      },
+      {
+        label: "Housing",
+        href: "/empowerment/housing",
+        description: "Shelter and support for people facing homelessness.",
+      },
+    ],
   },
 ];
 
 export const mainNav: NavItem[] = [
   { label: "About", href: "/about" },
-  { label: "Causes", href: "/causes", children: causeNav },
+  { label: "Causes", href: "/causes", groups: causeWings },
   {
     label: "Events",
     href: "/events",
@@ -84,11 +123,16 @@ export const legalNav = [{ label: "Privacy", href: "/privacy" }] as const;
 
 export const programmePaths = [
   "/education",
+  "/education/literacy",
+  "/education/scholarship",
   "/health",
   "/health/sickle-cell",
   "/health/mental-health",
-  "/housing",
+  "/health/menstrual-health",
+  "/empowerment",
+  "/empowerment/housing",
   "/women-empowerment",
+  "/women-empowerment/economic",
 ] as const;
 
 export const sitemapPaths = [

@@ -1,19 +1,22 @@
 /**
- * Set NEXT_PUBLIC_DONATION_URL to an approved payment page when one exists.
- * Until then, contribution links open the enquiry on /donate.
- * That form records an intention. It does not take payment.
+ * Set NEXT_PUBLIC_DONATION_URL when donations should open an external payment page.
+ * Otherwise contribution links stay on /donate.
  */
 export const donationUrl = process.env.NEXT_PUBLIC_DONATION_URL?.trim() || undefined;
 
 export const supportAreas = [
   { value: "general", label: "Any cause" },
   { value: "education", label: "Education" },
+  { value: "literacy", label: "Literacy" },
+  { value: "scholarship", label: "Scholarships" },
   { value: "health", label: "Health" },
-  { value: "sickle-cell", label: "Sickle cell" },
-  { value: "mental-health", label: "Mental health education" },
+  { value: "sickle-cell", label: "Sickle Cell" },
+  { value: "mental-health", label: "Mental Health" },
+  { value: "menstrual-health", label: "Menstrual Health" },
+  { value: "empowerment", label: "Empowerment" },
+  { value: "women-empowerment", label: "Women's Empowerment" },
+  { value: "economic", label: "Economic Empowerment" },
   { value: "housing", label: "Housing" },
-  { value: "women-empowerment", label: "Women empowerment" },
-  { value: "menstrual-health", label: "Menstrual health" },
   { value: "fundraiser", label: "The 19 December 2026 fundraiser" },
 ] as const;
 
@@ -39,9 +42,9 @@ export function contributionHref(initiative?: string) {
 
 export const donatePage = {
   eyebrow: "Donate",
-  title: "A note of what you intend to give.",
+  title: "Give to the cause you want to support.",
   paragraphs: [
-    "There is no card payment on this page. Send your name, a way to reply, the area you want to support, and, if you want, the amount you intend to contribute.",
-    "Samaa Charity Projects reads that note. Sending it does not move any money, and it is not a receipt.",
+    "Direct your donation to education, health, or empowerment, or to a specific focus such as literacy, scholarships, sickle cell, menstrual health, housing, or the December fundraiser.",
+    "Add your name, a way to reach you, and the amount you would like to give.",
   ],
 };

@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "Housing",
   description: housingPage.introduction[0],
-  path: "/housing",
+  path: "/empowerment/housing",
 });
 
 export default function HousingPage() {

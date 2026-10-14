@@ -1,33 +1,32 @@
 @import "tailwindcss";
 
 /*
-  Greens are sampled from the Samaa lockup.
-  Forest #0C5323 is the wordmark. Deep #053E16 is the darker
-  overlap in the mark. White on either is above 9:1.
-  Campaign reds stay inside [data-theme="campaign"] only.
-  #EF0026 is for large campaign type. #9C0019 is the campaign
-  action colour, because white on #EF0026 is only about 4:1.
+  The pre-green palette.
+  Foundation #EF0026 is for large type, rules, and motifs.
+  It is about 4.0:1 on paper, so it is not used for body copy,
+  captions, or button labels. Deep #9C0019 is the action colour:
+  white on deep is about 8.7:1, and deep on paper is about 7.8:1.
 */
 
 :root {
-  --forest: #0c5323;
-  --deep: #053e16;
-  --ink: #20231f;
+  --forest: #ef0026;
+  --deep: #9c0019;
+  --ink: #171717;
   --white: #ffffff;
-  --paper: #f6f5f0;
-  --sage: #dce8dd;
-  --muted: #e6eee7;
-  --muted-foreground: #4a564e;
-  --border: #d0dcd2;
-  --focus: #053e16;
+  --paper: #f7f3ed;
+  --sage: #efeae3;
+  --muted: #efeae3;
+  --muted-foreground: #5c564e;
+  --border: #d9d2c8;
+  --focus: #9c0019;
   --campaign: #ef0026;
   --campaign-deep: #9c0019;
   --accent: var(--forest);
   --background: var(--paper);
   --foreground: var(--ink);
-  --primary: var(--forest);
+  --primary: var(--deep);
   --primary-foreground: var(--white);
-  --primary-hover: var(--deep);
+  --primary-hover: var(--ink);
   --secondary: var(--ink);
   --secondary-foreground: var(--white);
   --secondary-hover: var(--ink);
@@ -40,9 +39,9 @@
   --deep: var(--campaign-deep);
   --accent: var(--campaign);
   --primary: var(--campaign-deep);
-  --primary-hover: #6e0012;
+  --primary-hover: var(--ink);
   --link: var(--campaign-deep);
-  --link-hover: #6e0012;
+  --link-hover: var(--ink);
   --focus: var(--campaign-deep);
 }
 
@@ -267,6 +266,128 @@ p {
   animation: notice-in 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@keyframes dot-3-move {
+  20% {
+    transform: scale(1);
+  }
+  45% {
+    transform: translateY(-18px) scale(0.45);
+  }
+  60% {
+    transform: translateY(-90px) scale(0.45);
+  }
+  80% {
+    transform: translateY(-90px) scale(0.45);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes dot-2-move {
+  20% {
+    transform: scale(1);
+  }
+  45% {
+    transform: translate(-16px, 12px) scale(0.45);
+  }
+  60% {
+    transform: translate(-80px, 60px) scale(0.45);
+  }
+  80% {
+    transform: translate(-80px, 60px) scale(0.45);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes dot-1-move {
+  20% {
+    transform: scale(1);
+  }
+  45% {
+    transform: translate(16px, 12px) scale(0.45);
+  }
+  60% {
+    transform: translate(80px, 60px) scale(0.45);
+  }
+  80% {
+    transform: translate(80px, 60px) scale(0.45);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes rotate-move {
+  55% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes index {
+  0%,
+  100% {
+    z-index: 3;
+  }
+  33.3% {
+    z-index: 2;
+  }
+  66.6% {
+    z-index: 1;
+  }
+}
+
+.loader-goo {
+  filter: url("#goo");
+  animation: rotate-move 2s ease-in-out infinite;
+}
+
+.dot-1 {
+  animation:
+    dot-1-move 2s ease-in-out infinite,
+    index 6s ease-in-out -2s infinite;
+}
+
+.dot-2 {
+  animation:
+    dot-2-move 2s ease-in-out infinite,
+    index 6s ease-in-out -4s infinite;
+}
+
+.dot-3 {
+  animation:
+    dot-3-move 2s ease-in-out infinite,
+    index 6s ease-in-out infinite;
+}
+
+html[data-site-loader="skip"] .site-loader {
+  display: none;
+}
+
+.site-loader.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.site-loader {
+  animation: site-loader-release 0s linear 4.5s forwards;
+}
+
+@keyframes site-loader-release {
+  to {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -277,10 +398,18 @@ p {
   .hero-rise,
   .hero-rise-2,
   .hero-rise-3,
-  .notice-in {
+  .notice-in,
+  .loader-goo,
+  .dot-1,
+  .dot-2,
+  .dot-3 {
     opacity: 1;
     transform: none;
     transition: none;
     animation: none;
+  }
+
+  .site-loader {
+    display: none;
   }
 }

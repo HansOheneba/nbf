@@ -11,7 +11,7 @@ const sources = {
   mark: { src: "/logos/samaa-mark.png", width: 271, height: 330, alt: "" },
   light: { src: "/logos/samaa-mark-light.png", width: 271, height: 330, alt: "" },
   lockup: {
-    src: "/logos/samaa-lockup.png",
+    src: "/logos/samaa-lockup-campaign.png",
     width: 902,
     height: 330,
     alt: "Samaa Charity Projects",

@@ -25,7 +25,7 @@ export default function GetInvolvedPage() {
         title="There is more than one way to make a difference."
         lede={[
           "You can give, offer a skill, or help a cause reach further.",
-          "These routes are conversations. They do not confirm that a volunteer placement, a partnership, or a payment has already been arranged.",
+          "Donate to a cause, offer your time, or start a conversation about working together.",
         ]}
       />
 

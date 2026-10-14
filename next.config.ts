@@ -23,6 +23,16 @@ const nextConfig: NextConfig = {
         destination: "/causes",
         permanent: true,
       },
+      {
+        source: "/housing",
+        destination: "/empowerment/housing",
+        permanent: false,
+      },
+      {
+        source: "/empowerment/economic",
+        destination: "/women-empowerment/economic",
+        permanent: false,
+      },
     ];
   },
   experimental: {

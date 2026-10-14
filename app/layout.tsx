@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { EventNotice } from "@/components/campaign/event-notice";
+import { SiteLoader } from "@/components/motion/site-loader";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { site } from "@/content/site";
 import { DM_Sans, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -38,9 +40,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
+        <Script id="site-loader-gate" strategy="beforeInteractive">
+          {`try{if(sessionStorage.getItem("nbf-site-loader")==="seen"||matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.dataset.siteLoader="skip"}}catch(e){}`}
+        </Script>
+        <SiteLoader />
         <a href="#content" className="skip-link">
           Skip to content
         </a>

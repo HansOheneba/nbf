@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/site/logo";
-import { legalNav, mainNav, site, supportCta } from "@/content/site";
+import { donateCta, legalNav, mainNav, site, supportCta } from "@/content/site";
 
 export function SiteFooter() {
   return (
@@ -26,6 +26,11 @@ export function SiteFooter() {
             <li>
               <Link href={supportCta.href} className="text-small hover:text-white">
                 {supportCta.label}
+              </Link>
+            </li>
+            <li>
+              <Link href={donateCta.href} className="text-small hover:text-white">
+                {donateCta.label}
               </Link>
             </li>
           </ul>

@@ -11,10 +11,10 @@ export const involvementPaths: InvolvementPath[] = [
     id: "donate",
     title: "Donate",
     paragraphs: [
-      "A contribution helps a cause go further. Until a payment page is connected, the donate form records what you intend to give and which cause it is for.",
-      "Sending that note does not take money and is not a receipt. If a payment link is configured for the site, the donate buttons use it instead.",
+      "A donation helps a cause go further. Direct your gift to education, health, empowerment, housing, or a specific campaign.",
+      "Choose the area you want to support and tell us how you would like to give.",
     ],
-    cta: "Go to the donation note",
+    cta: "Donate",
     href: "/donate",
   },
   {

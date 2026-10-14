@@ -12,10 +12,10 @@ export type CitedSource = {
 
 export const healthPage = {
   eyebrow: "Health",
-  title: "Every person deserves access to care and understanding.",
+  title: "Better health begins with access to care and understanding.",
   introduction: [
-    "Health affects every part of life, from physical wellbeing to emotional resilience. Access to accurate information, appropriate care and supportive environments matters.",
-    "Samaa Charity Projects' health focus includes sickle cell awareness and support, as well as mental health education and initiatives that encourage greater understanding of wellbeing.",
+    "Our health work focuses on sickle cell awareness and support, mental health education, and menstrual health.",
+    "We aim to encourage informed conversations, improve access to reliable information and support efforts that help people navigate health challenges with greater understanding.",
   ],
   support: {
     label: "Donate to Health",

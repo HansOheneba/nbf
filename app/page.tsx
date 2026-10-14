@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { EditorialImage } from "@/components/editorial/editorial-image";
 import { SplitFeature } from "@/components/editorial/split-feature";
 import { CtaBand } from "@/components/editorial/cta-band";
@@ -94,6 +95,18 @@ export default function Home() {
             <p className="eyebrow mt-4 text-deep">{education.eyebrow}</p>
             <h2 className="mt-3 text-h1">{education.headline}</h2>
             <p className="mt-5 text-body-lg text-ink/80">{education.summary}</p>
+            <ul className="mt-6 flex flex-col gap-2">
+              {education.areas.map((area) => (
+                <li key={area.href}>
+                  <Link
+                    href={area.href}
+                    className="text-small font-medium text-deep underline decoration-deep/30 underline-offset-4"
+                  >
+                    {area.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <DonationLink initiative={education.initiative}>{education.donateLabel}</DonationLink>
               <ButtonLink href={education.href} variant="secondary">
@@ -111,6 +124,18 @@ export default function Home() {
             <p className="eyebrow mt-4 text-sage">{health.eyebrow}</p>
             <h2 className="mt-3 text-h1">{health.headline}</h2>
             <p className="mt-5 text-body-lg text-paper/90">{health.summary}</p>
+            <ul className="mt-6 flex flex-col gap-2">
+              {health.areas.map((area) => (
+                <li key={area.href}>
+                  <Link
+                    href={area.href}
+                    className="text-small font-medium text-sage underline decoration-sage/40 underline-offset-4"
+                  >
+                    {area.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <DonationLink initiative={health.initiative} variant="inverse">
                 {health.donateLabel}
@@ -130,21 +155,25 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-b border-border">
-        <Container className="grid gap-8 py-16 lg:grid-cols-12 lg:py-28">
-          <Reveal className="lg:col-span-4">
+      <section className="border-b border-border bg-white">
+        <Container className="grid items-end gap-10 py-16 lg:grid-cols-12 lg:py-28">
+          <Reveal className="lg:col-span-5">
             <p className="font-display text-h2 text-forest">03</p>
             <p className="eyebrow mt-4 text-deep">{housing.eyebrow}</p>
-            <h2 className="mt-3 text-h2">{housing.headline}</h2>
-          </Reveal>
-          <Reveal delay={60} className="lg:col-span-7 lg:col-start-6">
-            <EditorialImage
-              image={housing.image}
-              aspect="aspect-[16/9]"
-              position="object-bottom"
-              sizes="(min-width: 1024px) 54vw, 100vw"
-            />
-            <p className="mt-6 max-w-2xl text-body-lg text-ink/80">{housing.summary}</p>
+            <h2 className="mt-3 text-h1">{housing.headline}</h2>
+            <p className="mt-5 text-body-lg text-ink/80">{housing.summary}</p>
+            <ul className="mt-6 flex flex-col gap-2">
+              {housing.areas.map((area) => (
+                <li key={area.href}>
+                  <Link
+                    href={area.href}
+                    className="text-small font-medium text-deep underline decoration-deep/30 underline-offset-4"
+                  >
+                    {area.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <DonationLink initiative={housing.initiative}>{housing.donateLabel}</DonationLink>
               <ButtonLink href={housing.href} variant="secondary">
@@ -152,29 +181,49 @@ export default function Home() {
               </ButtonLink>
             </div>
           </Reveal>
+          <Reveal delay={80} className="lg:col-span-6 lg:col-start-7">
+            <EditorialImage
+              image={housing.image}
+              position="object-bottom"
+              aspect="aspect-[3/4]"
+              sizes="(min-width: 1024px) 42vw, 100vw"
+            />
+          </Reveal>
         </Container>
       </section>
 
-      <section className="border-b border-border bg-white">
-        <Container className="grid items-end gap-10 py-16 lg:grid-cols-12 lg:py-28">
-          <Reveal className="lg:col-span-5">
-            <p className="font-display text-display text-forest/25">04</p>
-            <p className="eyebrow text-deep">{women.eyebrow}</p>
+      <section className="border-b border-border bg-sage/40">
+        <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
+          <Reveal className="lg:col-span-6 lg:col-start-1 lg:row-start-1">
+            <EditorialImage
+              image={women.image}
+              aspect="aspect-[16/10]"
+              sizes="(min-width: 1024px) 46vw, 100vw"
+            />
+          </Reveal>
+          <Reveal delay={80} className="lg:col-span-5 lg:col-start-8">
+            <p className="font-display text-h2 text-forest">04</p>
+            <p className="eyebrow mt-4 text-deep">{women.eyebrow}</p>
             <h2 className="mt-3 text-h1">{women.headline}</h2>
             <p className="mt-5 text-body-lg text-ink/80">{women.summary}</p>
+            <ul className="mt-6 flex flex-col gap-2">
+              {women.areas.map((area) => (
+                <li key={area.href}>
+                  <Link
+                    href={area.href}
+                    className="text-small font-medium text-deep underline decoration-deep/30 underline-offset-4"
+                  >
+                    {area.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <DonationLink initiative={women.initiative}>{women.donateLabel}</DonationLink>
               <ButtonLink href={women.href} variant="secondary">
                 {women.cta}
               </ButtonLink>
             </div>
-          </Reveal>
-          <Reveal delay={80} className="lg:col-span-6 lg:col-start-7">
-            <EditorialImage
-              image={women.image}
-              aspect="aspect-[3/2]"
-              sizes="(min-width: 1024px) 42vw, 100vw"
-            />
           </Reveal>
         </Container>
       </section>

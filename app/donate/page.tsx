@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 export const metadata = pageMetadata({
   title: "Donate",
   description:
-    "Send a note of the contribution you intend for Samaa Charity Projects. This page does not take payment.",
+    "Donate to Samaa Charity Projects and choose the cause your gift supports.",
   path: "/donate",
 });
 
@@ -20,13 +20,15 @@ export default function DonatePage() {
       <PageIntro eyebrow={donatePage.eyebrow} title={donatePage.title} lede={donatePage.paragraphs} />
       <Container className="grid gap-12 py-16 lg:grid-cols-12 lg:py-24">
         <div className="lg:col-span-5">
-          <h2 className="text-h3">What this form does</h2>
+          <h2 className="text-h3">Your donation</h2>
           <div className="mt-5 max-w-md space-y-4 text-body text-ink/80">
-            <p>It tells Samaa Charity Projects which area you want to support, and that you intend to contribute.</p>
-            <p>It does not charge a card, transfer money, or confirm that a gift has been received.</p>
             <p>
-              The 19 December 2026 fundraiser is one of the areas you can name. It is intended to
-              help children in Africa living with sickle cell access medical facilities and treatment.
+              Choose the area your gift should support. You can give to a cause as a whole, or to a
+              specific focus within it.
+            </p>
+            <p>
+              The 19 December 2026 fundraiser helps children in Africa living with sickle cell
+              access medical facilities and treatment.
             </p>
           </div>
         </div>

@@ -16,7 +16,7 @@ export default function PrivacyPage() {
       <PageIntro
         eyebrow="Privacy"
         title="How this website handles information."
-        lede="This note describes the site as it works today: enquiry forms, a contribution note, educational pages, and photographs used as illustration."
+        lede="This page describes how the site handles enquiry forms, donations, educational pages, and photographs used as illustration."
       />
       <Container className="max-w-3xl space-y-12 py-16 lg:py-24">
         <section>
@@ -37,10 +37,11 @@ export default function PrivacyPage() {
               not a health service, and those details are not needed to ask about the work.
             </p>
             <p>
-              The donation page asks for a name and email, the area you want to support, and
-              may include an intended amount and a message if you choose to add them. That
-              note is an intention. It is not a payment, and the site does not collect card
-              numbers. If the note cannot be sent, the form says so, and nothing is stored.
+              The donation page asks for your name, email address, the area you want to support,
+              and, if you add them, an amount and a message. That information is used so Samaa
+              Charity Projects can process your donation and reply. If a donation cannot be sent,
+              the form says so, and nothing is stored. Payment card details are handled by the
+              payment provider and are not stored on this website.
             </p>
           </div>
         </section>

@@ -14,7 +14,7 @@ export const mentalHealthPage = {
   ],
   landingTitle: "Mental wellbeing deserves understanding, not judgement.",
   landingSummary:
-    "Mental health is part of overall wellbeing, yet people may face stigma, misconceptions or barriers that make it difficult to discuss their experiences or seek support. Our mental health focus is centred on education, awareness and encouraging more understanding conversations about emotional wellbeing and the importance of appropriate support.",
+    "Mental wellbeing deserves understanding, not judgement. We focus on education and awareness that encourage more open conversations about wellbeing and the importance of appropriate support.",
   reviewDate: healthReviewDate,
   disclaimer: healthDisclaimer,
   sources: mentalHealthSourceList,
@@ -61,8 +61,8 @@ export const mentalHealthSections: CopySection[] = [
     id: "initiatives",
     heading: "Supporting future mental health education",
     paragraphs: [
-      "You can send a note of intended support for mental health education initiatives, or write about time, a skill, or a partnership you would like to discuss.",
-      "This page does not announce a clinic, a helpline run by the organisation, or a completed programme. A note of support is an intention. It is not a payment.",
+      "You can donate to mental health education, or write about time, a skill, or a partnership you would like to discuss.",
+      "This page does not announce a clinic, a helpline run by the organisation, or a completed programme.",
     ],
   },
 ];

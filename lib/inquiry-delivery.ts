@@ -58,13 +58,10 @@ export async function deliverInquiry(input: InquiryPayload): Promise<DeliveryRes
             `Email: ${input.email}`,
             `Enquiry: ${enquiryLabel(input.enquiryType)}`,
             `Page: ${input.source}`,
-            ...(input.amount ? [`Intended amount: ${input.amount}`] : []),
+            ...(input.amount ? [`Amount: ${input.amount}`] : []),
             `Sent: ${submittedAt}`,
             "",
             input.message,
-            ...(input.source === "donate"
-              ? ["", "This note records an intention. It is not a payment."]
-              : []),
           ].join("\n"),
         }),
       });

@@ -84,7 +84,7 @@ export default function AboutPage() {
       <section id="areas" className="border-b border-border bg-sage/40">
         <Container className="py-16 lg:py-28">
           <p className="font-display text-h2 text-forest">03</p>
-          <h2 className="mt-3 max-w-3xl text-h1">Four causes</h2>
+          <h2 className="mt-3 max-w-3xl text-h1">Our causes</h2>
           <ol className="mt-12 border-t border-border">
             {aboutAreas.map((area) => (
               <li key={area.href} className="border-b border-border">

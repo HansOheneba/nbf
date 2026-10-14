@@ -11,7 +11,7 @@ import { sickleCellPage, sickleCellSections } from "@/content/sickle-cell";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "Sickle cell",
+  title: "Sickle Cell",
   description: sickleCellPage.introduction[0],
   path: "/health/sickle-cell",
 });

@@ -6,14 +6,14 @@ import {
 } from "@/content/health";
 
 export const sickleCellPage = {
-  eyebrow: "Sickle cell",
+  eyebrow: "Sickle Cell",
   title: "Know the facts. Challenge the stigma.",
   introduction: [
     "Sickle cell disease is an inherited blood disorder that can have a significant impact on health and everyday life. Accurate information helps people better understand the condition, distinguish sickle cell disease from sickle cell trait and make informed decisions with qualified health professionals.",
     "Samaa Charity Projects' sickle cell focus centres on awareness, education and support for initiatives intended to help children in Africa living with sickle cell access medical facilities and treatment.",
   ],
   summary:
-    "Sickle cell disease affects individuals and families in different ways. Accurate information can help people better understand the condition, recognise misconceptions and have more informed conversations about screening and care.",
+    "Accurate information and greater understanding can help challenge misconceptions about sickle cell disease. Our work includes awareness and support for efforts to help children in Africa living with sickle cell access medical facilities and treatment.",
   reviewDate: healthReviewDate,
   disclaimer: healthDisclaimer,
   sources: sickleCellSourceList,
@@ -76,8 +76,7 @@ export const sickleCellSections: CopySection[] = [
     heading: "The December 2026 fundraiser",
     paragraphs: [
       "On 19 December 2026, Samaa Charity Projects is holding a fundraiser to help children in Africa living with sickle cell access medical facilities and treatment. A raffle will form part of the evening.",
-      "The evening is a way to gather people around that purpose. This page does not set a venue, a start time, a ticket price, a list of raffle prizes, or a fundraising target. Those details are not confirmed here.",
-      "A contribution through this website, when no separate payment page is connected, is a note of what you intend to give. It does not take payment.",
+      "The evening is a way to gather people around that purpose. Donate to the fundraiser, or write if you would like to be part of it.",
     ],
   },
 ];
