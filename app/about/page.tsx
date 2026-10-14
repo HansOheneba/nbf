@@ -34,7 +34,7 @@ export default function AboutPage() {
             <div className="mt-8">
               <EditorialImage
                 image={images.gathering}
-                aspect="aspect-[3/4]"
+                aspect="aspect-[3/2]"
                 sizes="(min-width: 1024px) 30vw, 100vw"
               />
             </div>

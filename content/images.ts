@@ -37,11 +37,11 @@ export const images = {
     caption: "Holding hands",
   },
   gathering: {
-    src: "/images/black-no-smile.jpg",
-    alt: "A young person resting their cheek on one hand, with another person seated behind them.",
-    width: 500,
-    height: 667,
-    caption: "A quiet portrait",
+    src: "/images/emp.jpg",
+    alt: "A group of people standing in a circle, stacking their hands together in the centre.",
+    width: 5760,
+    height: 3840,
+    caption: "Hands together",
   },
   learning: {
     src: "/images/learning.jpg",

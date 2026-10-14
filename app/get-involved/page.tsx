@@ -67,7 +67,7 @@ export default function GetInvolvedPage() {
               >
                 <EditorialImage
                   image={image}
-                  aspect="aspect-[4/5]"
+                  aspect={index === 2 ? "aspect-[3/2]" : "aspect-[4/5]"}
                   sizes="(min-width: 1024px) 46vw, 100vw"
                 />
               </Reveal>

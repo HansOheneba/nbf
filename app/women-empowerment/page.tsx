@@ -24,7 +24,7 @@ export default function WomenEmpowermentPage() {
           <Reveal className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <EditorialImage
               image={images.gathering}
-              aspect="aspect-[4/5]"
+              aspect="aspect-[3/2]"
               sizes="(min-width: 1024px) 40vw, 100vw"
             />
           </Reveal>
