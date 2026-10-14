@@ -26,18 +26,18 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative min-h-[100svh] overflow-hidden border-b border-border">
+      <section className="relative h-[calc(100svh-6rem)] overflow-hidden border-b border-border">
         <Image
-          src={images.horizon.src}
-          alt={images.horizon.alt}
+          src={images.hero.src}
+          alt={images.hero.alt}
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/20 to-transparent" />
-        <div className="relative z-10 flex min-h-[100svh] items-end">
-          <Container className="pb-16 pt-32 lg:pb-24">
+        <div className="relative z-10 flex h-full items-end">
+          <Container className="pb-8 pt-6 sm:pb-10 lg:pb-12">
             <div className="max-w-4xl">
               <h1 className="hero-rise max-w-4xl text-display text-white">
                 {homePage.hero.title}
@@ -66,7 +66,7 @@ export default function Home() {
         text={homePage.intro.paragraphs}
         href={homePage.intro.cta.href}
         hrefLabel={homePage.intro.cta.label}
-        image={images.profile}
+        image={images.opp}
         reverse
       />
 
@@ -141,6 +141,7 @@ export default function Home() {
             <EditorialImage
               image={housing.image}
               aspect="aspect-[16/9]"
+              position="object-bottom"
               sizes="(min-width: 1024px) 54vw, 100vw"
             />
             <p className="mt-6 max-w-2xl text-body-lg text-ink/80">{housing.summary}</p>
@@ -171,7 +172,7 @@ export default function Home() {
           <Reveal delay={80} className="lg:col-span-6 lg:col-start-7">
             <EditorialImage
               image={women.image}
-              aspect="aspect-[3/4]"
+              aspect="aspect-[3/2]"
               sizes="(min-width: 1024px) 42vw, 100vw"
             />
           </Reveal>
@@ -199,7 +200,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={80} className="lg:col-span-5 lg:col-start-8">
             <EditorialImage
-              image={images.conversation}
+              image={images.campaign}
               aspect="aspect-[4/5]"
               sizes="(min-width: 1024px) 36vw, 100vw"
             />

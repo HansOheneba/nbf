@@ -29,7 +29,7 @@ export const events: FoundationEvent[] = [
       "An evening dedicated to raising funds to help children in Africa living with sickle cell access medical facilities and treatment. A raffle will form part of the evening.",
     menuDescription:
       "A fundraising evening, with a raffle, for children in Africa living with sickle cell.",
-    image: images.gathering,
+    image: images.campaign,
   },
 ];
 
@@ -70,7 +70,7 @@ export const fundraiserCampaign = {
       "On 19 December 2026, Samaa Charity Projects is bringing people together around a shared purpose: raising funds to help children in Africa living with sickle cell access medical facilities and treatment.",
       "Whether you contribute, ask about attending, or take part in the evening's raffle, you can help bring attention and support to this cause.",
     ],
-    image: images.conversation,
+    image: images.campaign,
   },
   purpose: {
     title: "More than an evening together.",
@@ -85,7 +85,7 @@ export const fundraiserCampaign = {
       "A raffle will form part of the evening, giving guests another way to participate.",
       "Venue, start time, ticket price, and raffle prizes are not confirmed on this page. Writing to us is an enquiry. It does not reserve a place or buy a ticket.",
     ],
-    image: images.portrait,
+    image: images.campaign,
     cta: "Ask about the evening",
     href: "/contact?topic=fundraiser",
   },
@@ -94,7 +94,7 @@ export const fundraiserCampaign = {
     text: "Write if you would like to be there. A message is an enquiry. It does not reserve a place.",
     cta: "Enquire about attending",
     href: "/contact?topic=fundraiser",
-    image: images.learning,
+    image: images.campaign,
   },
   share: {
     title: "Share the Campaign",
@@ -106,6 +106,6 @@ export const fundraiserCampaign = {
     text: "Support the fundraiser and help the purpose of the evening travel further.",
     contribute: "Donate to the Cause",
     share: "Share the Campaign",
-    image: images.profile,
+    image: images.campaign,
   },
 };

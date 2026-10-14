@@ -42,7 +42,7 @@ export default function SickleCellPage() {
 
       <Container className="py-12 lg:py-16">
         <EditorialImage
-          image={images.reading}
+          image={images.campaign}
           priority
           aspect="aspect-[16/9] lg:aspect-[21/9]"
           sizes="(min-width: 1024px) 80rem, 100vw"

@@ -16,6 +16,7 @@ export default function HousingPage() {
       title={housingPage.title}
       lede={housingPage.introduction}
       image={images.home}
+      imagePosition="object-bottom"
       sections={housingSections}
       supportLabel={housingPage.support.label}
       initiative={housingPage.support.initiative}

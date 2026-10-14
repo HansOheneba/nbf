@@ -13,6 +13,7 @@ export function FocusPage({
   title,
   lede,
   image,
+  imagePosition,
   sections,
   supportLabel,
   initiative,
@@ -25,6 +26,7 @@ export function FocusPage({
   title: string;
   lede: string[];
   image: GalleryImage;
+  imagePosition?: string;
   sections: CopySection[];
   supportLabel: string;
   initiative: string;
@@ -56,6 +58,7 @@ export function FocusPage({
         <EditorialImage
           image={image}
           priority
+          position={imagePosition}
           aspect="aspect-[16/9] lg:aspect-[21/9]"
           sizes="(min-width: 1024px) 80rem, 100vw"
         />

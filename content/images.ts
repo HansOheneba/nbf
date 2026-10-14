@@ -9,19 +9,32 @@ export type GalleryImage = {
 
 export const images = {
   portrait: {
-    src: "/images/portrait.jpg",
-    alt: "Portrait of a woman in a purple patterned shirt against a red wall.",
-    width: 1800,
-    height: 2700,
-    caption: "Photo via Unsplash",
-    creditHref: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce",
+    src: "/images/businesswomen.jpg",
+    alt: "Three women meeting around a conference table with laptops in a bright office.",
+    width: 6016,
+    height: 4016,
+    caption: "Women in a meeting",
   },
-  horizon: {
-    src: "/images/horizon.jpg",
-    alt: "A flat-topped acacia tree in open grassland at sunset, with the sun shining through its branches.",
-    width: 1024,
-    height: 769,
-    caption: "Savanna at sunset",
+  campaign: {
+    src: "/images/black-no-smile.jpg",
+    alt: "A young person resting their cheek on one hand, with another person seated behind them.",
+    width: 500,
+    height: 667,
+    caption: "A quiet portrait",
+  },
+  hero: {
+    src: "/images/gg.jpg",
+    alt: "A crowd of children smiling and waving, gathered closely together.",
+    width: 6000,
+    height: 4000,
+    caption: "Children waving",
+  },
+  opp: {
+    src: "/images/opp.jpg",
+    alt: "An adult and a child holding hands, the child's hand wrapped around the adult's finger.",
+    width: 6000,
+    height: 4000,
+    caption: "Holding hands",
   },
   gathering: {
     src: "/images/ghana-desk.jpg",
@@ -85,11 +98,9 @@ export const images = {
   },
   home: {
     src: "/images/home.jpg",
-    alt: "A woman sitting on a rug at home, reading beside a notebook.",
-    width: 2000,
-    height: 3000,
-    caption: "Photo by Monstera Production on Pexels",
-    creditHref:
-      "https://www.pexels.com/photo/focused-black-woman-reading-book-at-home-6281904/",
+    alt: "A person lying on cardboard on a sidewalk beside a brick wall.",
+    width: 3024,
+    height: 4032,
+    caption: "A person resting on a sidewalk",
   },
 } satisfies Record<string, GalleryImage>;

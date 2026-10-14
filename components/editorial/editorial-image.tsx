@@ -7,12 +7,14 @@ export function EditorialImage({
   sizes,
   aspect = "aspect-[4/5]",
   priority = false,
+  position = "object-center",
   className,
 }: {
   image: GalleryImage;
   sizes: string;
   aspect?: string;
   priority?: boolean;
+  position?: string;
   className?: string;
 }) {
   return (
@@ -24,7 +26,10 @@ export function EditorialImage({
           fill
           priority={priority}
           sizes={sizes}
-          className="object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out motion-safe:group-hover:scale-[1.03]"
+          className={cn(
+            "object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out motion-safe:group-hover:scale-[1.03]",
+            position,
+          )}
         />
       </div>
     </div>
