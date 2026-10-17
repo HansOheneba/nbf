@@ -1,8 +1,7 @@
-import { EditorialImage } from "@/components/editorial/editorial-image";
 import { ContactInquiry } from "@/components/forms/inquiry-form";
+import { Logo } from "@/components/site/logo";
 import { Container } from "@/components/ui/container";
 import { PageIntro } from "@/components/ui/section-heading";
-import { images } from "@/content/images";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
@@ -26,11 +25,7 @@ export default function ContactPage() {
 
       <Container className="grid items-start gap-12 py-16 lg:grid-cols-12 lg:py-24">
         <div className="lg:col-span-5">
-          <EditorialImage
-            image={images.profile}
-            aspect="aspect-[3/2]"
-            sizes="(min-width: 1024px) 38vw, 100vw"
-          />
+          <Logo variant="lockup" className="h-auto w-full max-w-sm" />
           <div className="mt-8 max-w-md space-y-4 text-body text-ink/80">
             <p>A question about a cause.</p>
             <p>An idea for working together.</p>
