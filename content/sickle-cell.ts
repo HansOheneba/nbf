@@ -18,8 +18,8 @@ export const sickleCellPage = {
   disclaimer: healthDisclaimer,
   sources: sickleCellSourceList,
   cta: {
-    label: "Support the Fundraiser",
-    href: "/events/sickle-cell-fundraiser",
+    label: "Explore the Campaign",
+    href: "/red-for-a-reason",
   },
 };
 
@@ -73,10 +73,10 @@ export const sickleCellSections: CopySection[] = [
   },
   {
     id: "fundraiser",
-    heading: "The December 2026 fundraiser",
+    heading: "Red for a Reason",
     paragraphs: [
-      "On 19 December 2026, Samaa Charity Projects is holding a fundraiser to help children in Africa living with sickle cell access medical facilities and treatment. A raffle will form part of the evening.",
-      "The evening is a way to gather people around that purpose. Donate to the fundraiser, or write if you would like to be part of it.",
+      "Red for a Reason is a Samaa Charity Projects charity tennis campaign for children in Africa living with sickle cell disease. On Saturday, 19 December 2026, people gather at Accra Lawn Tennis Club from 3:30 pm. Entrance is limited. Request to attend, and the team will get in touch. A request does not confirm a place.",
+      "The campaign is wider than the afternoon. Anyone can donate, or ask about a partnership, an auction lot, or in-kind support, without attending. Funds are intended for awareness and education, and for care-related support agreed with the right partners. No fundraising total is published here.",
     ],
   },
 ];

@@ -1,12 +1,12 @@
 import { Suspense } from "react";
-import { FundraiserCampaign } from "@/components/campaign/fundraiser-campaign";
 import { EditorialImage } from "@/components/editorial/editorial-image";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { events, fundraiserCampaign, getEvent } from "@/content/events";
+import { campaign } from "@/content/campaign";
+import { events, getEvent } from "@/content/events";
 import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 type EventParams = {
   params: Promise<{ slug: string }>;
@@ -20,10 +20,16 @@ export async function generateMetadata({ params }: EventParams): Promise<Metadat
   const { slug } = await params;
   const event = getEvent(slug);
   if (!event) return { title: "Event" };
-  const campaign = slug === "sickle-cell-fundraiser";
+  if (slug === "sickle-cell-fundraiser") {
+    return pageMetadata({
+      title: campaign.name,
+      description: campaign.hero.copy,
+      path: campaign.path,
+    });
+  }
   return pageMetadata({
-    title: campaign ? fundraiserCampaign.heroTitle.replace(/\.$/, "") : event.title,
-    description: campaign ? fundraiserCampaign.heroCopy : event.summary,
+    title: event.title,
+    description: event.summary,
     path: `/events/${event.slug}`,
   });
 }
@@ -41,9 +47,7 @@ async function EventContent({ params }: EventParams) {
   const event = getEvent(slug);
   if (!event) notFound();
 
-  if (slug === "sickle-cell-fundraiser") {
-    return <FundraiserCampaign event={event} />;
-  }
+  if (slug === "sickle-cell-fundraiser") redirect(campaign.path);
 
   return (
     <article>

@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useActionState, useEffect, useId, useRef, Suspense, type ReactNode } from "react";
 import { submitInquiry } from "@/app/actions/inquiry";
 import { buttonClass } from "@/components/ui/button";
-import { enquiryTypes, initialInquiryState, isEnquiryValue } from "@/content/inquiry";
+import { initialInquiryState, isEnquiryValue, publicEnquiryTypes } from "@/content/inquiry";
 
 const inputClass =
   "mt-2 w-full border border-border bg-white px-3 py-3 text-body text-ink";
@@ -83,7 +83,7 @@ export function InquiryForm({ source, submitLabel, defaultEnquiry }: InquiryForm
             className={inputClass}
           >
             <option value="">Select an enquiry type</option>
-            {enquiryTypes.map((option) => (
+            {publicEnquiryTypes.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>

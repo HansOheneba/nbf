@@ -4,7 +4,7 @@ import { SiteLoader } from "@/components/motion/site-loader";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { site } from "@/content/site";
-import { DM_Sans, Space_Grotesk } from "next/font/google";
+import { DM_Sans, Oswald, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -17,6 +17,12 @@ const spaceGrotesk = Space_Grotesk({
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-oswald",
   display: "swap",
 });
 
@@ -41,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-scroll-behavior="smooth"
       suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${dmSans.variable} ${oswald.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
         <Script id="site-loader-gate" strategy="beforeInteractive">

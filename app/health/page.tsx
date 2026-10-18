@@ -22,7 +22,7 @@ export default function HealthPage() {
     <>
       <PageIntro eyebrow={healthPage.eyebrow} title={healthPage.title} lede={healthPage.introduction} />
 
-      <section data-theme="campaign" className="border-b border-border">
+      <section className="border-b border-border">
         <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
           <Reveal className="lg:col-span-6">
             <p className="eyebrow text-deep">Sickle Cell</p>

@@ -22,6 +22,22 @@ export const images = {
     height: 667,
     caption: "A quiet portrait",
   },
+  campaignServe: {
+    src: "/images/campaign/serve.jpg",
+    alt: "A tennis player in white holding a racket at the ready on a blue hard court.",
+    width: 1800,
+    height: 1200,
+    caption: "Photo by Ahmed on Pexels",
+    creditHref: "https://www.pexels.com/photo/a-man-playing-tennis-on-the-court-23379595/",
+  },
+  campaignCourt: {
+    src: "/images/campaign/court.jpg",
+    alt: "A tennis player in a white cap preparing to hit a ball on an outdoor court.",
+    width: 1800,
+    height: 1200,
+    caption: "Photo by Ridwan Nugraha on Pexels",
+    creditHref: "https://www.pexels.com/photo/tennis-player-on-outdoor-court-ready-to-serve-35214647/",
+  },
   hero: {
     src: "/images/gg.jpg",
     alt: "A crowd of children smiling and waving, gathered closely together.",

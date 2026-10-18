@@ -5,7 +5,7 @@ import { ButtonLink, TextLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { PageIntro } from "@/components/ui/section-heading";
 import { articles } from "@/content/articles";
-import { fundraiserCampaign } from "@/content/events";
+import { campaign } from "@/content/campaign";
 import { images } from "@/content/images";
 import { sickleCellPage, sickleCellSections } from "@/content/sickle-cell";
 import { pageMetadata } from "@/lib/metadata";
@@ -18,7 +18,7 @@ export const metadata = pageMetadata({
 
 export default function SickleCellPage() {
   return (
-    <div data-theme="campaign">
+    <div>
       <PageIntro
         eyebrow={sickleCellPage.eyebrow}
         title={sickleCellPage.title}
@@ -84,20 +84,20 @@ export default function SickleCellPage() {
         </aside>
       </Container>
 
-      <section className="border-t border-border bg-white">
+      <section data-theme="campaign" className="border-t border-border bg-paper">
         <Container className="grid items-end gap-8 py-16 lg:grid-cols-12 lg:py-24">
           <div className="lg:col-span-7">
-            <p className="eyebrow text-deep">{fundraiserCampaign.eyebrow}</p>
-            <h2 className="mt-3 text-h1">{fundraiserCampaign.heroTitle}</h2>
-            <p className="mt-5 max-w-xl text-body-lg text-ink/80">{fundraiserCampaign.homeCopy}</p>
-            <time dateTime="2026-12-19" className="mt-6 block font-display text-h3">
-              19 December 2026
+            <p className="eyebrow text-deep">{campaign.name}</p>
+            <h2 className="mt-3 text-h1">{campaign.tagline}</h2>
+            <p className="mt-5 max-w-xl text-body-lg text-ink/80">{campaign.home.copy}</p>
+            <time dateTime={campaign.dateTime} className="mt-6 block font-display text-h3">
+              {campaign.dateLabel}
             </time>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:col-span-4 lg:col-start-9">
             <ButtonLink href={sickleCellPage.cta.href}>{sickleCellPage.cta.label}</ButtonLink>
             <DonationLink initiative="fundraiser" variant="secondary">
-              {fundraiserCampaign.donateLabel}
+              {campaign.donateLabel}
             </DonationLink>
           </div>
         </Container>

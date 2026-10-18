@@ -1,4 +1,4 @@
-export const enquiryTypes = [
+const listedEnquiryTypes = [
   { value: "question", label: "A question" },
   { value: "education", label: "Education" },
   { value: "literacy", label: "Literacy" },
@@ -16,9 +16,22 @@ export const enquiryTypes = [
   { value: "partnership", label: "A partnership" },
   { value: "collaboration", label: "A collaboration" },
   { value: "support", label: "Supporting a cause" },
-  { value: "fundraiser", label: "The 19 December fundraiser" },
+  { value: "fundraiser", label: "Red for a Reason" },
   { value: "other", label: "Something else" },
 ] as const;
+
+const campaignEnquiryTypes = [
+  { value: "campaign-sponsorship", label: "Red for a Reason sponsorship" },
+  { value: "campaign-auction", label: "Red for a Reason auction lot" },
+  { value: "campaign-in-kind", label: "Red for a Reason in-kind support" },
+  { value: "campaign-general", label: "Red for a Reason enquiry" },
+  { value: "campaign-rsvp", label: "Red for a Reason attendance request" },
+] as const;
+
+export const enquiryTypes = [...listedEnquiryTypes, ...campaignEnquiryTypes] as const;
+
+/** Shown on the general contact and Get Involved forms. */
+export const publicEnquiryTypes = listedEnquiryTypes;
 
 export type EnquiryValue = (typeof enquiryTypes)[number]["value"];
 

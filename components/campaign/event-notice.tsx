@@ -4,14 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { DonationLink } from "@/components/campaign/donation-link";
-import { featuredEvent, fundraiserCampaign } from "@/content/events";
+import { campaign } from "@/content/campaign";
 
-const storageKey = "samaa-event-notice";
+const storageKey = "samaa-red-for-a-reason-notice";
 
 export function EventNotice() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "";
   const [open, setOpen] = useState(false);
-  const onEvent = pathname === fundraiserCampaign.path;
+  const onEvent = pathname === campaign.path || pathname.startsWith(`${campaign.path}/`);
   const panelRef = useRef<HTMLElement>(null);
   const titleId = useId();
 
@@ -89,7 +89,8 @@ export function EventNotice() {
   return (
     <aside
       ref={panelRef}
-      className="notice-in event-notice fixed inset-x-3 z-30 overflow-x-clip border border-campaign-deep/20 bg-paper shadow-[0_16px_40px_rgba(23,23,23,0.18)] xl:inset-x-auto xl:right-4 xl:w-[min(24rem,calc(100vw-2rem))]"
+      data-theme="campaign"
+      className="notice-in event-notice fixed inset-x-3 z-30 overflow-x-clip border border-campaign-deep/15 bg-paper shadow-[0_16px_40px_rgba(42,10,16,0.18)] xl:inset-x-auto xl:right-4 xl:w-[min(24rem,calc(100vw-2rem))]"
       style={{ bottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
       aria-labelledby={titleId}
     >
@@ -97,7 +98,7 @@ export function EventNotice() {
       <div className="event-notice-body px-3 py-3 sm:px-4 sm:py-4">
         <div className="event-notice-head flex items-center justify-between gap-3">
           <p className="event-notice-kicker text-caption font-semibold tracking-[0.12em] text-campaign-deep uppercase">
-            {fundraiserCampaign.notice.eyebrow}
+            {campaign.notice.eyebrow}
           </p>
           <button
             type="button"
@@ -111,28 +112,22 @@ export function EventNotice() {
             </span>
           </button>
         </div>
-        <time
-          dateTime={featuredEvent.dateTime}
-          className="event-notice-date mt-1 block text-caption font-semibold tracking-[0.08em] text-campaign-deep uppercase"
-        >
-          {featuredEvent.dateLabel}
-        </time>
-        <p id={titleId} className="event-notice-title mt-2 font-display text-[1.35rem] leading-[1.15] tracking-[-0.03em] text-ink">
-          {fundraiserCampaign.heroTitle}
+        <p id={titleId} className="event-notice-title mt-2 font-display text-[1.35rem] leading-[1.15] text-ink">
+          {campaign.tagline}
         </p>
         <p className="event-notice-copy mt-2 text-small leading-snug text-ink/80">
-          {fundraiserCampaign.notice.description}
+          {campaign.notice.description}
         </p>
         <div className="event-notice-actions mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
           <DonationLink initiative="fundraiser" className="min-h-11 px-4">
-            {fundraiserCampaign.donateLabel}
+            {campaign.donateLabel}
           </DonationLink>
           <Link
-            href={fundraiserCampaign.path}
+            href={campaign.path}
             className="event-notice-link inline-flex min-h-11 items-center text-small font-medium text-campaign-deep underline decoration-campaign-deep/40 underline-offset-4"
             onClick={dismiss}
           >
-            {fundraiserCampaign.exploreLabel}
+            {campaign.exploreLabel}
           </Link>
         </div>
       </div>

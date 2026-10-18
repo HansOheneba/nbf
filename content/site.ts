@@ -70,7 +70,7 @@ export const causeWings: NavGroup[] = [
       {
         label: "Sickle Cell",
         href: "/health/sickle-cell",
-        description: "Facts, screening conversations, and the December 2026 fundraiser.",
+        description: "Facts, screening conversations, and Red for a Reason.",
       },
       {
         label: "Mental Health",
@@ -111,7 +111,7 @@ export const mainNav: NavItem[] = [
     href: "/events",
     children: events.map((item) => ({
       label: item.title,
-      href: `/events/${item.slug}`,
+      href: item.path,
       description: item.menuDescription,
       meta: item.dateLabel,
     })),
@@ -146,5 +146,11 @@ export const sitemapPaths = [
   "/get-involved",
   "/contact",
   "/donate",
+  "/red-for-a-reason",
+  "/red-for-a-reason/sponsor",
+  "/red-for-a-reason/auction",
+  "/red-for-a-reason/in-kind",
+  "/red-for-a-reason/enquire",
+  "/red-for-a-reason/rsvp",
   "/privacy",
 ];

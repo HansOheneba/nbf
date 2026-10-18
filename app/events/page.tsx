@@ -5,7 +5,7 @@ import { Motif } from "@/components/motion/motif";
 import { Reveal } from "@/components/motion/reveal";
 import { ButtonLink, TextLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { contributionHref } from "@/content/donate";
+import { campaign } from "@/content/campaign";
 import { eventsPage, pastEvents, upcomingEvents } from "@/content/events";
 import { pageMetadata } from "@/lib/metadata";
 import { connection } from "next/server";
@@ -66,11 +66,13 @@ async function EventCatalogue() {
               <h2 className="mt-3 text-h1">{featured.title}</h2>
               <p className="mt-5 text-body-lg text-ink/80">{featured.summary}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <ButtonLink href={`/events/${featured.slug}`}>Discover the Fundraiser</ButtonLink>
-                <DonationLink initiative="fundraiser" variant="secondary">Donate to the Cause</DonationLink>
+                <ButtonLink href={featured.path}>{campaign.exploreLabel}</ButtonLink>
+                <DonationLink initiative="fundraiser" variant="secondary">
+                  {campaign.donateLabel}
+                </DonationLink>
               </div>
               <div className="mt-6">
-                <TextLink href={contributionHref()}>Support the fundraiser without attending</TextLink>
+                <TextLink href={campaign.donateHref}>Support the cause without attending</TextLink>
               </div>
             </Reveal>
           </Container>
@@ -90,7 +92,7 @@ async function EventCatalogue() {
             {rest.map((event) => (
               <li key={event.slug} className="border-b border-border">
                 <Link
-                  href={`/events/${event.slug}`}
+                  href={event.path}
                   className="grid gap-3 py-8 sm:grid-cols-12 sm:items-baseline"
                 >
                   <time dateTime={event.dateTime} className="text-small font-medium text-deep sm:col-span-3">
@@ -112,9 +114,9 @@ async function EventCatalogue() {
               {past.map((event) => (
                 <li key={event.slug} className="border-b border-border">
                   <Link
-                    href={`/events/${event.slug}`}
-                    className="grid gap-3 py-8 sm:grid-cols-12 sm:items-baseline"
-                  >
+                  href={event.path}
+                  className="grid gap-3 py-8 sm:grid-cols-12 sm:items-baseline"
+                >
                     <time dateTime={event.dateTime} className="text-small text-muted-foreground sm:col-span-3">
                       {event.dateLabel}
                     </time>

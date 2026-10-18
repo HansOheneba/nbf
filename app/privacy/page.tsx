@@ -37,11 +37,24 @@ export default function PrivacyPage() {
               not a health service, and those details are not needed to ask about the work.
             </p>
             <p>
-              The donation page asks for your name, email address, the area you want to support,
-              and, if you add them, an amount and a message. That information is used so Samaa
-              Charity Projects can process your donation and reply. If a donation cannot be sent,
-              the form says so, and nothing is stored. Payment card details are handled by the
-              payment provider and are not stored on this website.
+              The general donation page asks for your name, email address, the area you want to
+              support, and, if you add them, an amount and a message. That information is forwarded
+              so Samaa Charity Projects can read it. If it cannot be sent, the form says so, and
+              nothing is stored. That form does not take payment for Red for a Reason.
+            </p>
+            <p>
+              The Red for a Reason donation form asks for an amount, an email address, and a name
+              unless you choose to give without public acknowledgement. Those details are sent to
+              the payment provider so it can take the contribution and issue its own receipt. Card
+              and mobile-money details stay with that provider. This website checks the result and
+              shows a reference. It does not keep a donor database. Choosing anonymity means your
+              name is not used in a public thank-you. The email is still used for the receipt. A
+              contribution is recorded only after the payment is confirmed.
+            </p>
+            <p>
+              Attendance requests, partnership, auction, in-kind, and general campaign forms ask for your name, email,
+              and the details of the enquiry. They are forwarded in the same way as other messages.
+              Sending one does not confirm a partnership, a lot, a gift, or a place at the afternoon.
             </p>
           </div>
         </section>

@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { EditorialImage } from "@/components/editorial/editorial-image";
+import { GivingPerspective } from "@/components/editorial/giving-perspective";
 import { SplitFeature } from "@/components/editorial/split-feature";
 import { CtaBand } from "@/components/editorial/cta-band";
 import { Reveal } from "@/components/motion/reveal";
 import { DonationLink } from "@/components/campaign/donation-link";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { fundraiserCampaign } from "@/content/events";
+import { campaign } from "@/content/campaign";
 import { homePage } from "@/content/home";
 import { images } from "@/content/images";
 import { programmes } from "@/content/programmes";
@@ -73,6 +74,9 @@ export default function Home() {
                 >
                   {homePage.hero.secondary.label}
                 </ButtonLink>
+              </div>
+              <div className="hero-rise hero-rise-4 home-hero-give mt-5 sm:mt-8">
+                <GivingPerspective tone="on-dark" donateHref="/donate" />
               </div>
             </div>
           </Container>
@@ -249,26 +253,26 @@ export default function Home() {
       <section data-theme="campaign" className="border-b border-border bg-paper">
         <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
           <Reveal className="lg:col-span-6">
-            <p className="eyebrow text-deep">{fundraiserCampaign.eyebrow}</p>
-            <h2 className="mt-3 text-h1">{fundraiserCampaign.heroTitle}</h2>
-            <p className="mt-5 max-w-xl text-body-lg text-ink/85">{fundraiserCampaign.homeCopy}</p>
+            <p className="eyebrow text-deep">{campaign.home.eyebrow}</p>
+            <h2 className="mt-3 text-h1">{campaign.tagline}</h2>
+            <p className="mt-5 max-w-xl text-body-lg text-ink/85">{campaign.home.copy}</p>
             <p className="mt-4 text-small text-muted-foreground">
-              A raffle will form part of the evening.
+              {campaign.dateLabel}. From {campaign.arrival}. {campaign.venue}. Entrance is limited.
             </p>
-            <time dateTime="2026-12-19" className="mt-6 block font-display text-h3 text-deep">
-              19 December 2026
-            </time>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <DonationLink initiative="fundraiser">{fundraiserCampaign.donateLabel}</DonationLink>
-              <ButtonLink href={fundraiserCampaign.path} variant="secondary">
-                {fundraiserCampaign.exploreLabel}
+              <DonationLink initiative="fundraiser">{campaign.donateLabel}</DonationLink>
+              <ButtonLink href={campaign.rsvpHref} variant="secondary">
+                {campaign.rsvpLabel}
+              </ButtonLink>
+              <ButtonLink href={campaign.path} variant="secondary">
+                {campaign.exploreLabel}
               </ButtonLink>
             </div>
           </Reveal>
           <Reveal delay={80} className="lg:col-span-5 lg:col-start-8">
             <EditorialImage
-              image={images.campaign}
-              aspect="aspect-[4/5]"
+              image={campaign.images.hero}
+              aspect="aspect-[3/4]"
               sizes="(min-width: 1024px) 36vw, 100vw"
             />
           </Reveal>
