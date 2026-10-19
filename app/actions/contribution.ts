@@ -50,7 +50,7 @@ export async function submitContribution(
   if (!isSupportArea(initiative)) {
     fieldErrors.initiative = "Choose the area you want to support.";
   } else if (initiative === "fundraiser") {
-    fieldErrors.initiative = "Red for a Reason gifts are taken on the campaign page. This form does not process that payment.";
+    fieldErrors.initiative = "Red for a Reason gifts use the campaign payment form on this page. This form does not take that payment.";
   }
 
   if (Object.keys(fieldErrors).length > 0) {

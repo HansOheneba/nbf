@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useActionState, useEffect, useId, useRef, type ReactNode } from "react";
 import { submitContribution } from "@/app/actions/contribution";
 import { buttonClass } from "@/components/ui/button";
+import { campaign } from "@/content/campaign";
 import { isSupportArea, supportAreas, supportLabel, type SupportArea } from "@/content/donate";
 import { initialInquiryState } from "@/content/inquiry";
 
@@ -12,6 +13,7 @@ const inputClass = "mt-2 w-full border border-border bg-white px-3 py-3 text-bod
 
 export function ContributionForm({ initiative = "general" }: { initiative?: string }) {
   const selected: SupportArea = isSupportArea(initiative) ? initiative : "general";
+  const router = useRouter();
   const formId = useId();
   const formRef = useRef<HTMLFormElement>(null);
   const [state, formAction, pending] = useActionState(submitContribution, initialInquiryState);
@@ -41,6 +43,9 @@ export function ContributionForm({ initiative = "general" }: { initiative?: stri
             name="initiative"
             required
             defaultValue={selected}
+            onChange={(event) => {
+              if (event.target.value === "fundraiser") router.push(campaign.donateHref);
+            }}
             aria-invalid={state.fieldErrors.initiative ? true : undefined}
             aria-describedby={
               state.fieldErrors.initiative ? `${formId}-initiative-error` : undefined

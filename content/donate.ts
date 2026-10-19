@@ -3,7 +3,7 @@ import { campaign } from "@/content/campaign";
 /**
  * Set NEXT_PUBLIC_DONATION_URL when donations should open an external payment page.
  * Otherwise contribution links stay on /donate.
- * Red for a Reason always uses its own donation section.
+ * Red for a Reason uses the campaign payment form on this page.
  */
 export const donationUrl = process.env.NEXT_PUBLIC_DONATION_URL?.trim() || undefined;
 
@@ -48,7 +48,7 @@ export const donatePage = {
   eyebrow: "Donate",
   title: "Give to the cause you want to support.",
   paragraphs: [
-    "Direct your donation to education, health, or empowerment, or to a specific focus such as literacy, scholarships, sickle cell, menstrual health, or housing. Gifts to Red for a Reason are taken on the campaign page.",
+    "Direct your donation to education, health, or empowerment, or to a specific focus such as literacy, scholarships, sickle cell, menstrual health, or housing. Red for a Reason has its own payment form.",
     "Add your name, a way to reach you, and the amount you would like to give.",
   ],
 };
