@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CountdownInline } from "@/components/campaign/countdown";
 import { DonationLink } from "@/components/campaign/donation-link";
 import { EditorialImage } from "@/components/editorial/editorial-image";
 import { Motif } from "@/components/motion/motif";
@@ -65,6 +66,7 @@ async function EventCatalogue() {
               </time>
               <h2 className="mt-3 text-h1">{featured.title}</h2>
               <p className="mt-5 text-body-lg text-ink/80">{featured.summary}</p>
+              <CountdownInline className="mt-6 border-y border-border py-4" />
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <ButtonLink href={featured.path}>{campaign.exploreLabel}</ButtonLink>
                 <DonationLink initiative="fundraiser" variant="secondary">

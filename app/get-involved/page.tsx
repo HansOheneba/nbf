@@ -8,7 +8,13 @@ import { images } from "@/content/images";
 import { involvementPaths } from "@/content/involve";
 import { pageMetadata } from "@/lib/metadata";
 
-const bandImages = [images.profile, images.learning, images.gathering, images.conversation] as const;
+const bandImages = [
+  images.profile,
+  images.opp,
+  images.learning,
+  images.gathering,
+  images.conversation,
+] as const;
 
 export const metadata = pageMetadata({
   title: "Get involved",
@@ -31,7 +37,7 @@ export default function GetInvolvedPage() {
 
       {involvementPaths.map((path, index) => {
         const image = bandImages[index] ?? images.gathering;
-        const dark = index === 2;
+        const dark = index === 3;
         return (
           <section
             key={path.id}
@@ -67,7 +73,7 @@ export default function GetInvolvedPage() {
               >
                 <EditorialImage
                   image={image}
-                  aspect={index === 2 ? "aspect-[3/2]" : "aspect-[4/5]"}
+                  aspect={dark ? "aspect-[3/2]" : "aspect-[4/5]"}
                   sizes="(min-width: 1024px) 46vw, 100vw"
                 />
               </Reveal>

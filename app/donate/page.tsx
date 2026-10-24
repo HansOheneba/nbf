@@ -1,5 +1,6 @@
 import { DonationForm } from "@/components/campaign/donation-form";
 import { GivingPerspective } from "@/components/editorial/giving-perspective";
+import { WaysToGive } from "@/components/donate/ways-to-give";
 import { DonateForm } from "@/components/forms/contribution-form";
 import { Container } from "@/components/ui/container";
 import { TextLink } from "@/components/ui/button";
@@ -68,6 +69,7 @@ function CampaignDonate() {
           <DonationForm methods={payments.configured ? payments.methods : []} />
         </div>
       </Container>
+      <WaysToGive />
     </>
   );
 }
@@ -99,6 +101,7 @@ function GeneralDonate() {
           <DonateForm />
         </div>
       </Container>
+      <WaysToGive />
     </>
   );
 }

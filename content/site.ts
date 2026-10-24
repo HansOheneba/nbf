@@ -4,7 +4,7 @@ export const site = {
   name: "Samaa Charity Projects",
   shortName: "Samaa",
   description:
-    "Samaa Charity Projects works towards education, health, and empowerment. Health includes sickle cell, mental health, and menstrual health. Empowerment includes women's economic opportunity and housing.",
+    "Samaa Charity Projects works towards education, health, and empowerment. Health includes sickle cell, mental health, and women's health. Empowerment includes women's economic opportunity and housing.",
   /**
    * Set NEXT_PUBLIC_SITE_URL when the production domain is known.
    * Canonical URLs and the sitemap use it when it is present.
@@ -65,7 +65,7 @@ export const causeWings: NavGroup[] = [
   {
     label: "Health",
     href: "/health",
-    description: "Sickle cell, mental health, and menstrual health.",
+    description: "Sickle cell, mental health, and women's health.",
     children: [
       {
         label: "Sickle Cell",
@@ -78,8 +78,8 @@ export const causeWings: NavGroup[] = [
         description: "Education and more understanding conversations about wellbeing.",
       },
       {
-        label: "Menstrual Health",
-        href: "/health/menstrual-health",
+        label: "Women's Health",
+        href: "/health/womens-health",
         description: "Education and access to essential products where cost is a barrier.",
       },
     ],
@@ -119,7 +119,10 @@ export const mainNav: NavItem[] = [
   { label: "Contact", href: "/contact" },
 ];
 
-export const legalNav = [{ label: "Privacy", href: "/privacy" }] as const;
+export const legalNav = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Safeguarding", href: "/safeguarding" },
+] as const;
 
 export const programmePaths = [
   "/education",
@@ -128,7 +131,7 @@ export const programmePaths = [
   "/health",
   "/health/sickle-cell",
   "/health/mental-health",
-  "/health/menstrual-health",
+  "/health/womens-health",
   "/empowerment",
   "/empowerment/housing",
   "/women-empowerment",
@@ -144,6 +147,7 @@ export const sitemapPaths = [
   ...events.map((item) => `/events/${item.slug}`),
   "/stories",
   "/get-involved",
+  "/susu-box",
   "/contact",
   "/donate",
   "/red-for-a-reason",
@@ -153,4 +157,5 @@ export const sitemapPaths = [
   "/red-for-a-reason/enquire",
   "/red-for-a-reason/rsvp",
   "/privacy",
+  "/safeguarding",
 ];

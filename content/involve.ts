@@ -18,6 +18,16 @@ export const involvementPaths: InvolvementPath[] = [
     href: "/donate",
   },
   {
+    id: "susu-box",
+    title: "Host a Susu Box",
+    paragraphs: [
+      "Keep a Samaa collection box at your workplace, church, school or shop. Colleagues and visitors drop in loose change whenever they can.",
+      "Every three months we come by, count it with care, and let you know what it raised.",
+    ],
+    cta: "Request a Susu Box",
+    href: "/susu-box",
+  },
+  {
     id: "volunteering",
     title: "Volunteer",
     paragraphs: [

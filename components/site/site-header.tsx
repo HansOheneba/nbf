@@ -12,6 +12,7 @@ import {
   site,
   supportCta,
   type NavChild,
+  type NavGroup,
   type NavItem,
 } from "@/content/site";
 import { cn } from "@/lib/cn";
@@ -238,76 +239,181 @@ export function SiteHeader() {
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
-        <nav aria-label="Mobile" className="flex flex-col gap-2 px-6 py-8">
-          {mainNav.map((item) => (
-            <div key={item.href} className="border-b border-border">
-              <Link
-                href={item.href}
-                aria-current={isActive(pathname, item.href) ? "page" : undefined}
-                className="block py-4 font-display text-h3"
-                onClick={() => setOpenPath(null)}
-              >
-                {item.label}
-              </Link>
-              {item.groups?.map((group) => (
-                <div key={group.href} className="pb-3">
-                  <Link
-                    href={group.href}
-                    aria-current={
-                      pathname === group.href || pathname.startsWith(`${group.href}/`)
-                        ? "page"
-                        : undefined
-                    }
-                    className="block py-2 font-display text-h4"
-                    onClick={() => setOpenPath(null)}
-                  >
-                    {group.label}
-                  </Link>
-                  {group.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      aria-current={pathname === child.href ? "page" : undefined}
-                      className="block py-2 pl-4 text-body text-ink/80"
-                      onClick={() => setOpenPath(null)}
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              ))}
-              {item.children?.map((child) => (
-                <Link
-                  key={child.href}
-                  href={child.href}
-                  aria-current={pathname === child.href ? "page" : undefined}
-                  className="block py-3 text-body text-ink/80"
-                  onClick={() => setOpenPath(null)}
-                >
-                  {child.label}
-                </Link>
-              ))}
-            </div>
-          ))}
-          <ButtonLink
-            href={donateCta.href}
-            className="mt-6 w-full"
-            onClick={() => setOpenPath(null)}
-          >
-            {donateCta.label}
-          </ButtonLink>
-          <ButtonLink
-            href={supportCta.href}
-            variant="secondary"
-            className="w-full"
-            onClick={() => setOpenPath(null)}
-          >
-            {supportCta.label}
-          </ButtonLink>
-          <p className="mt-6 max-w-sm text-caption text-muted-foreground">{site.description}</p>
-        </nav>
+        <MobileNav key={pathname} pathname={pathname} onNavigate={() => setOpenPath(null)} />
       </div>
     </header>
+  );
+}
+
+function MobileNav({ pathname, onNavigate }: { pathname: string; onNavigate: () => void }) {
+  const activeHref = mainNav.find((item) => hasMenu(item) && isActive(pathname, item.href))?.href ?? null;
+  // Undefined means "follow the page": the section holding the current page starts open.
+  const [chosen, setChosen] = useState<string | null | undefined>(undefined);
+  const expanded = chosen === undefined ? activeHref : chosen;
+
+  return (
+    <nav aria-label="Mobile" className="flex min-h-full flex-col px-5 pt-4 pb-8 sm:px-6">
+      <ol className="border-t border-border">
+        {mainNav.map((item, index) => {
+          const current = isActive(pathname, item.href);
+          const open = expanded === item.href;
+          const sectionId = `mobile-${menuDomId(item.href)}`;
+          return (
+            <li key={item.href} className="border-b border-border">
+              <div className="flex items-center gap-3">
+                <span aria-hidden className="w-7 shrink-0 font-display text-small text-forest tabular-nums">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <Link
+                  href={item.href}
+                  aria-current={current ? "page" : undefined}
+                  className={cn(
+                    "min-w-0 flex-1 py-4 font-display text-h3",
+                    current && "text-deep",
+                  )}
+                  onClick={onNavigate}
+                >
+                  {item.label}
+                </Link>
+                {hasMenu(item) ? (
+                  <button
+                    type="button"
+                    aria-expanded={open}
+                    aria-controls={sectionId}
+                    aria-label={`${open ? "Hide" : "Show"} ${item.label} pages`}
+                    onClick={() => setChosen(open ? null : item.href)}
+                    className={cn(
+                      "flex h-11 w-11 shrink-0 items-center justify-center border transition-colors",
+                      open ? "border-ink bg-ink text-white" : "border-border text-ink",
+                    )}
+                  >
+                    <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4">
+                      <path d="M2 8h12" stroke="currentColor" strokeWidth="1.6" />
+                      <path
+                        d="M8 2v12"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        className={cn("origin-center transition-transform duration-300", open && "scale-y-0")}
+                      />
+                    </svg>
+                  </button>
+                ) : null}
+              </div>
+              {hasMenu(item) ? (
+                <div
+                  id={sectionId}
+                  inert={open ? undefined : true}
+                  className={cn(
+                    "grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none",
+                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+                  )}
+                >
+                  <div className="overflow-hidden">
+                    <div className="pb-5 pl-10">
+                      {item.groups ? (
+                        <div className="space-y-3">
+                          {item.groups.map((group) => (
+                            <MobileGroup
+                              key={group.href}
+                              group={group}
+                              pathname={pathname}
+                              onNavigate={onNavigate}
+                            />
+                          ))}
+                        </div>
+                      ) : null}
+                      {item.children ? (
+                        <ul className="space-y-2">
+                          {item.children.map((child) => (
+                            <li key={child.href}>
+                              <Link
+                                href={child.href}
+                                aria-current={pathname === child.href ? "page" : undefined}
+                                onClick={onNavigate}
+                                className="block border-l-2 border-forest bg-white px-4 py-3"
+                              >
+                                {child.meta ? (
+                                  <span className="block text-caption font-semibold tracking-[0.08em] text-deep uppercase">
+                                    {child.meta}
+                                  </span>
+                                ) : null}
+                                <span className="mt-1 block font-display text-h4">{child.label}</span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      <Link
+                        href={item.href}
+                        onClick={onNavigate}
+                        className="mt-4 inline-flex min-h-11 items-center text-small font-medium text-deep underline decoration-deep/30 underline-offset-4"
+                      >
+                        All {item.label.toLowerCase()}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+            </li>
+          );
+        })}
+      </ol>
+
+      <div className="mt-8 grid gap-3">
+        <ButtonLink href={donateCta.href} className="w-full" onClick={onNavigate}>
+          {donateCta.label}
+        </ButtonLink>
+        <ButtonLink href={supportCta.href} variant="secondary" className="w-full" onClick={onNavigate}>
+          {supportCta.label}
+        </ButtonLink>
+      </div>
+      <p className="mt-auto max-w-sm pt-10 text-caption text-muted-foreground">{site.description}</p>
+    </nav>
+  );
+}
+
+function MobileGroup({
+  group,
+  pathname,
+  onNavigate,
+}: {
+  group: NavGroup;
+  pathname: string;
+  onNavigate: () => void;
+}) {
+  const current = pathname === group.href;
+  return (
+    <div className="bg-white p-4">
+      <Link
+        href={group.href}
+        aria-current={current ? "page" : undefined}
+        onClick={onNavigate}
+        className="block"
+      >
+        <span className={cn("block font-display text-h4", current && "text-deep")}>{group.label}</span>
+        <span className="mt-0.5 block text-caption text-muted-foreground">{group.description}</span>
+      </Link>
+      <ul className="mt-3 border-l border-border">
+        {group.children.map((child) => {
+          const childCurrent = pathname === child.href || pathname.startsWith(`${child.href}/`);
+          return (
+            <li key={child.href}>
+              <Link
+                href={child.href}
+                aria-current={childCurrent ? "page" : undefined}
+                onClick={onNavigate}
+                className={cn(
+                  "-ml-px flex min-h-11 items-center gap-3 border-l-2 pl-4 text-body",
+                  childCurrent ? "border-forest font-medium text-deep" : "border-transparent text-ink/80",
+                )}
+              >
+                {child.label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 

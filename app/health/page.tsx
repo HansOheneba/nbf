@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container";
 import { PageIntro } from "@/components/ui/section-heading";
 import { healthPage } from "@/content/health";
 import { images } from "@/content/images";
-import { menstrualHealthPage } from "@/content/menstrual-health";
+import { womensHealthPage } from "@/content/womens-health";
 import { mentalHealthPage } from "@/content/mental-health";
 import { sickleCellPage } from "@/content/sickle-cell";
 import { pageMetadata } from "@/lib/metadata";
@@ -65,17 +65,17 @@ export default function HealthPage() {
       <section className="border-t border-border">
         <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">
           <Reveal className="lg:col-span-5">
-            <p className="eyebrow text-deep">Menstrual Health</p>
-            <h2 className="mt-3 text-h1">{menstrualHealthPage.title}</h2>
+            <p className="eyebrow text-deep">Women&apos;s Health</p>
+            <h2 className="mt-3 text-h1">{womensHealthPage.title}</h2>
             <div className="mt-5 space-y-4">
-              {menstrualHealthPage.introduction.map((paragraph) => (
+              {womensHealthPage.introduction.map((paragraph) => (
                 <p key={paragraph} className="text-body-lg text-ink/85">
                   {paragraph}
                 </p>
               ))}
             </div>
             <div className="mt-8">
-              <ButtonLink href="/health/menstrual-health">Explore Menstrual Health</ButtonLink>
+              <ButtonLink href="/health/womens-health">Explore Women&apos;s Health</ButtonLink>
             </div>
           </Reveal>
           <Reveal delay={80} className="lg:col-span-6 lg:col-start-7">
@@ -91,7 +91,7 @@ export default function HealthPage() {
       <section className="border-t border-border">
         <Container className="flex flex-col gap-6 py-16 sm:flex-row sm:items-center sm:justify-between lg:py-20">
           <p className="max-w-xl text-body-lg text-ink/80">
-            Donate to health, including sickle cell, mental health, and menstrual health.
+            Donate to health, including sickle cell, mental health, and women&apos;s health.
           </p>
           <DonationLink initiative={healthPage.support.initiative}>{healthPage.support.label}</DonationLink>
         </Container>

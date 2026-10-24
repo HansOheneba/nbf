@@ -15,7 +15,7 @@ export const aboutPurpose = {
   title: "Our purpose",
   paragraphs: [
     "Every person deserves the opportunity to learn, live with dignity, access essential care and build a better future.",
-    "At Samaa Charity Projects, we focus on practical areas of need: education, health, and empowerment. Health includes sickle cell, mental health, and menstrual health. Empowerment includes women's economic opportunity and housing for people facing homelessness. Through initiatives centred on access, opportunity and dignity, we aim to support people and communities facing barriers to the essentials of a fulfilling life.",
+    "At Samaa Charity Projects, we focus on practical areas of need: education, health, and empowerment. Health includes sickle cell, mental health, and women's health. Empowerment includes women's economic opportunity and housing for people facing homelessness. Through initiatives centred on access, opportunity and dignity, we aim to support people and communities facing barriers to the essentials of a fulfilling life.",
     "That is the direction of this website. It is not presented here as a formally adopted mission statement, and it is not a record of completed projects.",
   ],
 };

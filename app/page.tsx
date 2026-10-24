@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { EditorialImage } from "@/components/editorial/editorial-image";
-import { GivingPerspective } from "@/components/editorial/giving-perspective";
 import { SplitFeature } from "@/components/editorial/split-feature";
 import { CtaBand } from "@/components/editorial/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { CountdownBand } from "@/components/campaign/countdown";
 import { DonationLink } from "@/components/campaign/donation-link";
+import { Philanthropy } from "@/components/home/philanthropy";
+import { Purpose } from "@/components/home/purpose";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { campaign } from "@/content/campaign";
@@ -75,13 +77,14 @@ export default function Home() {
                   {homePage.hero.secondary.label}
                 </ButtonLink>
               </div>
-              <div className="hero-rise hero-rise-4 home-hero-give mt-5 sm:mt-8">
-                <GivingPerspective tone="on-dark" donateHref="/donate" />
-              </div>
             </div>
           </Container>
         </div>
       </section>
+
+      <CountdownBand />
+
+      <Purpose />
 
       <SplitFeature
         eyebrow={homePage.intro.eyebrow}
@@ -249,6 +252,8 @@ export default function Home() {
           </Reveal>
         </Container>
       </section>
+
+      <Philanthropy />
 
       <section data-theme="campaign" className="border-b border-border bg-paper">
         <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-28">

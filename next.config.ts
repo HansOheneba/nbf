@@ -29,6 +29,11 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
+        source: "/health/menstrual-health",
+        destination: "/health/womens-health",
+        permanent: true,
+      },
+      {
         source: "/empowerment/economic",
         destination: "/women-empowerment/economic",
         permanent: false,

@@ -14,7 +14,7 @@ export const healthPage = {
   eyebrow: "Health",
   title: "Better health begins with access to care and understanding.",
   introduction: [
-    "Our health work focuses on sickle cell awareness and support, mental health education, and menstrual health.",
+    "Our health work focuses on sickle cell awareness and support, mental health education, and women's health.",
     "We aim to encourage informed conversations, improve access to reliable information and support efforts that help people navigate health challenges with greater understanding.",
   ],
   support: {

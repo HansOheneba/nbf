@@ -97,6 +97,8 @@ export const campaign = {
   organiser: "Samaa Charity Projects",
   dateLabel: "Saturday, 19 December 2026",
   dateTime: "2026-12-19",
+  /** Guest arrival in Accra (GMT, no daylight saving). The countdown runs to this moment. */
+  startsAt: "2026-12-19T15:30:00Z",
   arrival: "3:30 pm",
   venue: "Accra Lawn Tennis Club, Accra",
   donateLabel: "Donate to the Cause",

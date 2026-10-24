@@ -64,7 +64,7 @@ export const programmes: Programme[] = [
     title: "Better health begins with access to care and understanding.",
     headline: "Better health begins with access to care and understanding.",
     summary:
-      "Our health work focuses on sickle cell awareness and support, mental health education, and menstrual health. We aim to encourage informed conversations, improve access to reliable information and support efforts that help people navigate health challenges with greater understanding.",
+      "Our health work focuses on sickle cell awareness and support, mental health education, and women's health. We aim to encourage informed conversations, improve access to reliable information and support efforts that help people navigate health challenges with greater understanding.",
     image: images.conversation,
     cta: "Explore Health",
     donateLabel: "Donate to Health",
@@ -83,10 +83,10 @@ export const programmes: Programme[] = [
           "Mental wellbeing deserves understanding, not judgement. We focus on education and awareness that encourage more open conversations about wellbeing and the importance of appropriate support.",
       },
       {
-        label: "Menstrual Health",
-        href: "/health/menstrual-health",
+        label: "Women's Health",
+        href: "/health/womens-health",
         summary:
-          "Menstrual health is a matter of dignity, knowledge and access. We focus on menstrual health education and supporting efforts to improve access to essential products, including sanitary pads, for those facing financial barriers.",
+          "Women's health is a matter of dignity, knowledge and access. Our focus begins with menstrual health education and supporting efforts to improve access to essential products, including sanitary pads, for those facing financial barriers.",
       },
     ],
   },

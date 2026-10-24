@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CampaignEnquiryForm } from "@/components/campaign/campaign-enquiry-form";
+import { CountdownBand } from "@/components/campaign/countdown";
 import { ShareCampaign } from "@/components/campaign/share-campaign";
 import { EditorialImage } from "@/components/editorial/editorial-image";
 import { Logo } from "@/components/site/logo";
@@ -54,6 +55,10 @@ export function CampaignPage() {
           </div>
         </Container>
       </section>
+
+      <div className="border-t border-white/10">
+        <CountdownBand showActions={false} />
+      </div>
 
       <section className="border-b border-border" aria-labelledby="cause-title">
         <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-24">

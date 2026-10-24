@@ -5,7 +5,7 @@ export type InquiryPayload = {
   email: string;
   enquiryType: string;
   message: string;
-  source: "contact" | "get-involved" | "donate" | "campaign";
+  source: "contact" | "get-involved" | "donate" | "campaign" | "susu-box";
   amount?: string;
 };
 

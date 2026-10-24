@@ -15,7 +15,7 @@ export const supportAreas = [
   { value: "health", label: "Health" },
   { value: "sickle-cell", label: "Sickle Cell" },
   { value: "mental-health", label: "Mental Health" },
-  { value: "menstrual-health", label: "Menstrual Health" },
+  { value: "womens-health", label: "Women's Health" },
   { value: "empowerment", label: "Empowerment" },
   { value: "women-empowerment", label: "Women's Empowerment" },
   { value: "economic", label: "Economic Empowerment" },
@@ -48,7 +48,7 @@ export const donatePage = {
   eyebrow: "Donate",
   title: "Give to the cause you want to support.",
   paragraphs: [
-    "Direct your donation to education, health, or empowerment, or to a specific focus such as literacy, scholarships, sickle cell, menstrual health, or housing. Red for a Reason has its own payment form.",
+    "Direct your donation to education, health, or empowerment, or to a specific focus such as literacy, scholarships, sickle cell, women's health, or housing. Red for a Reason has its own payment form.",
     "Add your name, a way to reach you, and the amount you would like to give.",
   ],
 };
@@ -69,4 +69,41 @@ export const givingPerspective = {
     },
   ],
   note: "About what a daily gift adds up to. Your donation goes to the cause you choose.",
+} as const;
+
+export const taxNote = {
+  title: "Is my donation tax-deductible?",
+  text: "Eligible donations to Samaa Charity Projects may be tax-deductible, subject to the laws and regulations that apply where you pay tax. In Ghana, relief applies to gifts to organisations approved for that purpose by the Ghana Revenue Authority. Please ask us for a receipt, and speak to a tax adviser about your own situation.",
+} as const;
+
+/**
+ * Bank and Mobile Money details for direct gifts.
+ * A null value shows as a loading bar on the site. Fill these in only
+ * with details the board has confirmed in writing. Never guess a number.
+ */
+export const directGiving = {
+  bank: {
+    title: "Bank transfer",
+    rows: [
+      { label: "Account name", value: "Samaa Charity Projects" },
+      { label: "Bank", value: null },
+      { label: "Branch", value: null },
+      { label: "Account number", value: null },
+      { label: "SWIFT / BIC", value: null },
+    ],
+    note: "Use your name and the cause as the reference, for example K MENSAH EDUCATION.",
+  },
+  momo: {
+    title: "Mobile Money",
+    rows: [
+      { label: "Account name", value: "Samaa Charity Projects" },
+      { label: "Network", value: null },
+      { label: "Number", value: null },
+    ],
+    note: "Add the cause in the reference so we can direct your gift.",
+  },
+  online: {
+    title: "Card or Mobile Money online",
+    text: "Pay securely through our payment partner. Card and Mobile Money details stay with the provider and never touch this website.",
+  },
 } as const;

@@ -477,9 +477,103 @@ html[data-site-loader="skip"] .site-loader {
     min-height: 2.25rem;
   }
 
-  .home-hero-lead,
-  .home-hero-give {
+  .home-hero-lead {
     display: none;
+  }
+}
+
+/* Outlined display type for decorative words. */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--forest);
+}
+
+/* Slow, decorative band of words. Duplicated content scrolls by half its width. */
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Countdown: each new digit flips down into place like a scoreboard card. */
+.flip-in {
+  animation: flip-in 520ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  transform-origin: 50% 0;
+  backface-visibility: hidden;
+}
+
+@keyframes flip-in {
+  from {
+    opacity: 0;
+    transform: perspective(400px) rotateX(-80deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ball-bounce {
+  animation: ball-bounce 1.6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes ball-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-2.25rem) rotate(180deg);
+  }
+}
+
+.ball-shadow {
+  animation: ball-shadow 1.6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes ball-shadow {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scaleX(0.55);
+    opacity: 0.15;
+  }
+}
+
+/* Susu box: coins drop into the slot one after another. */
+.coin-drop {
+  animation: coin-drop 3.6s cubic-bezier(0.55, 0, 0.75, 0.4) infinite both;
+}
+
+@keyframes coin-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-5rem) rotate(0deg);
+  }
+  12% {
+    opacity: 1;
+  }
+  38% {
+    opacity: 1;
+    transform: translateY(0) rotate(200deg);
+  }
+  44%,
+  100% {
+    opacity: 0;
+    transform: translateY(0.75rem) rotate(220deg);
   }
 }
 
@@ -498,7 +592,11 @@ html[data-site-loader="skip"] .site-loader {
   .loader-goo,
   .dot-1,
   .dot-2,
-  .dot-3 {
+  .dot-3,
+  .marquee-track,
+  .flip-in,
+  .ball-bounce,
+  .ball-shadow {
     opacity: 1;
     transform: none;
     transition: none;
@@ -506,6 +604,10 @@ html[data-site-loader="skip"] .site-loader {
   }
 
   .site-loader {
+    display: none;
+  }
+
+  .coin-drop {
     display: none;
   }
 }
