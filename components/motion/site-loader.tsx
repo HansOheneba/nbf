@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Loader from "@/components/ui/loader";
 
 const STORAGE_KEY = "nbf-site-loader";
-const PLAY_MS = 2000;
+const PLAY_MS = 3300;
 const FADE_MS = 500;
 
 function introAlreadySeen() {
