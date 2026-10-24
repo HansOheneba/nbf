@@ -58,13 +58,13 @@ export const givingPerspective = {
   eyebrow: "A little, given often",
   items: [
     {
-      figure: "£3,000",
-      line: "a month, if 100 people give £1 a day",
+      figure: "GH₵15,000",
+      line: "a month, if 100 people give GH₵5 a day",
       outcome: "School materials and a place in class.",
     },
     {
-      figure: "£15,000",
-      line: "a month, if 100 people give £5 a day",
+      figure: "GH₵30,000",
+      line: "a month, if 100 people give GH₵10 a day",
       outcome: "Care and a safer place to live.",
     },
   ],

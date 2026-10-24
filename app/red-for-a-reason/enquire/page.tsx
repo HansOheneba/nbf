@@ -21,7 +21,7 @@ export default function EnquirePage() {
           <ul className="mt-5 space-y-3 text-body text-ink/85">
             <li>
               <Link href={campaign.rsvpHref} className="font-medium text-deep underline underline-offset-4">
-                A request to attend
+                A request for a place
               </Link>{" "}
               has its own form.
             </li>

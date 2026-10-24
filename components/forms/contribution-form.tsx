@@ -85,8 +85,8 @@ export function ContributionForm({ initiative = "general" }: { initiative?: stri
         </Field>
         <Field
           id={`${formId}-amount`}
-          label="Amount"
-          hint="Optional. A number only, with no currency symbol."
+          label="Amount in Ghana cedis"
+          hint="Optional. A number only, such as 100."
           error={state.fieldErrors.amount}
         >
           <input

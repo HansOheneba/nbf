@@ -132,8 +132,8 @@ export async function submitCampaignEnquiry(
         : kind === "in-kind"
           ? "Thank you. Your offer has been sent. It is not accepted, and it is not counted as cash, until it is agreed."
           : kind === "rsvp"
-            ? "Thank you. Your request to attend has been sent. It does not confirm your place. Our team will get in touch about availability."
-            : "Thank you. Your message has been sent. A reply does not reserve a place at the afternoon.";
+            ? "Thank you. Your request has been sent. Our team will be in touch to confirm your place."
+            : "Thank you. Your message has been sent. We will be in touch.";
 
   return { status: "success", message: confirmation, fieldErrors: {} };
 }

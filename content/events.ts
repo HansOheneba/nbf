@@ -29,7 +29,7 @@ export const events: FoundationEvent[] = [
     dateLabel: "19 December 2026",
     dateTime: campaign.dateTime,
     summary:
-      "A charity tennis campaign for children in Africa living with sickle cell disease. Entrance to the afternoon at Accra Lawn Tennis Club is limited. Request to attend, or support the cause without being there.",
+      "A charity tennis afternoon at Accra Lawn Tennis Club for children in Africa living with sickle cell disease. Come to play, to cheer, or simply to give.",
     menuDescription: "Charity tennis campaign for children living with sickle cell disease.",
     image: images.campaign,
     venue: campaign.venue,

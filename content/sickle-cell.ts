@@ -75,7 +75,7 @@ export const sickleCellSections: CopySection[] = [
     id: "fundraiser",
     heading: "Red for a Reason",
     paragraphs: [
-      "Red for a Reason is a Samaa Charity Projects charity tennis campaign for children in Africa living with sickle cell disease. On Saturday, 19 December 2026, people gather at Accra Lawn Tennis Club from 3:30 pm. Entrance is limited. Request to attend, and the team will get in touch. A request does not confirm a place.",
+      "Red for a Reason is a Samaa Charity Projects charity tennis campaign for children in Africa living with sickle cell disease. On Saturday, 19 December 2026, people gather at Accra Lawn Tennis Club from 3:30 pm to play, cheer and give. Request a place, and the team will be in touch.",
       "The campaign is wider than the afternoon. Anyone can donate, or ask about a partnership, an auction lot, or in-kind support, without attending. Funds are intended for awareness and education, and for care-related support agreed with the right partners. No fundraising total is published here.",
     ],
   },

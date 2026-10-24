@@ -255,7 +255,7 @@ export const campaign = {
   },
   enquire: {
     title: "Ask about the campaign.",
-    lede: "Use this form for a question that is not a request for a place, a partnership, an auction lot, or an in-kind gift. A message here does not reserve a seat.",
+    lede: "Use this form for any other question about the campaign. Requests for a place, partnerships, auction lots and in-kind gifts each have their own form.",
   },
   rsvp: {
     title: "Come and join us.",

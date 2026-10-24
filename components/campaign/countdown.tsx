@@ -76,7 +76,7 @@ function TennisBall({ className }: { className?: string }) {
 }
 
 /** A full-width scoreboard band for the homepage and the campaign page. */
-export function CountdownBand({ showActions = true }: { showActions?: boolean }) {
+export function CountdownBand() {
   const time = useRemaining();
   const over = isOver(time);
   const label = time
@@ -165,24 +165,22 @@ export function CountdownBand({ showActions = true }: { showActions?: boolean })
               );
             })}
           </ol>
-          {showActions ? (
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              {campaign.attend.requestsOpen ? (
-                <ButtonLink href={campaign.rsvpHref} variant="inverse">
-                  {campaign.rsvpLabel}
-                </ButtonLink>
-              ) : null}
-              <ButtonLink
-                href={campaign.donateHref}
-                variant={campaign.attend.requestsOpen ? "on-dark" : "inverse"}
-              >
-                {campaign.donateLabel}
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            {campaign.attend.requestsOpen ? (
+              <ButtonLink href={campaign.rsvpHref} variant="inverse">
+                {campaign.rsvpLabel}
               </ButtonLink>
-              <ButtonLink href={campaign.path} variant="on-dark">
-                {campaign.exploreLabel}
-              </ButtonLink>
-            </div>
-          ) : null}
+            ) : null}
+            <ButtonLink
+              href={campaign.donateHref}
+              variant={campaign.attend.requestsOpen ? "on-dark" : "inverse"}
+            >
+              {campaign.donateLabel}
+            </ButtonLink>
+            <ButtonLink href={campaign.path} variant="on-dark">
+              {campaign.exploreLabel}
+            </ButtonLink>
+          </div>
         </div>
       </Container>
     </section>
