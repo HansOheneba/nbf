@@ -1,10 +1,10 @@
 export const homePage = {
   hero: {
     eyebrow: "Samaa Charity Projects",
-    title: "No one's future should be decided by circumstance.",
+    title: "Bridging the gap between circumstance and possibility.",
     paragraphs: [
-      "Samaa Charity Projects works to widen access to education, health and empowerment for people and communities across Africa.",
-      "With donors, partners and volunteers, we take on the barriers that stand between people and the essentials of a fulfilling life: a place in class, care when it is needed, a safe home and a fair start.",
+      "We connect people who want to help with communities across Africa working to learn, heal and build a future of their own.",
+      "Every gift, partnership and hour of time becomes a bridge: to a place in class, to care when it is needed, to a safe home and a fair start.",
     ],
     primary: { label: "Explore Causes", href: "/causes" },
     secondary: { label: "Get Involved", href: "/get-involved" },
