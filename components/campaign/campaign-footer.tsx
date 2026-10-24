@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 
 const links = [
   { href: campaign.donateHref, label: "Donate" },
-  { href: `${campaign.path}#attend`, label: campaign.rsvpLabel },
+  ...(campaign.attend.requestsOpen ? [{ href: `${campaign.path}#attend`, label: campaign.rsvpLabel }] : []),
   { href: campaign.sponsorHref, label: "Partnerships" },
   { href: campaign.auctionHref, label: "Auction lots" },
   { href: campaign.inKindHref, label: "In-kind support" },

@@ -167,10 +167,15 @@ export function CountdownBand({ showActions = true }: { showActions?: boolean })
           </ol>
           {showActions ? (
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href={campaign.rsvpHref} variant="inverse">
-                {campaign.rsvpLabel}
-              </ButtonLink>
-              <ButtonLink href={campaign.donateHref} variant="on-dark">
+              {campaign.attend.requestsOpen ? (
+                <ButtonLink href={campaign.rsvpHref} variant="inverse">
+                  {campaign.rsvpLabel}
+                </ButtonLink>
+              ) : null}
+              <ButtonLink
+                href={campaign.donateHref}
+                variant={campaign.attend.requestsOpen ? "on-dark" : "inverse"}
+              >
                 {campaign.donateLabel}
               </ButtonLink>
               <ButtonLink href={campaign.path} variant="on-dark">
@@ -203,5 +208,50 @@ export function CountdownInline({ className }: { className?: string }) {
         </span>
       ))}
     </p>
+  );
+}
+
+/** Compact scoreboard tiles for a dark hero. */
+export function CountdownTiles({ className }: { className?: string }) {
+  const time = useRemaining();
+  if (isOver(time)) return null;
+
+  return (
+    <div className={className}>
+      <p className="eyebrow text-white/60">Until first serve</p>
+      <p className="sr-only">
+        {time
+          ? `${time.days} days, ${time.hours} hours and ${time.minutes} minutes until ${campaign.name}`
+          : `Counting down to ${campaign.name}`}
+      </p>
+      <ol aria-hidden className="mt-3 grid max-w-md grid-cols-4 gap-2">
+        {units.map((unit) => {
+          const seconds = unit.key === "seconds";
+          return (
+            <li
+              key={unit.key}
+              className={cn(
+                "flex flex-col items-center border px-1 py-3",
+                seconds
+                  ? "border-campaign-ball bg-campaign-ball text-campaign-deep"
+                  : "border-white/15 bg-white/[0.06]",
+              )}
+            >
+              <span className="font-display text-[clamp(1.75rem,5vw,2.5rem)] leading-none">
+                <Digits value={time?.[unit.key]} pad={2} />
+              </span>
+              <span
+                className={cn(
+                  "mt-2 text-[0.625rem] font-semibold tracking-[0.16em] uppercase",
+                  seconds ? "text-campaign-deep/80" : "text-white/60",
+                )}
+              >
+                {unit.label}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
   );
 }

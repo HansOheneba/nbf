@@ -1,46 +1,44 @@
 import Link from "next/link";
-import { CampaignEnquiryForm } from "@/components/campaign/campaign-enquiry-form";
-import { CountdownBand } from "@/components/campaign/countdown";
+import { AttendRequest } from "@/components/campaign/attend-request";
+import { CountdownTiles } from "@/components/campaign/countdown";
 import { ShareCampaign } from "@/components/campaign/share-campaign";
 import { EditorialImage } from "@/components/editorial/editorial-image";
+import { Reveal } from "@/components/motion/reveal";
 import { Logo } from "@/components/site/logo";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { campaign } from "@/content/campaign";
 
 export function CampaignPage() {
+  const open = campaign.attend.requestsOpen;
+
   return (
     <article>
+      {/* Hero: name, when and where, the countdown, and the two things to do. */}
       <section className="overflow-hidden bg-campaign-deep text-white">
-        <Container className="grid items-end gap-10 py-14 lg:grid-cols-12 lg:py-20">
+        <Container className="grid items-center gap-10 py-14 lg:grid-cols-12 lg:py-20">
           <div className="lg:col-span-7">
             <Logo variant="lockup-light" priority className="h-12 w-auto" />
             <p className="eyebrow mt-8 text-campaign-ball">{campaign.hero.eyebrow}</p>
             <h1 className="mt-4 max-w-4xl text-display uppercase">{campaign.name}</h1>
             <p className="mt-4 font-display text-h2 text-campaign-ball">{campaign.tagline}</p>
             <p className="mt-6 max-w-xl text-body-lg text-white/85">{campaign.hero.copy}</p>
-            <dl className="mt-8 grid gap-5 sm:grid-cols-3">
-              <div>
-                <dt className="eyebrow text-white/60">Date</dt>
-                <dd className="mt-2 font-display text-h4">
-                  <time dateTime={campaign.dateTime}>{campaign.dateLabel}</time>
-                </dd>
-              </div>
-              <div>
-                <dt className="eyebrow text-white/60">From</dt>
-                <dd className="mt-2 font-display text-h4">{campaign.arrival}</dd>
-              </div>
-              <div>
-                <dt className="eyebrow text-white/60">Venue</dt>
-                <dd className="mt-2 font-display text-h4">{campaign.venue}</dd>
-              </div>
-            </dl>
+            <ul className="mt-6 flex flex-wrap gap-2 text-small">
+              <li className="border border-white/25 px-3 py-1.5">
+                <time dateTime={campaign.dateTime}>{campaign.dateLabel}</time>
+              </li>
+              <li className="border border-white/25 px-3 py-1.5">From {campaign.arrival}</li>
+              <li className="border border-white/25 px-3 py-1.5">{campaign.venue}</li>
+            </ul>
+            <CountdownTiles className="mt-8" />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href={campaign.donateHref} variant="inverse">
+              {open ? (
+                <ButtonLink href="#attend" variant="inverse">
+                  {campaign.rsvpLabel}
+                </ButtonLink>
+              ) : null}
+              <ButtonLink href={campaign.donateHref} variant={open ? "on-dark" : "inverse"}>
                 {campaign.donateLabel}
-              </ButtonLink>
-              <ButtonLink href="#attend" variant="on-dark">
-                {campaign.rsvpLabel}
               </ButtonLink>
             </div>
           </div>
@@ -51,172 +49,181 @@ export function CampaignPage() {
               aspect="aspect-[3/4]"
               sizes="(min-width: 1024px) 38vw, 100vw"
             />
-            <p className="mt-3 text-caption text-white/60">{campaign.images.hero.caption}</p>
           </div>
         </Container>
       </section>
 
-      <div className="border-t border-white/10">
-        <CountdownBand showActions={false} />
-      </div>
-
-      <section className="border-b border-border" aria-labelledby="cause-title">
-        <Container className="grid items-center gap-10 py-16 lg:grid-cols-12 lg:py-24">
-          <div className="lg:col-span-6">
+      {/* Why red: three big lines and one sentence about the condition. */}
+      <section className="border-b border-border" aria-labelledby="why-title">
+        <Container className="grid items-end gap-12 py-16 lg:grid-cols-12 lg:py-28">
+          <div className="lg:col-span-7">
+            <p id="why-title" className="eyebrow text-deep">
+              {campaign.why.eyebrow}
+            </p>
+            <ul className="mt-6">
+              {campaign.why.lines.map((line, index) => {
+                const [first, ...rest] = line.split(" ");
+                return (
+                  <li key={line} className="border-t border-border py-3 last:border-b">
+                    <Reveal delay={index * 90}>
+                      <p className="font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] uppercase">
+                        <span className="text-campaign">{first}</span> {rest.join(" ")}
+                      </p>
+                    </Reveal>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="lg:col-span-4 lg:col-start-9">
             <EditorialImage
               image={campaign.images.wide}
-              aspect="aspect-[3/2]"
-              sizes="(min-width: 1024px) 46vw, 100vw"
+              aspect="aspect-[4/3]"
+              sizes="(min-width: 1024px) 30vw, 100vw"
             />
-          </div>
-          <div className="lg:col-span-5 lg:col-start-8">
-            <p className="eyebrow text-deep">The cause</p>
-            <h2 id="cause-title" className="mt-3 text-h1">
-              {campaign.cause.title}
-            </h2>
-            <div className="mt-6 space-y-4 border-l-2 border-campaign pl-5">
-              {campaign.cause.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="text-body text-ink/85">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-            <p className="mt-6 text-small text-ink/75">{campaign.cause.review}</p>
-            <p className="mt-3 text-caption text-muted-foreground">
-              Reviewed for this website on {campaign.reviewDate}.{" "}
+            <p className="mt-6 text-body text-ink/85">{campaign.why.text}</p>
+            <p className="mt-4 text-caption text-muted-foreground">
+              {campaign.why.review}{" "}
               <Link href="/health/sickle-cell" className="font-medium text-deep underline underline-offset-4">
-                Read the sickle cell facts and sources
+                Sickle cell facts and sources
               </Link>
             </p>
           </div>
         </Container>
       </section>
 
-      <section className="border-b border-border bg-white">
-        <Container className="grid gap-8 py-16 md:grid-cols-3 lg:py-24">
-          {campaign.nameReasons.map((item) => (
-            <div key={item.title} className="border-t-4 border-campaign pt-5">
-              <h2 className="text-h3">{item.title}</h2>
-              <p className="mt-3 text-body text-ink/80">{item.text}</p>
+      {/* The afternoon as a running order. */}
+      <section id="afternoon" className="scroll-mt-24 border-b border-border bg-white">
+        <Container className="grid gap-12 py-16 lg:grid-cols-12 lg:py-24">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)]">
+              <p className="eyebrow text-deep">{campaign.afternoon.eyebrow}</p>
+              <h2 className="mt-3 text-h1">{campaign.afternoon.title}</h2>
+              <p className="mt-5 max-w-md text-body-lg text-ink/80">{campaign.afternoon.lede}</p>
+              <div className="mt-8 hidden lg:block">
+                <EditorialImage
+                  image={campaign.images.event}
+                  aspect="aspect-[4/3]"
+                  sizes="(min-width: 1024px) 34vw, 100vw"
+                />
+              </div>
             </div>
-          ))}
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <ol className="relative">
+              {/* The court line the times sit on. */}
+              <span aria-hidden className="absolute top-3 bottom-3 left-[0.6875rem] w-0.5 bg-campaign/20" />
+              {campaign.afternoon.runOfShow.map((slot, index) => (
+                <li key={slot.time} className="relative grid grid-cols-[1.5rem_1fr] gap-x-5 pb-9 last:pb-0">
+                  <span
+                    aria-hidden
+                    className="relative z-10 mt-1.5 flex h-6 w-6 items-center justify-center rounded-full border-2 border-campaign bg-white"
+                  >
+                    <span className={index === 2 ? "h-2.5 w-2.5 rounded-full bg-campaign-ball ring-2 ring-campaign" : "h-2 w-2 rounded-full bg-campaign"} />
+                  </span>
+                  <Reveal delay={index * 60}>
+                    <p className="font-display text-h3 text-campaign">{slot.time}</p>
+                    <h3 className="mt-1 text-h3">{slot.title}</h3>
+                    <p className="mt-1 text-body text-ink/75">{slot.text}</p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-10 border-t border-border pt-5 text-small text-ink/70">{campaign.afternoon.note}</p>
+          </div>
         </Container>
       </section>
 
-      <section id="afternoon" className="scroll-mt-24 border-b border-border">
-        <Container className="grid items-center gap-12 py-16 lg:grid-cols-12 lg:py-24">
-          <div className="lg:col-span-6">
-            <p className="eyebrow text-deep">{campaign.event.eyebrow}</p>
-            <h2 className="mt-3 text-h1">{campaign.event.title}</h2>
-            <div className="mt-6 space-y-4">
-              {campaign.event.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="text-body-lg text-ink/85">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </div>
-          <div className="lg:col-span-5 lg:col-start-8">
-            <EditorialImage
-              image={campaign.images.event}
-              aspect="aspect-[4/5]"
-              sizes="(min-width: 1024px) 36vw, 100vw"
-            />
-          </div>
-        </Container>
-        <div id="attend" className="scroll-mt-24">
-        <Container className="grid gap-10 pb-16 lg:grid-cols-12 lg:pb-24">
+      {/* Join us. */}
+      <section id="attend" className="scroll-mt-24 bg-campaign-deep text-white">
+        <Container className="grid gap-10 py-16 lg:grid-cols-12 lg:items-center lg:py-24">
           <div className="lg:col-span-5">
-            <h3 className="text-h2">{campaign.event.attend.title}</h3>
-            <p className="mt-5 text-body-lg text-ink/85">{campaign.event.attend.text}</p>
+            <p className="eyebrow text-campaign-ball">{campaign.dateLabel}</p>
+            <h2 className="mt-3 text-h1 uppercase">
+              {open ? campaign.attend.title : "Thank you."}
+            </h2>
+            <p className="mt-5 max-w-md text-body-lg text-white/85">
+              {open ? campaign.attend.text : "There are still plenty of ways to be part of the day."}
+            </p>
           </div>
-          <div className="bg-white p-5 sm:p-8 lg:col-span-6 lg:col-start-7">
-            <CampaignEnquiryForm kind="rsvp" />
+          <div className="bg-paper p-5 text-ink sm:p-8 lg:col-span-6 lg:col-start-7">
+            <AttendRequest />
           </div>
         </Container>
-        </div>
-        <Container className="border-t border-border py-16 lg:py-20">
-          <h3 className="text-h3">{campaign.event.purposeTitle}</h3>
-          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {campaign.event.activities.map((activity) => (
-              <li key={activity.title}>
-                <h4 className="text-h4">{activity.title}</h4>
-                <p className="mt-2 text-body text-ink/80">{activity.text}</p>
+      </section>
+
+      {/* Four ways in. */}
+      <section className="border-b border-border">
+        <Container className="py-16 lg:py-24">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="text-h1">{campaign.ways.title}</h2>
+            <p className="max-w-sm text-body text-ink/75">{campaign.ways.intro}</p>
+          </div>
+          <ul className="mt-10 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {campaign.ways.items.map((item, index) => (
+              <li key={item.title} className="bg-paper">
+                <Link
+                  href={item.href}
+                  className="group flex h-full flex-col p-6 transition-colors hover:bg-campaign-deep hover:text-white sm:p-8"
+                >
+                  <span className="font-display text-h3 text-campaign group-hover:text-campaign-ball">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="mt-6 font-display text-h3">{item.title}</span>
+                  <span className="mt-2 flex-1 text-body text-ink/75 group-hover:text-white/80">{item.text}</span>
+                  <span aria-hidden className="mt-6 text-h4 transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
-          <p className="mt-10 max-w-xl text-body text-ink/80">
-            {campaign.event.dressTitle} {campaign.event.dress} {campaign.event.awayTitle} {campaign.event.away}
-          </p>
         </Container>
       </section>
 
-      <section className="border-b border-border bg-white">
-        <Container className="py-16 lg:py-24">
-          <h2 className="max-w-3xl text-h1">{campaign.model.title}</h2>
-          <p className="mt-5 max-w-2xl text-body-lg text-ink/80">{campaign.model.intro}</p>
-          <ol className="mt-10 grid gap-6 md:grid-cols-2">
-            {campaign.model.items.map((item, index) => (
-              <li key={item.title} className="flex flex-col border border-border p-6">
-                <p className="font-display text-h3 text-campaign">{String(index + 1).padStart(2, "0")}</p>
-                <h3 className="mt-3 text-h3">{item.title}</h3>
-                <p className="mt-3 flex-1 text-body text-ink/80">{item.text}</p>
-                <div className="mt-6">
-                  <ButtonLink href={item.href} variant={index === 0 ? "primary" : "secondary"}>
-                    {item.cta}
-                  </ButtonLink>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-8 text-small text-ink/75">
-            For any other question,{" "}
-            <Link href={campaign.enquireHref} className="font-medium text-deep underline underline-offset-4">
-              write to the campaign
-            </Link>
-            .
-          </p>
-        </Container>
-      </section>
-
-      <section className="border-b border-border" aria-labelledby="funds-title">
-        <Container className="grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
-          <div className="lg:col-span-7">
-            <h2 id="funds-title" className="text-h2">
-              {campaign.funds.title}
+      {/* Where the money goes, with the full detail one tap away. */}
+      <section className="border-b border-border bg-white" aria-labelledby="money-title">
+        <Container className="grid gap-8 py-16 lg:grid-cols-12 lg:py-20">
+          <div className="lg:col-span-5">
+            <h2 id="money-title" className="text-h1">
+              {campaign.money.title}
             </h2>
-            <p className="mt-4 max-w-xl text-body text-ink/80">{campaign.funds.intro}</p>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2">
-              {campaign.funds.priorities.map((priority) => (
-                <div key={priority.label}>
-                  <h3 className="text-h4">{priority.label}</h3>
-                  <ul className="mt-3 space-y-2">
-                    {priority.items.map((item) => (
-                      <li key={item} className="text-body text-ink/80">
-                        {item}
-                      </li>
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <p className="text-body-lg text-ink/85">{campaign.money.lede}</p>
+            <details className="group mt-8 border-y border-border">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 font-display text-h4 [&::-webkit-details-marker]:hidden">
+                {campaign.money.detailsLabel}
+                <span aria-hidden className="text-h3 text-campaign transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <div className="space-y-6 pb-6 text-body text-ink/80">
+                <div className="grid gap-6 sm:grid-cols-2">
+                  {campaign.money.priorities.map((priority) => (
+                    <div key={priority.label}>
+                      <h3 className="text-h4 text-ink">{priority.label}</h3>
+                      <ul className="mt-2 list-disc space-y-1 pl-5 marker:text-campaign">
+                        {priority.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                <p>{campaign.money.clinical}</p>
+                <p>{campaign.money.raised}</p>
+                <div>
+                  <h3 className="text-h4 text-ink">{campaign.money.separateLabel}</h3>
+                  <ul className="mt-2 list-disc space-y-1 pl-5 marker:text-campaign">
+                    {campaign.money.separate.map((item) => (
+                      <li key={item}>{item}</li>
                     ))}
                   </ul>
                 </div>
-              ))}
-            </div>
-            <p className="mt-6 max-w-xl text-small text-ink/75">{campaign.funds.clinical}</p>
-          </div>
-          <div className="lg:col-span-4 lg:col-start-9">
-            <h2 className="text-h3">{campaign.accountability.title}</h2>
-            {campaign.accountability.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="mt-4 text-body text-ink/80">
-                {paragraph}
-              </p>
-            ))}
-            <ul className="mt-5 space-y-2">
-              {campaign.accountability.separate.map((item) => (
-                <li key={item} className="text-small text-ink/75">
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 text-small text-ink/75">{campaign.accountability.report}</p>
+                <p>{campaign.money.report}</p>
+              </div>
+            </details>
           </div>
         </Container>
       </section>
@@ -236,9 +243,9 @@ export function CampaignPage() {
               />
             </div>
           </div>
-          <p className="text-small text-ink/70 lg:col-span-4 lg:col-start-9">
-            The portrait and the tennis photographs illustrate the campaign. They are not pictures of
-            guests, partners, or children the campaign hopes to support.
+          <p className="text-caption text-ink/60 lg:col-span-4 lg:col-start-9">
+            Photographs illustrate the campaign. They are not pictures of guests, partners, or
+            children the campaign hopes to support.
           </p>
         </Container>
       </section>

@@ -14,7 +14,7 @@ const submitLabels: Record<CampaignEnquiryKind, string> = {
   auction: "Send lot offer",
   "in-kind": "Send in-kind offer",
   general: "Send enquiry",
-  rsvp: "Request to attend",
+  rsvp: "Request a place",
 };
 
 export function CampaignEnquiryForm({ kind }: { kind: CampaignEnquiryKind }) {
@@ -35,7 +35,7 @@ export function CampaignEnquiryForm({ kind }: { kind: CampaignEnquiryKind }) {
     <form ref={formRef} action={formAction} noValidate aria-describedby={`${formId}-note`}>
       <p id={`${formId}-note`} className="text-small text-ink/80">
         {kind === "rsvp"
-          ? "Leave your name and the email we should use to reach you. Entrance is limited. This request does not confirm your place. Please do not include symptoms, test results, or other medical details."
+          ? "Leave your name and the email we should use to reach you. Our team will be in touch to confirm your place."
           : "Please do not include symptoms, test results, or other medical details. Sending this form does not confirm a partnership, a lot, a gift, or a place at the afternoon."}
       </p>
       <input type="hidden" name="kind" value={kind} />

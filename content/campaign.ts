@@ -103,7 +103,7 @@ export const campaign = {
   venue: "Accra Lawn Tennis Club, Accra",
   donateLabel: "Donate to the Cause",
   exploreLabel: "Explore the Campaign",
-  rsvpLabel: "Request to attend",
+  rsvpLabel: "Request a place",
   images: {
     hero: images.campaign,
     event: images.campaignServe,
@@ -116,86 +116,52 @@ export const campaign = {
   },
   home: {
     eyebrow: "Red for a Reason",
-    copy: "A charity tennis campaign for children in Africa living with sickle cell disease. Entrance to the afternoon is limited. Request to attend, and we will get in touch. Anyone can give without being there.",
+    copy: "A charity tennis afternoon for children in Africa living with sickle cell disease. Come and join us at the club, or give from wherever you are.",
   },
   hero: {
     eyebrow: "A Samaa Charity Projects initiative",
-    copy: "A charity tennis afternoon for children in Africa living with sickle cell disease. Places are limited. You can also give without coming.",
+    copy: "A charity tennis afternoon for children in Africa living with sickle cell disease. Come to play, to cheer, or simply to give.",
   },
-  cause: {
-    title: "The reason is the red blood cell.",
-    paragraphs: [
-      "Sickle cell disease is an inherited blood disorder. Red cells can become rigid and block blood flow, which can bring pain, anaemia and other complications. Children are especially vulnerable.",
-    ],
+  why: {
+    eyebrow: "Why red",
+    lines: ["Red is the blood.", "Red is the cause.", "Red is a call to act."],
+    text: "Sickle cell disease is an inherited blood disorder. Red cells turn rigid and block blood flow, bringing pain, anaemia and other complications. Children are especially vulnerable, and access to care is not equal.",
     review: "General information only. Not personal medical advice, a diagnosis, or a promise about anyone’s care.",
   },
-  nameReasons: [
-    {
-      title: "Red is the blood",
-      text: "A disorder of the red blood cell.",
-    },
-    {
-      title: "Red is the cause",
-      text: "The colour long used for sickle cell awareness.",
-    },
-    {
-      title: "Red is a call to act",
-      text: "Give, partner, offer a lot, or share.",
-    },
-  ],
-  model: {
-    title: "Four ways to take part.",
-    intro: "Open whether or not you attend. In-kind help is recorded on its own line, never as cash.",
-    items: [
-      {
-        title: "Give",
-        text: "Before, on the day, or after. You do not need a place.",
-        href: campaignDonateHref,
-        cta: "Donate to the Cause",
-      },
-      {
-        title: "Partner",
-        text: "A written partnership. Nothing here is a confirmed sponsor.",
-        href: `${campaignPath}/sponsor`,
-        cta: "Discuss a partnership",
-      },
-      {
-        title: "Offer a lot",
-        text: "Few lots, each agreed in writing before it is shown.",
-        href: `${campaignPath}/auction`,
-        cta: "Offer an auction lot",
-      },
-      {
-        title: "Give in kind",
-        text: "Something the campaign would otherwise have to buy.",
-        href: `${campaignPath}/in-kind`,
-        cta: "Offer in-kind support",
-      },
-    ],
-  },
-  event: {
+  afternoon: {
     eyebrow: "The afternoon",
     title: "Good people. Good tennis. One reason.",
-    paragraphs: [
-      "From 3:30 pm: a friendly match, beginner drills, a conversation about sickle cell, and a chance to give.",
+    lede: "An easy-going afternoon at the club. Bring your racket, or just bring yourself.",
+    runOfShow: [
+      { time: "3:30 pm", title: "Arrivals", text: "Refreshments, music and a warm welcome." },
+      { time: "4:00 pm", title: "Give tennis a try", text: "Short coached drills for every level, first-timers included." },
+      { time: "4:45 pm", title: "The match", text: "A friendly exhibition match, played for the cause." },
+      { time: "5:30 pm", title: "Why we are here", text: "A short talk on sickle cell, then our live appeal." },
+      { time: "6:00 pm", title: "The auction", text: "A handful of special lots, all for the cause." },
+      { time: "6:30 pm", title: "Stay a while", text: "Food, drinks and good company to close the day." },
     ],
-    attend: {
-      title: "Request a place",
-      text: "Places are limited. Leave your name and we will be in touch. A request does not confirm a place.",
+    note: "Times are a guide and may shift a little on the day. Wear a touch of red, if you like.",
+  },
+  attend: {
+    /** Set to false once enough requests are in. The forms and buttons switch to the closed message. */
+    requestsOpen: true,
+    title: "Come and join us.",
+    text: "Request a place and our team will be in touch to confirm the details.",
+    smallPrint: "Space at the club is limited, so every place is confirmed by our team before the day.",
+    closed: {
+      title: "Requests are now closed.",
+      text: "Thank you to everyone who asked to join us. You can still be part of the day by giving, or by sharing the campaign.",
     },
-    purposeTitle: "On the day",
-    activities: [
-      { title: "Friendly match", text: "Six players, for the cause." },
-      { title: "Give tennis a try", text: "Short drills, in small coached groups." },
-      { title: "The cause", text: "Why sickle cell, and why care matters." },
-      { title: "A live appeal", text: "Give at a level that works for you." },
-      { title: "Auction", text: "Lots agreed before anyone is asked to bid." },
-      { title: "People", text: "Refreshments, and others here for the same reason." },
+  },
+  ways: {
+    title: "Four ways to be part of it.",
+    intro: "On court on the day, or from anywhere in the world.",
+    items: [
+      { title: "Give", text: "Before, on, or after the day.", href: campaignDonateHref },
+      { title: "Partner", text: "Bring your organisation behind the cause.", href: `${campaignPath}/sponsor` },
+      { title: "Offer a lot", text: "Donate something special to the auction.", href: `${campaignPath}/auction` },
+      { title: "Give in kind", text: "Cover something we would otherwise buy.", href: `${campaignPath}/in-kind` },
     ],
-    dressTitle: "A touch of red is welcome.",
-    dress: "It is optional.",
-    awayTitle: "Not coming?",
-    away: "You can still give, partner, or offer a lot.",
   },
   donate: {
     eyebrow: "Red for a Reason",
@@ -205,9 +171,10 @@ export const campaign = {
       "Gifts support awareness, and care-related help agreed with partners. Samaa Charity Projects does not choose patients or treatment.",
     ],
   },
-  funds: {
-    title: "What a gift supports.",
-    intro: "Two priorities. No split is set until needs and costs are agreed.",
+  money: {
+    title: "Every cedi accounted for.",
+    lede: "Gifts support two things: awareness and education about sickle cell, and care-related help agreed with healthcare partners. We report what is actually received, never what is promised.",
+    detailsLabel: "How we handle the money",
     priorities: [
       {
         label: "Awareness and education",
@@ -220,14 +187,11 @@ export const campaign = {
     ],
     clinical:
       "Care-related money is spent only after the need, the route, and the check are agreed in writing. Clinicians decide eligibility and treatment. No healthcare partner is named here until that is agreed.",
-  },
-  accountability: {
-    title: "Counted when it arrives.",
-    paragraphs: [
-      "Cash in, minus receipted event costs. That net figure is what we call raised. Nothing is published here until it comes from reconciled records.",
-    ],
+    raised:
+      "Cash in, minus receipted event costs. That net figure is what we call raised, and nothing is published until it comes from reconciled records.",
+    separateLabel: "Counted separately, never as cash raised",
     separate: ["Unpaid sponsorship", "Pledges not yet received", "Winning bids not yet paid", "In-kind gifts"],
-    report: "A later account will show money in, costs, and what was delivered. It will not name a child. A pledge is not a donation received.",
+    report: "A later account will show money in, costs, and what was delivered. It will not name a child.",
   },
   sponsor: {
     title: "A partnership for the cause, not a logo beside a tennis court.",
@@ -294,12 +258,12 @@ export const campaign = {
     lede: "Use this form for a question that is not a request for a place, a partnership, an auction lot, or an in-kind gift. A message here does not reserve a seat.",
   },
   rsvp: {
-    title: "Request to attend.",
-    lede: "Entrance to the afternoon of Saturday, 19 December 2026 at Accra Lawn Tennis Club, Accra, is limited. Leave your name and email, and our team will get in touch about availability. Sending this form does not confirm your place, and attendance is arranged in advance.",
+    title: "Come and join us.",
+    lede: "Join us on Saturday, 19 December 2026 at Accra Lawn Tennis Club, Accra. Leave your name and email, and our team will be in touch to confirm the details.",
   },
   close: {
     title: "Every serve has the same reason.",
-    text: "Pass it on, or give from wherever you are. No child is named here.",
+    text: "Can't make it on the day? Give from wherever you are, or pass this on to someone who would want to know.",
   },
   footer: {
     summary:

@@ -1,13 +1,13 @@
 import { CampaignArticle } from "@/components/campaign/campaign-article";
-import { CampaignEnquiryForm } from "@/components/campaign/campaign-enquiry-form";
+import { AttendRequest } from "@/components/campaign/attend-request";
 import { Container } from "@/components/ui/container";
 import { campaign } from "@/content/campaign";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "Request to attend",
+  title: "Request a place",
   description:
-    "Request to attend Red for a Reason on 19 December 2026. Entrance is limited. A request does not confirm your place.",
+    "Request a place at Red for a Reason, a charity tennis afternoon on 19 December 2026 in Accra.",
   path: campaign.rsvpHref,
 });
 
@@ -29,18 +29,15 @@ export default function RsvpPage() {
               <dd className="mt-2 text-body text-ink/85">{campaign.venue}.</dd>
             </div>
             <div>
-              <dt className="eyebrow text-deep">Entrance</dt>
-              <dd className="mt-2 text-body text-ink/85">
-                Limited. Our team will get in touch about availability. Nothing is held until we
-                confirm.
-              </dd>
+              <dt className="eyebrow text-deep">What to expect</dt>
+              <dd className="mt-2 text-body text-ink/85">{campaign.afternoon.lede}</dd>
             </div>
           </dl>
         </div>
         <div className="bg-white p-5 sm:p-8 lg:col-span-6 lg:col-start-7">
-          <h2 className="text-h3">Your request</h2>
+          <h2 className="text-h3">{campaign.attend.requestsOpen ? "Your request" : "Thank you"}</h2>
           <div className="mt-6">
-            <CampaignEnquiryForm kind="rsvp" />
+            <AttendRequest />
           </div>
         </div>
       </Container>

@@ -1,6 +1,6 @@
 "use server";
 
-import { auctionLotKinds, inKindKinds, isCampaignEnquiryKind } from "@/content/campaign";
+import { auctionLotKinds, campaign, inKindKinds, isCampaignEnquiryKind } from "@/content/campaign";
 import type { InquiryState } from "@/content/inquiry";
 import { deliverInquiry } from "@/lib/inquiry-delivery";
 
@@ -41,6 +41,10 @@ export async function submitCampaignEnquiry(
       message: "The form could not be submitted. Please reload the page and try again.",
       fieldErrors: {},
     };
+  }
+
+  if (kind === "rsvp" && !campaign.attend.requestsOpen) {
+    return { status: "error", message: campaign.attend.closed.title, fieldErrors: {} };
   }
 
   if (name.length < 1 || name.length > 120) fieldErrors.name = "Enter your name.";

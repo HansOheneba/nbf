@@ -262,13 +262,15 @@ export default function Home() {
             <h2 className="mt-3 text-h1">{campaign.tagline}</h2>
             <p className="mt-5 max-w-xl text-body-lg text-ink/85">{campaign.home.copy}</p>
             <p className="mt-4 text-small text-muted-foreground">
-              {campaign.dateLabel}. From {campaign.arrival}. {campaign.venue}. Entrance is limited.
+              {campaign.dateLabel}. From {campaign.arrival}. {campaign.venue}.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <DonationLink initiative="fundraiser">{campaign.donateLabel}</DonationLink>
-              <ButtonLink href={campaign.rsvpHref} variant="secondary">
-                {campaign.rsvpLabel}
-              </ButtonLink>
+              {campaign.attend.requestsOpen ? (
+                <ButtonLink href={campaign.rsvpHref} variant="secondary">
+                  {campaign.rsvpLabel}
+                </ButtonLink>
+              ) : null}
               <ButtonLink href={campaign.path} variant="secondary">
                 {campaign.exploreLabel}
               </ButtonLink>
